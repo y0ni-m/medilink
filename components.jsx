@@ -17,7 +17,7 @@ function Nav({ onPrimaryClick }) {
       </div>
       <div className="nav-cta">
         <a className="btn btn-ghost-pill" href="https://app.medilink.vip/login">Sign in</a>
-        <button className="btn btn-primary" onClick={onPrimaryClick} style={{ backgroundColor: "rgb(13, 167, 202)" }}>Request demo</button>
+        <a className="btn btn-primary" href="https://app.medilink.vip/register" style={{ backgroundColor: "rgb(13, 167, 202)" }}>Request demo</a>
       </div>
     </nav>);
 
@@ -57,10 +57,10 @@ function HeroLeft({ tweaks }) {
       <h1 className="headline">{headlines[tweaks.headline] || headlines.match}</h1>
       <p className="subhead">{subheads[tweaks.headline] || subheads.match}</p>
       <div className="cta-row">
-        <button className="btn btn-cta">
+        <a className="btn btn-cta" href="https://app.medilink.vip/register">
           {tweaks.ctaText || "Join the clinic network"}
           <span className="arrow">→</span>
-        </button>
+        </a>
         <button className="btn btn-secondary-cta">
           For attorneys →
         </button>

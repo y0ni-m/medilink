@@ -32,7 +32,7 @@ function Footer() {
             </p>
           </div>
           <div className="ft-cta-actions">
-            <a className="ft-cta-primary" href="#">
+            <a className="ft-cta-primary" href="https://app.medilink.vip/register">
               Request demo
               <svg viewBox="0 0 14 14" fill="none">
                 <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>

@@ -97,7 +97,7 @@ function Pricing() {
                   </li>
                 ))}
               </ul>
-              <a className="pr-card-cta" href="#">
+              <a className="pr-card-cta" href="https://app.medilink.vip/register">
                 {p.cta}
                 <svg viewBox="0 0 14 14" fill="none">
                   <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>

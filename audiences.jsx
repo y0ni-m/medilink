@@ -99,7 +99,7 @@ function Audiences() {
               </ul>
 
               <footer className="aud-card-foot">
-                <a className="aud-card-cta" href="#">
+                <a className="aud-card-cta" href="https://app.medilink.vip/register">
                   {c.cta}
                   <svg viewBox="0 0 14 14" fill="none">
                     <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
