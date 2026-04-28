@@ -631,3 +631,11 @@
   .ft-cols { grid-template-columns: repeat(2, 1fr); gap: 28px 24px; }
   .ft-bar-inner { padding: 18px 24px; flex-direction: column; gap: 12px; }
 }
+
+@media (max-width: 480px) {
+  .ft-cta { padding: 0 16px 36px; }
+  .ft-cta-inner { padding: 28px 22px; }
+  .ft-cta-title { font-size: 30px; }
+  .ft-main-inner { padding: 0 18px 32px; }
+  .ft-cols { grid-template-columns: 1fr; gap: 24px; }
+}
