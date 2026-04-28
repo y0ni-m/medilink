@@ -16,7 +16,7 @@ function Nav({ onPrimaryClick }) {
         <a href="#">Pricing</a>
       </div>
       <div className="nav-cta">
-        <button className="btn btn-ghost-pill">Sign in</button>
+        <a className="btn btn-ghost-pill" href="https://app.medilink.vip/login">Sign in</a>
         <button className="btn btn-primary" onClick={onPrimaryClick} style={{ backgroundColor: "rgb(13, 167, 202)" }}>Request demo</button>
       </div>
     </nav>);
