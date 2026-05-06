@@ -20,7 +20,7 @@ export default function Nav() {
           href="https://app.medilink.vip/register"
           style={{ backgroundColor: 'rgb(13, 167, 202)' }}
         >
-          Request demo
+          Sign up
         </a>
       </div>
     </nav>
