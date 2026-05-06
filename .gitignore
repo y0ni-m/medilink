@@ -1,0 +1,21 @@
+# Next.js
+.next/
+out/
+node_modules/
+.env
+.env.local
+.env.*.local
+
+# Build artifacts
+*.tsbuildinfo
+next-env.d.ts
+
+# Editor / OS
+.DS_Store
+*.bak
+*.swp
+*.log
+
+# Personal / unrelated case files that should never end up in the repo
+PCFI*
+*Anthony Marshall*

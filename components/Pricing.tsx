@@ -1,59 +1,69 @@
-/* global React */
-const { useState: useStatePr, useEffect: useEffectPr, useRef: useRefPr } = React;
+'use client';
 
-function Pricing() {
-  const sectionRef = useRefPr(null);
-  const [inView, setInView] = useStatePr(false);
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 
-  useEffectPr(() => {
+const PLANS = [
+  {
+    id: 'attorneys',
+    name: 'Attorneys',
+    tag: 'For personal injury law firms',
+    price: 'Free',
+    priceSub: 'Always. No card required.',
+    note: 'Funded by clinic partners',
+    features: [
+      'Unlimited case referrals',
+      'Verified clinic network',
+      'Auto-generated LOPs & intake packets',
+      'Live status from intake to release',
+      'Attorney CRM with case timeline',
+      'Standard email + SMS notifications',
+    ],
+    cta: 'Sign up free',
+    featured: false,
+  },
+  {
+    id: 'clinics',
+    name: 'Clinics',
+    tag: 'For medical providers',
+    price: '$1,000',
+    priceSub: '/ month, per clinic location',
+    note: 'No setup fees. Cancel anytime.',
+    features: [
+      'Unlimited active referrals',
+      'Priority placement in attorney searches',
+      'Custom LOP + intake form templates',
+      'Multi-location dashboard',
+      'LOP tracking through settlement',
+      'Dedicated success manager',
+    ],
+    cta: 'Start 14-day trial',
+    featured: true,
+  },
+];
+
+export default function Pricing() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setInView(true); }, { threshold: 0.1 });
+    const obs = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) setInView(true);
+      },
+      { threshold: 0.1 }
+    );
     obs.observe(el);
     const fb = setTimeout(() => setInView(true), 1200);
-    return () => { obs.disconnect(); clearTimeout(fb); };
+    return () => {
+      obs.disconnect();
+      clearTimeout(fb);
+    };
   }, []);
 
-  const plans = [
-    {
-      id: 'attorneys',
-      name: 'Attorneys',
-      tag: 'For personal injury law firms',
-      price: 'Free',
-      priceSub: 'Always. No card required.',
-      note: 'Funded by clinic partners',
-      features: [
-        'Unlimited case referrals',
-        'Verified clinic network',
-        'Auto-generated LOPs & intake packets',
-        'Live status from intake to release',
-        'Attorney CRM with case timeline',
-        'Standard email + SMS notifications',
-      ],
-      cta: 'Sign up free',
-    },
-    {
-      id: 'clinics',
-      name: 'Clinics',
-      tag: 'For medical providers',
-      featured: true,
-      price: '$1,000',
-      priceSub: '/ month, per clinic location',
-      note: 'No setup fees. Cancel anytime.',
-      features: [
-        'Unlimited active referrals',
-        'Priority placement in attorney searches',
-        'Custom LOP + intake form templates',
-        'Multi-location dashboard',
-        'LOP tracking through settlement',
-        'Dedicated success manager',
-      ],
-      cta: 'Start 14-day trial',
-    },
-  ];
-
   return (
-    <section className={`pr ${inView ? 'is-in' : ''}`} ref={sectionRef}>
+    <section id="pricing" className={`pr ${inView ? 'is-in' : ''}`} ref={sectionRef}>
       <div className="pr-inner">
         <header className="pr-header">
           <span className="pr-eyebrow">
@@ -69,11 +79,11 @@ function Pricing() {
         </header>
 
         <div className="pr-grid pr-grid-2">
-          {plans.map((p, i) => (
+          {PLANS.map((p, i) => (
             <article
               key={p.id}
               className={`pr-card ${p.featured ? 'is-featured' : ''}`}
-              style={{ '--idx': i }}
+              style={{ '--idx': i } as CSSProperties}
             >
               {p.featured && <span className="pr-badge">Most popular</span>}
               <header className="pr-card-head">
@@ -90,7 +100,7 @@ function Pricing() {
                   <li key={j}>
                     <span className="pr-card-check">
                       <svg viewBox="0 0 12 12" fill="none">
-                        <path d="M3 6.5l2 2 4-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M3 6.5l2 2 4-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </span>
                     {f}
@@ -100,7 +110,7 @@ function Pricing() {
               <a className="pr-card-cta" href="https://app.medilink.vip/register">
                 {p.cta}
                 <svg viewBox="0 0 14 14" fill="none">
-                  <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </a>
             </article>
@@ -114,5 +124,3 @@ function Pricing() {
     </section>
   );
 }
-
-window.Pricing = Pricing;
