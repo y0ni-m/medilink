@@ -1,5 +1,5 @@
 /* Network graph styles — append to existing styles */
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
   --bg: #ECEAF3;
@@ -37,7 +37,7 @@ body::before {
 
 /* NAV */
 .nav { display: flex; align-items: center; justify-content: space-between; padding: 22px 56px; max-width: 1440px; margin: 0 auto; }
-.nav-logo { display: flex; align-items: center; gap: 10px; font-family: 'Instrument Serif', serif; font-size: 26px; letter-spacing: -0.01em; color: var(--ink); }
+.nav-logo { display: flex; align-items: center; gap: 10px; font-family: "Bricolage Grotesque", -apple-system, "system-ui", "Segoe UI", sans-serif; font-size: 26px; letter-spacing: -0.01em; color: var(--ink); }
 .nav-logo-img { height: 32px; width: auto; display: block; }
 .ml-logo-img { height: 22px; width: auto; display: block; }
 .ft-logo-img { height: 36px; width: auto; display: block; }
@@ -61,7 +61,7 @@ body::before {
 .eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 4px rgba(13,167,202,0.18); animation: pulse 1.8s ease-in-out infinite; }
 @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(0.9); } }
 
-.headline { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(44px, 5.6vw, 76px); line-height: 0.98; letter-spacing: -0.02em; margin: 0 0 24px; color: var(--ink); text-wrap: balance; }
+.headline { font-family: "Bricolage Grotesque", -apple-system, "system-ui", "Segoe UI", sans-serif; font-weight: 400; font-size: clamp(44px, 5.6vw, 76px); line-height: 0.98; letter-spacing: -0.02em; margin: 0 0 24px; color: var(--ink); text-wrap: balance; }
 .headline em { font-style: italic; color: var(--accent-deep); }
 .subhead { font-size: 18px; line-height: 1.55; color: var(--muted); max-width: 520px; margin: 0 0 36px; text-wrap: pretty; }
 .cta-row { display: flex; align-items: center; gap: 14px; margin-bottom: 44px; flex-wrap: wrap; }
@@ -74,7 +74,7 @@ body::before {
 
 .trust { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; padding-top: 28px; border-top: 1px solid var(--line); }
 .trust-stat { display: flex; flex-direction: column; gap: 2px; }
-.trust-stat-num { font-family: 'Instrument Serif', serif; font-size: 28px; letter-spacing: -0.01em; color: var(--ink); line-height: 1; }
+.trust-stat-num { font-family: "Bricolage Grotesque", -apple-system, "system-ui", "Segoe UI", sans-serif; font-size: 28px; letter-spacing: -0.01em; color: var(--ink); line-height: 1; }
 .trust-stat-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
 .trust-divider { width: 1px; height: 28px; background: var(--line); }
 .trust-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--muted); font-weight: 500; }
@@ -399,7 +399,7 @@ body::before {
 }
 .heart-core-bpm { display: flex; align-items: baseline; gap: 6px; }
 .heart-core-bpm-num {
-  font-family: 'Instrument Serif', serif;
+  font-family: "Bricolage Grotesque", -apple-system, "system-ui", "Segoe UI", sans-serif;
   font-size: 22px; color: #fff; line-height: 1;
 }
 .heart-core-bpm-unit {
@@ -561,7 +561,7 @@ body::before {
   animation: pulse 1.8s ease-in-out infinite;
 }
 .hiw-title {
-  font-family: 'Instrument Serif', serif;
+  font-family: "Bricolage Grotesque", -apple-system, "system-ui", "Segoe UI", sans-serif;
   font-size: clamp(40px, 5vw, 64px);
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -697,7 +697,7 @@ body::before {
   margin-bottom: 10px;
 }
 .hiw-step-title {
-  font-family: 'Instrument Serif', serif;
+  font-family: "Bricolage Grotesque", -apple-system, "system-ui", "Segoe UI", sans-serif;
   font-size: 28px;
   line-height: 1.15;
   font-weight: 400;
@@ -743,7 +743,7 @@ body::before {
 }
 .hiw.is-in .hiw-footer { opacity: 1; transform: translateY(0); }
 .hiw-footer-stat b {
-  font-family: 'Instrument Serif', serif;
+  font-family: "Bricolage Grotesque", -apple-system, "system-ui", "Segoe UI", sans-serif;
   font-style: italic;
   font-weight: 400;
   font-size: 22px;
@@ -796,7 +796,7 @@ body::before {
   animation: pulse 1.8s ease-in-out infinite;
 }
 .aud-title {
-  font-family: 'Instrument Serif', serif;
+  font-family: "Bricolage Grotesque", -apple-system, "system-ui", "Segoe UI", sans-serif;
   font-size: clamp(40px, 5vw, 60px);
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -871,7 +871,7 @@ body::before {
 .aud-card-visual svg { width: 32px; height: 32px; }
 
 .aud-card-title {
-  font-family: 'Instrument Serif', serif;
+  font-family: "Bricolage Grotesque", -apple-system, "system-ui", "Segoe UI", sans-serif;
   font-size: clamp(28px, 2.6vw, 34px);
   line-height: 1.12;
   letter-spacing: -0.01em;
@@ -952,7 +952,7 @@ body::before {
   line-height: 1;
 }
 .aud-card-stat-num {
-  font-family: 'Instrument Serif', serif;
+  font-family: "Bricolage Grotesque", -apple-system, "system-ui", "Segoe UI", sans-serif;
   font-style: italic;
   font-size: 26px;
   font-weight: 400;

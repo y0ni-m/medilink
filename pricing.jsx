@@ -37,7 +37,7 @@ function Pricing() {
       name: 'Clinics',
       tag: 'For medical providers',
       featured: true,
-      price: '$500',
+      price: '$1,000',
       priceSub: '/ month, per clinic location',
       note: 'No setup fees. Cancel anytime.',
       features: [

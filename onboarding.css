@@ -36,7 +36,7 @@
   animation: pulse 1.8s ease-in-out infinite;
 }
 .ob-title {
-  font-family: 'Instrument Serif', serif;
+  font-family: "Bricolage Grotesque", -apple-system, "system-ui", "Segoe UI", sans-serif;
   font-size: clamp(40px, 5vw, 60px);
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -184,7 +184,7 @@
 }
 .ob-step-time svg { width: 11px; height: 11px; color: var(--teal); }
 .ob-step-title {
-  font-family: 'Instrument Serif', serif;
+  font-family: "Bricolage Grotesque", -apple-system, "system-ui", "Segoe UI", sans-serif;
   font-size: clamp(28px, 3vw, 36px);
   line-height: 1.12;
   letter-spacing: -0.015em;
@@ -340,7 +340,7 @@
   flex-direction: column;
 }
 .obp-live-stats b {
-  font-family: 'Instrument Serif', serif;
+  font-family: "Bricolage Grotesque", -apple-system, "system-ui", "Segoe UI", sans-serif;
   font-style: italic;
   font-weight: 400;
   font-size: 28px;
@@ -402,7 +402,7 @@
   padding: 24px;
 }
 .ob-aside-title {
-  font-family: 'Instrument Serif', serif;
+  font-family: "Bricolage Grotesque", -apple-system, "system-ui", "Segoe UI", sans-serif;
   font-size: 20px;
   font-weight: 400;
   letter-spacing: -0.01em;
