@@ -1,11 +1,6 @@
 export default function HeroLeft() {
   return (
     <div className="hero-left">
-      <div className="eyebrow">
-        <span className="eyebrow-tag">New</span>
-        <span className="eyebrow-dot"></span>
-        <span>Now live in 38 states</span>
-      </div>
       <h1 className="headline">
         Personal injury referrals,
         <br />
