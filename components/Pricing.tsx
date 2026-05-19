@@ -36,7 +36,7 @@ const PLANS = [
       'LOP tracking through settlement',
       'Dedicated success manager',
     ],
-    cta: 'Start 14-day trial',
+    cta: 'Start 1-month trial',
     featured: true,
   },
 ];
@@ -121,7 +121,7 @@ export default function Pricing() {
           Need a custom plan for a multi-location health system or MSO? <a href="mailto:sales@medilink.vip">Talk to sales →</a>
         </p>
         <p className="pr-disclaimer">
-          Pricing may vary depending on the state.
+          Prices may vary by state.
         </p>
       </div>
     </section>

@@ -49,9 +49,9 @@ export default function TermsPage() {
         <h2>4. Fees</h2>
         <p>
           Attorney accounts are free. Clinic accounts are billed at the rate shown on our
-          <a href="/pricing"> Pricing</a> page or in your order form. Pricing may vary depending on
-          the state. Fees are billed in advance, are non-refundable except as required by law, and
-          may change on 30 days&apos; notice for renewal terms.
+          <a href="/pricing"> Pricing</a> page or in your order form. Prices may vary by state.
+          Fees are billed in advance, are non-refundable except as required by law, and may change
+          on 30 days&apos; notice for renewal terms.
         </p>
 
         <h2>5. Your content &amp; data</h2>
