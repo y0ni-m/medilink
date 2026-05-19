@@ -4,10 +4,10 @@ export default function HeroLeft() {
       <h1 className="headline">
         Personal injury referrals,
         <br />
-        <em style={{ color: 'rgb(13, 167, 202)' }}>matched in minutes.</em>
+        <em style={{ color: 'rgb(13, 167, 202)' }}>in one shared workspace.</em>
       </h1>
       <p className="subhead">
-        MediLink connects personal injury clinics with vetted attorneys actively placing referrals — so your treatment rooms stay full and cases move forward.
+        MediLink gives personal injury clinics and attorneys a single place to send referrals, manage LOPs, and follow every case from intake to settlement.
       </p>
       <div className="cta-row">
         <a className="btn btn-cta" href="https://app.medilink.vip/register">

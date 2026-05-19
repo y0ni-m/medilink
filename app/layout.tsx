@@ -4,7 +4,7 @@ import '../pricing.css';
 import '../onboarding.css';
 
 export const metadata: Metadata = {
-  title: 'MediLink — Personal injury referrals, matched in minutes.',
+  title: 'MediLink — Personal injury referrals, in one shared workspace.',
   description:
     'MediLink connects personal injury clinics with vetted attorneys actively placing referrals — referrals, LOPs, and case tracking in one place.',
 };
