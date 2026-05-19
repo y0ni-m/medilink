@@ -118,7 +118,10 @@ export default function Pricing() {
         </div>
 
         <p className="pr-footnote">
-          Need a custom plan for a multi-location health system or MSO? <a href="#">Talk to sales →</a>
+          Need a custom plan for a multi-location health system or MSO? <a href="mailto:sales@medilink.vip">Talk to sales →</a>
+        </p>
+        <p className="pr-disclaimer">
+          Pricing may vary depending on the state.
         </p>
       </div>
     </section>

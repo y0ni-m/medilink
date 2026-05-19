@@ -24,16 +24,6 @@ export default function HeroLeft() {
         </a>
       </div>
       <div className="trust">
-        <div className="trust-stat">
-          <span className="trust-stat-num">1,800+</span>
-          <span className="trust-stat-label">Clinics on network</span>
-        </div>
-        <div className="trust-divider"></div>
-        <div className="trust-stat">
-          <span className="trust-stat-num">$240M</span>
-          <span className="trust-stat-label">Cases referred &apos;25</span>
-        </div>
-        <div className="trust-divider"></div>
         <div className="trust-badge">
           <svg viewBox="0 0 16 16" fill="none">
             <path

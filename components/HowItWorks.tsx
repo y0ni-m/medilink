@@ -103,19 +103,6 @@ export default function HowItWorks() {
           ))}
         </div>
 
-        <div className="hiw-footer">
-          <span className="hiw-footer-stat">
-            <b>1,847</b> active clinics
-          </span>
-          <span className="hiw-footer-divider"></span>
-          <span className="hiw-footer-stat">
-            <b>512</b> partner firms
-          </span>
-          <span className="hiw-footer-divider"></span>
-          <span className="hiw-footer-stat">
-            <b>3.2M+</b> referrals routed
-          </span>
-        </div>
       </div>
     </section>
   );

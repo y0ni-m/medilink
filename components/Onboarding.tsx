@@ -130,11 +130,11 @@ function ObPreview({ kind }: { kind: PreviewKind }) {
           <span>active referrals</span>
         </div>
         <div>
-          <b>48h</b>
+          <b>—</b>
           <span>est. first match</span>
         </div>
         <div>
-          <b>312</b>
+          <b>—</b>
           <span>nearby attorneys</span>
         </div>
       </div>
@@ -281,7 +281,7 @@ export default function Onboarding() {
             </ul>
             <div className="ob-aside-cta">
               <span className="ob-aside-cta-label">Need help?</span>
-              <a href="#">Talk to onboarding →</a>
+              <a href="mailto:onboarding@medilink.vip">Talk to onboarding →</a>
             </div>
           </aside>
         </div>

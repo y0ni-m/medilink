@@ -14,7 +14,6 @@ const CARDS = [
       'Live status from intake to release',
     ],
     cta: 'Refer a case',
-    stat: { value: '4 min', label: 'avg match time' },
     visual: 'attorney' as const,
   },
   {
@@ -28,7 +27,6 @@ const CARDS = [
       'LOP tracking through settlement',
     ],
     cta: 'Join the network',
-    stat: { value: '312', label: 'avg referrals / yr' },
     visual: 'provider' as const,
   },
 ];
@@ -121,10 +119,6 @@ export default function Audiences() {
                     <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </a>
-                <div className="aud-card-stat">
-                  <span className="aud-card-stat-num">{c.stat.value}</span>
-                  <span className="aud-card-stat-lbl">{c.stat.label}</span>
-                </div>
               </footer>
             </article>
           ))}
