@@ -47,7 +47,7 @@ export default function Footer() {
                 <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </a>
-            <a className="ft-cta-secondary" href="mailto:sales@medilink.vip">Talk to sales</a>
+            <a className="ft-cta-secondary" href="mailto:info@medilink.vip">Talk to sales</a>
           </div>
         </div>
       </div>
@@ -79,7 +79,7 @@ export default function Footer() {
             <div className="ft-col">
               <h4>Company</h4>
               <a href="mailto:hello@medilink.vip">Contact</a>
-              <a href="mailto:sales@medilink.vip">Sales</a>
+              <a href="mailto:info@medilink.vip">Sales</a>
             </div>
             <div className="ft-col">
               <h4>Trust</h4>

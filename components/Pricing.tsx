@@ -2,7 +2,20 @@
 
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 
-const PLANS = [
+type Plan = {
+  id: string;
+  name: string;
+  tag: string;
+  price: string;
+  priceSub: string;
+  stateNote?: string;
+  note: string;
+  features: string[];
+  cta: string;
+  featured: boolean;
+};
+
+const PLANS: Plan[] = [
   {
     id: 'attorneys',
     name: 'Attorneys',
@@ -27,6 +40,7 @@ const PLANS = [
     tag: 'For medical providers',
     price: '$1,000',
     priceSub: '/ month, per clinic location',
+    stateNote: 'Depending on your state — PIP states (e.g., Florida): $2,500 / month per location.',
     note: 'No setup fees. Cancel anytime.',
     features: [
       'Unlimited active referrals',
@@ -74,7 +88,7 @@ export default function Pricing() {
             Simple pricing for <em>both sides</em>.
           </h1>
           <p className="pr-sub">
-            Attorneys join free. Clinics pay one flat monthly rate per location — no per-referral fees, no settlement cuts.
+            Attorneys join free. Clinics pay one flat monthly rate per location.
           </p>
         </header>
 
@@ -93,6 +107,7 @@ export default function Pricing() {
               <div className="pr-card-price">
                 <span className="pr-card-price-val">{p.price}</span>
                 <span className="pr-card-price-sub">{p.priceSub}</span>
+                {p.stateNote && <span className="pr-card-price-state">{p.stateNote}</span>}
                 <span className="pr-card-price-note">{p.note}</span>
               </div>
               <ul className="pr-card-features">
@@ -118,7 +133,7 @@ export default function Pricing() {
         </div>
 
         <p className="pr-footnote">
-          Need a custom plan for a multi-location health system or MSO? <a href="mailto:sales@medilink.vip">Talk to sales →</a>
+          Need a custom plan for a multi-location health system or MSO? <a href="mailto:info@medilink.vip">Talk to sales →</a>
         </p>
         <p className="pr-disclaimer">
           Prices may vary by state.

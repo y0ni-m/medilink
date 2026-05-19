@@ -207,12 +207,21 @@
   font-weight: 500;
 }
 .pr-card.is-featured .pr-card-price-sub { color: rgba(255,255,255,0.7); }
+.pr-card-price-state {
+  font-size: 12px;
+  color: var(--ink-2);
+  font-weight: 500;
+  line-height: 1.4;
+  margin-top: 8px;
+  opacity: 0.85;
+}
+.pr-card.is-featured .pr-card-price-state { color: rgba(255,255,255,0.85); opacity: 1; }
 .pr-card-price-note {
   font-size: 11.5px;
   color: var(--teal);
   font-weight: 600;
   letter-spacing: 0.02em;
-  margin-top: 2px;
+  margin-top: 6px;
 }
 
 .pr-card-features {
