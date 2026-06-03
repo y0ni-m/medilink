@@ -5,7 +5,7 @@ import Pricing from '@/components/Pricing';
 
 export const metadata: Metadata = {
   title: 'MediLink — Pricing',
-  description: 'Attorneys join free. Clinics pay one flat monthly rate per location.',
+  description: 'Attorneys join free. Clinics get a plan tailored to their state, locations, and case mix.',
 };
 
 export default function PricingPage() {
