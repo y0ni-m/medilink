@@ -22,7 +22,7 @@ export default function TermsPage() {
         <h2>1. The service</h2>
         <p>
           MediLink provides software that helps personal injury attorneys and medical clinics
-          coordinate referrals, Letters of Protection (LOPs) or Patient financial responsibility agreements (the exact term varies by state), case status, and related
+          coordinate referrals, LOP and/or Patient financial responsibility depending on what state you are operating in, case status, and related
           communications. MediLink is a neutral platform: it does not provide legal advice, medical
           advice, or representation, and it does not direct or control how attorneys or clinics
           handle a particular case.

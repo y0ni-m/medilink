@@ -7,7 +7,7 @@ export default function HeroLeft() {
         <em style={{ color: 'rgb(13, 167, 202)' }}>in one shared workspace.</em>
       </h1>
       <p className="subhead">
-        MediLink gives personal injury clinics and attorneys a single place to send referrals, manage LOPs or Patient financial responsibility agreements (depending on your state), and follow every case from intake to settlement.
+        MediLink gives personal injury clinics and attorneys a single place to send referrals, manage LOP and/or Patient financial responsibility depending on what state you are operating in, and follow every case from intake to settlement.
       </p>
       <div className="cta-row">
         <a className="btn btn-cta" href="https://app.medilink.vip/register">

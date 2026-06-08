@@ -37,7 +37,7 @@ export default function Footer() {
               Start matching cases <em>today</em>.
             </h2>
             <p className="ft-cta-sub">
-              Connect personal injury attorneys with vetted medical clinics — referrals, LOPs / Patient financial responsibility, and case tracking in one place.
+              Connect personal injury attorneys with vetted medical clinics — referrals, LOP and/or Patient financial responsibility depending on what state you are operating in, and case tracking in one place.
             </p>
           </div>
           <div className="ft-cta-actions">
