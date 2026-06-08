@@ -26,7 +26,7 @@ const PLANS: Plan[] = [
     features: [
       'Unlimited case referrals',
       'Verified clinic network',
-      'Auto-generated LOPs & intake packets',
+      'Auto-generated Patient financial responsibility & intake packets',
       'Live status from intake to release',
       'Attorney CRM with case timeline',
       'Standard email + SMS notifications',
@@ -45,9 +45,9 @@ const PLANS: Plan[] = [
     features: [
       'Unlimited active referrals',
       'Priority placement in attorney searches',
-      'Custom LOP + intake form templates',
+      'Custom Patient financial responsibility + intake form templates',
       'Multi-location dashboard',
-      'LOP tracking through settlement',
+      'Patient financial responsibility tracking through settlement',
       'Dedicated success manager',
     ],
     cta: 'Talk to our team',

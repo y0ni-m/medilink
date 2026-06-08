@@ -21,7 +21,7 @@ const STEPS = [
     n: '03',
     label: 'Treat',
     title: 'Track every case to settlement',
-    desc: 'See attorney status, send LOPs, log treatment notes — all in one shared timeline.',
+    desc: 'See attorney status, send Patient financial responsibility, log treatment notes — all in one shared timeline.',
     meta: 'Avg case: 8 mo',
   },
 ];

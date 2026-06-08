@@ -23,8 +23,8 @@ const STEPS = [
     n: 3,
     label: 'Configure',
     time: '10 min',
-    title: 'Configure intake & LOPs',
-    desc: 'Customize your intake forms, LOP templates, and notification rules. Default templates work out of the box.',
+    title: 'Configure intake & Patient financial responsibility',
+    desc: 'Customize your intake forms, Patient financial responsibility templates, and notification rules. Default templates work out of the box.',
     preview: 'configure' as const,
   },
   {
@@ -105,7 +105,7 @@ function ObPreview({ kind }: { kind: PreviewKind }) {
           </span>
         </div>
         <div className="obp-toggle">
-          <span>Custom LOP template</span>
+          <span>Custom Patient financial responsibility template</span>
           <span className="obp-switch">
             <i />
           </span>
