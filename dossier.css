@@ -1,0 +1,165 @@
+/* ===================================================================
+   DOSSIER — site-wide editorial layer.
+   Loaded LAST in app/layout.tsx so it harmonizes every page with the
+   "case dossier" language introduced on the audience landing pages:
+     · monospace editorial eyebrows with a leading rule
+     · Instrument-Serif teal accents on display headings
+     · faint ledger-grid atmosphere behind hero/section surfaces
+     · ghosted oversized words
+     · refined cards + monospace numerals
+   This file is override-only. Structural layout stays in styles.css /
+   pricing.css / onboarding.css / resources.css.
+   =================================================================== */
+
+/* ---- Shared ghost-word primitive ---- */
+.hero-ghost,
+.res-hero-inner::before,
+.legal-header::before {
+  font-family: "Bricolage Grotesque", sans-serif; font-weight: 700;
+  color: transparent; -webkit-text-stroke: 1.5px var(--teal);
+  opacity: 0.06; line-height: 0.8; letter-spacing: -0.04em;
+  pointer-events: none; user-select: none;
+}
+
+/* ===================================================================
+   1. Unified monospace editorial eyebrows
+   =================================================================== */
+.hiw-eyebrow, .aud-eyebrow, .pr-eyebrow, .ob-eyebrow {
+  background: transparent; border: none; padding: 0; border-radius: 0;
+  font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); gap: 11px;
+}
+.legal-eyebrow {
+  font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 500;
+  letter-spacing: 0.16em; color: var(--muted); gap: 11px;
+}
+/* leading rule -> "─── EYEBROW" editorial index feel, no DOM needed */
+.hiw-eyebrow::before, .aud-eyebrow::before, .pr-eyebrow::before,
+.ob-eyebrow::before, .legal-eyebrow::before {
+  content: ""; order: -1; width: 42px; height: 1px; background: var(--ink); opacity: 0.25;
+}
+.ft-cta-eyebrow { font-family: "JetBrains Mono", monospace; letter-spacing: 0.16em; font-weight: 500; }
+
+/* ===================================================================
+   2. Instrument-Serif teal accents on every display heading
+   =================================================================== */
+.headline em, .hiw-title em, .aud-title em, .pr-title em, .ob-title em, .legal-title em {
+  font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-weight: 400;
+  color: var(--teal); letter-spacing: 0;
+}
+
+/* ===================================================================
+   3. Ledger-grid atmosphere (pseudo overlay — never clobbers existing bg)
+   =================================================================== */
+.hero, .pr, .ob, .legal, .res-hero { position: relative; }
+.hero::before, .pr::before, .ob::before, .legal::before, .res-hero::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(11, 11, 20, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(11, 11, 20, 0.028) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 72%);
+          mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 72%);
+}
+/* keep real content above the grid */
+.hero-left, .stage, .brain-stage { position: relative; z-index: 1; }
+.pr-inner, .ob-inner, .legal-inner, .res-hero-inner { position: relative; z-index: 1; }
+
+/* ---- three.js wireframe brain (homepage hero, right column) ---- */
+.brain-stage {
+  width: 100%;
+  height: 600px;
+  display: block;
+  isolation: isolate;
+}
+.brain-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 52% 46%, rgba(13, 167, 202, 0.18), transparent 62%);
+}
+.brain-stage canvas {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+@media (max-width: 1000px) {
+  .brain-stage { height: 440px; }
+}
+
+/* ===================================================================
+   4. Home hero — dossier metadata bar + ghost word
+   =================================================================== */
+.hero-dossier {
+  display: inline-flex; align-items: center; gap: 12px; margin-bottom: 26px;
+  font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
+}
+.hero-dossier-rule { width: 42px; height: 1px; background: var(--ink); opacity: 0.25; }
+.hero-dossier-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--teal);
+  box-shadow: 0 0 0 4px rgba(13, 167, 202, 0.18); animation: pulse 1.8s ease-in-out infinite;
+}
+.hero-ghost {
+  position: absolute; z-index: 0; top: -7%; right: -1%;
+  font-size: clamp(140px, 21vw, 300px);
+}
+
+/* ---- Resources hero ghost ---- */
+.res-hero-inner::before {
+  content: "PLAYBOOK"; position: absolute; z-index: 0; top: -38px; right: -8px;
+  font-size: clamp(80px, 12vw, 168px);
+}
+.res-hero-inner > * { position: relative; z-index: 1; }
+
+/* ---- Legal header ghost ---- */
+.legal-header { position: relative; }
+.legal-header::before {
+  content: "MEDILINK"; position: absolute; z-index: 0; top: -30px; right: -6px;
+  font-size: clamp(60px, 10vw, 150px);
+}
+.legal-header > * { position: relative; z-index: 1; }
+
+/* ===================================================================
+   5. Monospace numerals
+   =================================================================== */
+.hiw-step-num, .ob-step-num, .ob-step-time, .ob-rail-time {
+  font-family: "JetBrains Mono", monospace; letter-spacing: 0.02em;
+}
+
+/* ===================================================================
+   6. Cards — mono tags + signature hover accent bar
+   =================================================================== */
+.aud-card-eyebrow, .pr-card-tag {
+  font-family: "JetBrains Mono", monospace; font-size: 10.5px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+}
+.pr-badge {
+  font-family: "JetBrains Mono", monospace; letter-spacing: 0.1em; text-transform: uppercase; font-size: 10.5px;
+}
+.aud-card, .pr-card { position: relative; overflow: hidden; }
+.aud-card::after, .pr-card::after {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--teal); transform: scaleY(0); transform-origin: top; transition: transform 0.22s ease;
+}
+.aud-card:hover::after, .pr-card:hover::after { transform: scaleY(1); }
+
+/* ===================================================================
+   7. Footer — mono column heads + badges
+   =================================================================== */
+.ft-col h4 {
+  font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+}
+.ft-badge { font-family: "JetBrains Mono", monospace; letter-spacing: 0.06em; font-size: 11px; }
+
+/* ===================================================================
+   8. Reduced motion
+   =================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .hero-dossier-dot { animation: none; }
+}

@@ -1,6 +1,11 @@
 export default function HeroLeft() {
   return (
     <div className="hero-left">
+      <div className="hero-dossier">
+        <span className="hero-dossier-rule" />
+        <span className="hero-dossier-dot" />
+        Live referral network · MEDILINK
+      </div>
       <h1 className="headline">
         Personal injury referrals,
         <br />
