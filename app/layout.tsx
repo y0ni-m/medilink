@@ -2,6 +2,10 @@ import type { Metadata } from 'next';
 import '../styles.css';
 import '../pricing.css';
 import '../onboarding.css';
+import '../solutions.css';
+import '../resources.css';
+import '../dossier.css';
+import '../explorer.css';
 
 export const metadata: Metadata = {
   title: 'MediLink — Personal injury referrals, in one shared workspace.',

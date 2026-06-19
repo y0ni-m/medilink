@@ -69,20 +69,23 @@ export default function Footer() {
 
           <div className="ft-cols">
             <div className="ft-col">
+              <h4>Solutions</h4>
+              <Link href="/for/lawyers">For Lawyers</Link>
+              <Link href="/for/mri-clinics">For MRI Clinics</Link>
+              <Link href="/for/tbi-doctors">For TBI Doctors</Link>
+              <Link href="/for/chiropractors">For Chiropractors</Link>
+            </div>
+            <div className="ft-col">
               <h4>Product</h4>
-              <Link href="/#audiences">For Attorneys</Link>
-              <Link href="/#audiences">For Clinics</Link>
               <Link href="/#how-it-works">How it works</Link>
               <Link href="/pricing">Pricing</Link>
               <Link href="/onboarding">Onboarding</Link>
+              <Link href="/resources">Resources</Link>
             </div>
             <div className="ft-col">
               <h4>Company</h4>
               <a href="mailto:info@medilink.vip">Contact</a>
               <a href="mailto:info@medilink.vip">Sales</a>
-            </div>
-            <div className="ft-col">
-              <h4>Trust</h4>
               <Link href="/compliance">Compliance</Link>
               <a href="mailto:security@medilink.vip">Security</a>
             </div>

@@ -1,0 +1,182 @@
+/* ===================================================================
+   Interactive brain explorer — full-width dark section.
+   Used below the homepage hero and on the TBI landing page.
+   =================================================================== */
+
+.bx {
+  position: relative;
+  width: 100%;
+  background:
+    radial-gradient(circle at 70% 10%, rgba(13, 167, 202, 0.22), transparent 55%),
+    linear-gradient(160deg, #0d2b33 0%, #081016 70%);
+  color: #fff;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.bx::before {
+  /* faint ledger grid to match the dossier language */
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(circle at 50% 40%, #000, transparent 75%);
+          mask-image: radial-gradient(circle at 50% 40%, #000, transparent 75%);
+}
+.bx-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 76px 56px 84px;
+}
+
+/* ---- heading ---- */
+.bx-head { max-width: 640px; margin-bottom: 26px; }
+.bx-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 16px;
+}
+.bx-eyebrow-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--teal);
+  box-shadow: 0 0 0 4px rgba(13, 167, 202, 0.25); animation: pulse 1.8s ease-in-out infinite;
+}
+.bx-title {
+  font-family: "Bricolage Grotesque", sans-serif; font-weight: 400;
+  font-size: clamp(30px, 4vw, 46px); line-height: 1.04; letter-spacing: -0.025em;
+  margin: 0 0 14px; color: #fff;
+}
+.bx-title em { font-family: "Instrument Serif", Georgia, serif; font-style: italic; color: var(--teal); }
+.bx-sub { font-size: 17px; line-height: 1.55; color: rgba(255, 255, 255, 0.66); margin: 0; }
+
+/* ---- stage ---- */
+.bx-stage {
+  position: relative;
+  height: 600px;
+  border-radius: 22px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(13, 167, 202, 0.14), transparent 62%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+.bx-canvas { position: absolute; inset: 0; }
+.bx-canvas canvas { display: block; width: 100% !important; height: 100% !important; cursor: grab; }
+.bx-canvas canvas:active { cursor: grabbing; }
+
+/* ---- hotspot pins (projected from 3D) ---- */
+.bx-pins { position: absolute; inset: 0; pointer-events: none; }
+.bx-pin {
+  position: absolute; top: 0; left: 0;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: none; border: none; cursor: pointer; padding: 6px;
+  transition: opacity 0.15s ease;
+  will-change: transform, opacity;
+}
+.bx-pin-dot {
+  width: 13px; height: 13px; border-radius: 50%;
+  background: var(--teal); border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0 0 rgba(13, 167, 202, 0.5), 0 2px 8px rgba(0, 0, 0, 0.4);
+  flex: 0 0 auto; transition: transform 0.16s ease, box-shadow 0.16s ease;
+  animation: bxPing 2.4s ease-out infinite;
+}
+.bx-pin-label {
+  font-family: "JetBrains Mono", monospace; font-size: 10.5px; font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase; color: #fff; white-space: nowrap;
+  background: rgba(8, 18, 24, 0.78); padding: 4px 9px; border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12); backdrop-filter: blur(4px);
+  opacity: 0; transform: translateX(-4px); transition: opacity 0.16s ease, transform 0.16s ease;
+}
+.bx-pin:hover .bx-pin-label,
+.bx-pin.is-active .bx-pin-label { opacity: 1; transform: none; }
+.bx-pin:hover .bx-pin-dot { transform: scale(1.25); }
+.bx-pin.is-active .bx-pin-dot {
+  background: #fff; box-shadow: 0 0 0 5px rgba(13, 167, 202, 0.4), 0 2px 10px rgba(0, 0, 0, 0.5);
+  animation: none;
+}
+
+/* ---- view controls (top-right) ---- */
+.bx-controls {
+  position: absolute; top: 16px; right: 16px; z-index: 30;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.bx-controls button {
+  width: 38px; height: 38px; border-radius: 10px; cursor: pointer;
+  background: rgba(12, 22, 28, 0.7); color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 18px; line-height: 1; display: grid; place-items: center;
+  backdrop-filter: blur(6px); transition: background 0.15s, border-color 0.15s;
+}
+.bx-controls button:hover { background: rgba(13, 167, 202, 0.3); border-color: rgba(13, 167, 202, 0.6); }
+.bx-reset { font-size: 16px; }
+
+/* ---- region chips (bottom-left) ---- */
+.bx-list {
+  position: absolute; left: 16px; bottom: 16px; z-index: 30;
+  display: flex; flex-wrap: wrap; gap: 7px; max-width: 60%;
+}
+.bx-chip {
+  font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 500;
+  letter-spacing: 0.04em; color: rgba(255, 255, 255, 0.82); cursor: pointer;
+  background: rgba(12, 22, 28, 0.62); border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 7px 13px; border-radius: 999px; backdrop-filter: blur(6px);
+  transition: all 0.14s;
+}
+.bx-chip:hover { border-color: rgba(13, 167, 202, 0.6); color: #fff; }
+.bx-chip.is-active { background: var(--teal); border-color: var(--teal); color: #042027; font-weight: 600; }
+
+/* ---- info panel (right) ---- */
+.bx-panel {
+  position: absolute; top: 16px; right: 16px; z-index: 20;
+  width: 300px; max-width: calc(100% - 32px);
+  background: rgba(9, 19, 25, 0.82); border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px; padding: 22px; backdrop-filter: blur(10px);
+  transform: translateY(8px); opacity: 0; pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+.bx-panel.is-open { opacity: 1; transform: none; pointer-events: auto; }
+/* when the panel opens, nudge the controls left so they don't overlap */
+.bx-panel.is-open ~ .bx-controls { right: 332px; }
+.bx-panel-tag {
+  font-family: "JetBrains Mono", monospace; font-size: 10.5px; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--teal); display: block; margin-bottom: 10px;
+}
+.bx-panel h3 {
+  font-family: "Bricolage Grotesque", sans-serif; font-weight: 500; font-size: 22px;
+  letter-spacing: -0.01em; margin: 0 0 10px; color: #fff;
+}
+.bx-panel p { font-size: 14px; line-height: 1.6; color: rgba(255, 255, 255, 0.72); margin: 0 0 18px; }
+.bx-panel-cta {
+  display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+  font-size: 13.5px; font-weight: 600; color: #042027; background: var(--teal);
+  padding: 10px 16px; border-radius: 999px; transition: background 0.15s, transform 0.15s;
+}
+.bx-panel-cta:hover { background: #2bc3e3; transform: translateY(-1px); }
+.bx-panel-cta svg { width: 13px; height: 13px; }
+.bx-panel-empty .bx-panel-hint {
+  font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: rgba(255, 255, 255, 0.5); display: block; margin-bottom: 10px;
+}
+
+@keyframes bxPing {
+  0% { box-shadow: 0 0 0 0 rgba(13, 167, 202, 0.5), 0 2px 8px rgba(0, 0, 0, 0.4); }
+  70%, 100% { box-shadow: 0 0 0 10px rgba(13, 167, 202, 0), 0 2px 8px rgba(0, 0, 0, 0.4); }
+}
+
+/* ---- responsive ---- */
+@media (max-width: 900px) {
+  .bx-inner { padding: 56px 24px 64px; }
+  .bx-stage { height: 480px; }
+  .bx-panel { position: static; width: auto; margin-top: 14px; transform: none; opacity: 1; pointer-events: auto; display: none; }
+  .bx-panel.is-open { display: block; }
+  .bx-panel.is-open ~ .bx-controls { right: 16px; }
+  .bx-list { max-width: calc(100% - 70px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bx-pin-dot, .bx-eyebrow-dot { animation: none; }
+}
