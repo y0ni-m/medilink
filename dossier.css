@@ -15,7 +15,7 @@
 .hero-ghost,
 .res-hero-inner::before,
 .legal-header::before {
-  font-family: "Bricolage Grotesque", sans-serif; font-weight: 700;
+  font-family: "Space Grotesk", sans-serif; font-weight: 700;
   color: transparent; -webkit-text-stroke: 1.5px var(--teal);
   opacity: 0.06; line-height: 0.8; letter-spacing: -0.04em;
   pointer-events: none; user-select: none;
@@ -44,7 +44,7 @@
    2. Instrument-Serif teal accents on every display heading
    =================================================================== */
 .headline em, .hiw-title em, .aud-title em, .pr-title em, .ob-title em, .legal-title em {
-  font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-weight: 400;
+  font-family: "Space Grotesk", system-ui, sans-serif; font-style: normal; font-weight: 400;
   color: var(--teal); letter-spacing: 0;
 }
 
