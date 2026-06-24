@@ -70,21 +70,15 @@ const REGIONS: Region[] = [
 const BASE_DIST = 3.4;
 const FOCUS_DIST = 2.7;
 
-/** Soft radial glow used to highlight the selected region. */
-function makeGlowTexture(): THREE.Texture {
-  const c = document.createElement('canvas');
-  c.width = c.height = 128;
-  const ctx = c.getContext('2d')!;
-  const g = ctx.createRadialGradient(64, 64, 0, 64, 64, 64);
-  g.addColorStop(0, 'rgba(255,255,255,1)');
-  g.addColorStop(0.45, 'rgba(255,255,255,0.5)');
-  g.addColorStop(1, 'rgba(255,255,255,0)');
-  ctx.fillStyle = g;
-  ctx.fillRect(0, 0, 128, 128);
-  const t = new THREE.CanvasTexture(c);
-  t.needsUpdate = true;
-  return t;
-}
+// Base teal of the brain surface, and the highlight painted onto a selected
+// region. The brain is a single mesh, so we recolor the vertices within a soft
+// radius of the region's anchor — a natural patch on the lobe (no glow sprite).
+const BASE_COLOR = new THREE.Color(0x0c93b2);
+const HIGHLIGHT_COLOR = new THREE.Color(0xffb347);
+const HL_INNER = 0.85; // fully highlighted within this radius (covers most of a lobe)
+const HL_OUTER = 1.55; // fades to base by here
+
+type ColorTarget = { colorAttr: THREE.BufferAttribute; worldPos: Float32Array; count: number };
 
 export default function BrainExplorer() {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -154,25 +148,12 @@ export default function BrainExplorer() {
       opacity: 0.3,
       depthWrite: false,
     });
-
-    // Selection highlight — a soft glow patch dropped onto the chosen region.
-    // Parented to the brain group so it tracks the lobe as the model rotates.
-    const glowTex = makeGlowTexture();
-    const highlightMat = new THREE.SpriteMaterial({
-      map: glowTex,
-      color: 0xffc24a,
-      transparent: true,
-      opacity: 0.92,
-      depthWrite: false,
-      depthTest: false,
-    });
-    const highlight = new THREE.Sprite(highlightMat);
-    highlight.scale.set(1.15, 1.15, 1);
-    highlight.visible = false;
-    highlight.renderOrder = 5;
-    group.add(highlight);
+    // Vertex colors carry the base teal + the selection highlight.
+    solidMat.vertexColors = true;
+    solidMat.color.set(0xffffff); // let vertex colors show through faithfully
 
     const geometries: THREE.BufferGeometry[] = [];
+    const colorTargets: ColorTarget[] = [];
     const regionLocal: Record<string, THREE.Vector3> = {};
     let pickTarget: THREE.Object3D | null = null;
     const pinRay = new THREE.Raycaster();
@@ -208,6 +189,29 @@ export default function BrainExplorer() {
         group.updateMatrixWorld(true);
         pickTarget = root;
 
+        // Seed each mesh with a base-teal color attribute and precompute its
+        // vertices' world positions (the group has no transform, so world space
+        // matches the anchors stored in regionLocal) for fast distance-based recolor.
+        const v = new THREE.Vector3();
+        meshes.forEach((m) => {
+          const geo = m.geometry as THREE.BufferGeometry;
+          const pos = geo.attributes.position;
+          const n = pos.count;
+          const colors = new Float32Array(n * 3);
+          const wpos = new Float32Array(n * 3);
+          for (let i = 0; i < n; i++) {
+            colors[i * 3] = BASE_COLOR.r;
+            colors[i * 3 + 1] = BASE_COLOR.g;
+            colors[i * 3 + 2] = BASE_COLOR.b;
+            v.fromBufferAttribute(pos, i).applyMatrix4(m.matrixWorld);
+            wpos[i * 3] = v.x;
+            wpos[i * 3 + 1] = v.y;
+            wpos[i * 3 + 2] = v.z;
+          }
+          geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+          colorTargets.push({ colorAttr: geo.attributes.color as THREE.BufferAttribute, worldPos: wpos, count: n });
+        });
+
         // Anchor each hotspot on the actual surface: raycast from outside → in.
         const ray = new THREE.Raycaster();
         REGIONS.forEach((r) => {
@@ -221,12 +225,27 @@ export default function BrainExplorer() {
             : dir.multiplyScalar(1.2);
         });
 
+        // Refine the fit distance now that we know the model's real size.
+        modelRadius = 0.5 * size.length() * scale;
+        setSize();
         setReady(true);
       },
       undefined,
       (err) => console.error('BrainExplorer: model load failed', err)
     );
 
+    // Fit the model to the canvas at any aspect — a portrait phone would
+    // otherwise crop the wide brain. Pull the camera back so the model's
+    // bounding sphere fits the NARROWER of the vertical/horizontal FOV.
+    // modelRadius is refined once the model loads (see the loader above).
+    let modelRadius = 1.5;
+    let baseDist = BASE_DIST;
+    let autoFit = true;
+    const fitDist = () => {
+      const vFov = (camera.fov * Math.PI) / 180;
+      const hFov = 2 * Math.atan(Math.tan(vFov / 2) * (camera.aspect || 1));
+      return (modelRadius / Math.sin(Math.min(vFov, hFov) / 2)) * 1.1;
+    };
     const setSize = () => {
       const w = mount.clientWidth;
       const h = mount.clientHeight;
@@ -234,6 +253,8 @@ export default function BrainExplorer() {
       renderer.setSize(w, h, false);
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
+      baseDist = fitDist();
+      if (autoFit) camera.position.setLength(baseDist);
     };
     setSize();
     const ro = new ResizeObserver(setSize);
@@ -245,30 +266,64 @@ export default function BrainExplorer() {
     const tmp = new THREE.Vector3();
     const camDir = new THREE.Vector3();
 
+    // Paint the highlight onto the actual brain surface: blend each vertex
+    // toward the highlight color by its distance to the selected anchor.
+    const recolor = (id: string | null) => {
+      const anchor = id ? regionLocal[id] : null;
+      const dr = HIGHLIGHT_COLOR.r - BASE_COLOR.r;
+      const dg = HIGHLIGHT_COLOR.g - BASE_COLOR.g;
+      const db = HIGHLIGHT_COLOR.b - BASE_COLOR.b;
+      for (const t of colorTargets) {
+        const arr = t.colorAttr.array as Float32Array;
+        for (let i = 0; i < t.count; i++) {
+          let mix = 0;
+          if (anchor) {
+            const dx = t.worldPos[i * 3] - anchor.x;
+            const dy = t.worldPos[i * 3 + 1] - anchor.y;
+            const dz = t.worldPos[i * 3 + 2] - anchor.z;
+            const d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+            if (d <= HL_INNER) mix = 1;
+            else if (d < HL_OUTER) {
+              const u = (HL_OUTER - d) / (HL_OUTER - HL_INNER);
+              mix = u * u * (3 - 2 * u); // smoothstep
+            }
+          }
+          arr[i * 3] = BASE_COLOR.r + dr * mix;
+          arr[i * 3 + 1] = BASE_COLOR.g + dg * mix;
+          arr[i * 3 + 2] = BASE_COLOR.b + db * mix;
+        }
+        t.colorAttr.needsUpdate = true;
+      }
+    };
+
     api.current.select = (id) => {
       selectedId = id && regionLocal[id] ? id : null;
+      recolor(selectedId);
       if (!selectedId) {
         focusTarget = null;
+        autoFit = true;
+        camera.position.setLength(baseDist);
         controls.autoRotate = !reduce;
-        highlight.visible = false;
         return;
       }
+      autoFit = false;
       controls.autoRotate = false;
       const local = regionLocal[selectedId];
-      highlight.position.copy(local); // glow drops onto the chosen region
       const worldDir = local.clone().applyMatrix4(group.matrixWorld).normalize();
-      focusTarget = worldDir.multiplyScalar(FOCUS_DIST);
+      focusTarget = worldDir.multiplyScalar(baseDist * 0.8);
     };
     api.current.zoom = (factor) => {
+      autoFit = false;
       const d = camera.position.length() * factor;
-      camera.position.setLength(THREE.MathUtils.clamp(d, 2.1, 6));
+      camera.position.setLength(THREE.MathUtils.clamp(d, baseDist * 0.5, baseDist * 2));
     };
     api.current.reset = () => {
       focusTarget = null;
       selectedId = null;
-      highlight.visible = false;
+      recolor(null);
+      autoFit = true;
       controls.autoRotate = !reduce;
-      camera.position.set(0, 0, BASE_DIST);
+      camera.position.set(0, 0, baseDist);
     };
 
     let raf = 0;
@@ -290,8 +345,8 @@ export default function BrainExplorer() {
       controls.update();
 
       // Project hotspots to screen and place the HTML pins (real occlusion
-      // via raycast). The SELECTED region's pin is hidden so the highlighted
-      // area shows only its glow, not a dot on top of it.
+      // via raycast). The SELECTED region's pin is hidden so the recolored
+      // patch shows cleanly, not a dot on top of it.
       if (Object.keys(regionLocal).length) {
         const cw = w2();
         const chh = h2();
@@ -317,8 +372,6 @@ export default function BrainExplorer() {
           el.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`;
           el.style.opacity = showPin ? '1' : '0';
           el.style.pointerEvents = showPin ? 'auto' : 'none';
-          // keep the selection glow in sync with the region's occlusion
-          if (r.id === selectedId) highlight.visible = onScreen;
         });
       }
 
@@ -335,8 +388,6 @@ export default function BrainExplorer() {
       geometries.forEach((g) => g.dispose());
       solidMat.dispose();
       wireMat.dispose();
-      glowTex.dispose();
-      highlightMat.dispose();
       renderer.dispose();
       renderer.domElement.remove();
     };

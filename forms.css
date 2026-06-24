@@ -1,0 +1,100 @@
+/* ===================================================================
+   Book-a-demo conversational form (homepage hero, right column)
+   Matches the dossier card aesthetic. Tokens from styles.css.
+   =================================================================== */
+
+.demo {
+  width: 100%;
+  max-width: 400px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 26px 26px 24px;
+  box-shadow: 0 1px 2px rgba(11, 11, 20, 0.05), 0 30px 60px -24px rgba(11, 11, 20, 0.28);
+}
+
+/* header */
+.demo-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+.demo-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+}
+.demo-eyebrow-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--teal);
+  box-shadow: 0 0 0 4px rgba(13, 167, 202, 0.18); animation: pulse 1.8s ease-in-out infinite;
+}
+.demo-progress { display: inline-flex; gap: 5px; }
+.demo-dot { width: 16px; height: 4px; border-radius: 999px; background: var(--line); transition: background 0.2s; }
+.demo-dot.is-done { background: var(--teal); }
+.demo-dot.is-active { background: var(--teal-deep); }
+
+/* question body */
+.demo-body { min-height: 168px; }
+.demo-count {
+  font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.08em;
+  color: var(--teal-deep); display: block; margin-bottom: 10px;
+}
+.demo-q {
+  font-family: "Space Grotesk", -apple-system, system-ui, sans-serif;
+  font-weight: 400; font-size: 23px; line-height: 1.15; letter-spacing: -0.02em;
+  color: var(--ink); margin: 0 0 20px;
+}
+
+/* text input */
+.demo-input {
+  width: 100%; box-sizing: border-box;
+  font-family: inherit; font-size: 16px; color: var(--ink);
+  background: var(--bg-soft); border: 1px solid var(--line); border-radius: 12px;
+  padding: 14px 16px; outline: none; transition: border-color 0.15s, box-shadow 0.15s;
+}
+.demo-input::placeholder { color: var(--muted); opacity: 0.7; }
+.demo-input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(13, 167, 202, 0.14); }
+
+/* choice buttons */
+.demo-choices { display: flex; flex-direction: column; gap: 9px; }
+.demo-choice {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  font-family: inherit; font-size: 15px; font-weight: 500; color: var(--ink); text-align: left;
+  background: var(--bg-soft); border: 1px solid var(--line); border-radius: 12px;
+  padding: 14px 16px; cursor: pointer; transition: all 0.14s;
+}
+.demo-choice svg { width: 14px; height: 14px; color: var(--muted); opacity: 0; transform: translateX(-4px); transition: all 0.14s; }
+.demo-choice:hover { border-color: var(--teal); background: #fff; }
+.demo-choice:hover svg, .demo-choice.is-active svg { opacity: 1; transform: none; color: var(--teal-deep); }
+
+/* actions */
+.demo-actions { display: flex; align-items: center; justify-content: space-between; margin-top: 22px; }
+.demo-back {
+  font-family: inherit; font-size: 14px; font-weight: 500; color: var(--muted);
+  background: none; border: none; cursor: pointer; padding: 8px 4px; transition: color 0.14s;
+}
+.demo-back:hover { color: var(--ink); }
+.demo-next {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: inherit; font-size: 15px; font-weight: 600; color: #fff;
+  background: var(--teal); border: none; border-radius: 999px; padding: 13px 22px; cursor: pointer;
+  transition: background 0.15s, transform 0.15s, opacity 0.15s;
+}
+.demo-next svg { width: 14px; height: 14px; }
+.demo-next:hover:not(:disabled) { background: var(--teal-deep); transform: translateY(-1px); }
+.demo-next:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.demo-error { font-size: 13px; color: #c0392b; margin: 14px 0 0; }
+.demo-error a { color: #c0392b; text-decoration: underline; }
+
+/* success state */
+.demo-final { text-align: center; padding: 40px 26px; }
+.demo-check {
+  display: inline-grid; place-items: center; width: 56px; height: 56px; border-radius: 50%;
+  background: rgba(13, 167, 202, 0.12); color: var(--teal-deep); margin-bottom: 18px;
+}
+.demo-check svg { width: 28px; height: 28px; }
+.demo-final h3 {
+  font-family: "Space Grotesk", -apple-system, system-ui, sans-serif;
+  font-weight: 400; font-size: 24px; letter-spacing: -0.02em; color: var(--ink); margin: 0 0 10px;
+}
+.demo-final p { font-size: 15px; line-height: 1.55; color: var(--muted); margin: 0; }
+.demo-final strong { color: var(--ink-2); font-weight: 600; }
+
+@media (prefers-reduced-motion: reduce) { .demo-eyebrow-dot { animation: none; } }

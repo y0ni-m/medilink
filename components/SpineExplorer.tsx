@@ -319,6 +319,18 @@ export default function SpineExplorer() {
     group.updateMatrixWorld(true);
     setReady(true);
 
+    // Fit the model to the canvas at any aspect — a portrait phone would
+    // otherwise crop the column. Pull the camera back so the model's bounding
+    // sphere fits the NARROWER of the vertical/horizontal field of view.
+    geometry.computeBoundingSphere();
+    const modelRadius = geometry.boundingSphere?.radius ?? 1.3;
+    let baseDist = BASE_DIST;
+    let autoFit = true;
+    const fitDist = () => {
+      const vFov = (camera.fov * Math.PI) / 180;
+      const hFov = 2 * Math.atan(Math.tan(vFov / 2) * (camera.aspect || 1));
+      return (modelRadius / Math.sin(Math.min(vFov, hFov) / 2)) * 1.1;
+    };
     const setSize = () => {
       const w = mount.clientWidth;
       const h = mount.clientHeight;
@@ -326,6 +338,8 @@ export default function SpineExplorer() {
       renderer.setSize(w, h, false);
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
+      baseDist = fitDist();
+      if (autoFit) camera.position.setLength(baseDist);
     };
     setSize();
     const ro = new ResizeObserver(setSize);
@@ -342,24 +356,29 @@ export default function SpineExplorer() {
       recolor(selectedId);
       if (!selectedId) {
         focusTarget = null;
+        autoFit = true;
+        camera.position.setLength(baseDist);
         controls.autoRotate = !reduce;
         return;
       }
+      autoFit = false;
       controls.autoRotate = false;
       const local = regionLocal[selectedId];
       const worldDir = local.clone().applyMatrix4(group.matrixWorld).normalize();
-      focusTarget = worldDir.multiplyScalar(FOCUS_DIST);
+      focusTarget = worldDir.multiplyScalar(baseDist * 0.82);
     };
     api.current.zoom = (factor) => {
+      autoFit = false;
       const d = camera.position.length() * factor;
-      camera.position.setLength(THREE.MathUtils.clamp(d, 2.3, 6.5));
+      camera.position.setLength(THREE.MathUtils.clamp(d, baseDist * 0.5, baseDist * 2.2));
     };
     api.current.reset = () => {
       focusTarget = null;
       selectedId = null;
       recolor(null);
+      autoFit = true;
       controls.autoRotate = !reduce;
-      camera.position.set(0, 0, BASE_DIST);
+      camera.position.set(0, 0, baseDist);
     };
 
     let raf = 0;
