@@ -32,6 +32,37 @@ export type Post = {
   body: Block[];
 };
 
+export type OnboardingVideo = {
+  slug: string;
+  title: string;
+  audience: string;
+  description: string;
+  vimeoId: string;
+  /** padding-top percentage for the responsive embed (aspect ratio) */
+  aspect: string;
+};
+
+export const ONBOARDING_VIDEOS: OnboardingVideo[] = [
+  {
+    slug: 'medical-providers',
+    title: 'Medical Provider Onboarding',
+    audience: 'For clinics & providers',
+    description:
+      'From profile setup to your first matched referral — how clinics get verified and live on MediLink.',
+    vimeoId: '1206840423',
+    aspect: '75%',
+  },
+  {
+    slug: 'law-firms',
+    title: 'Law Firm Onboarding',
+    audience: 'For attorneys & firms',
+    description:
+      'How firms send their first referral, track treatment, and follow every case to settlement.',
+    vimeoId: '1206853322',
+    aspect: '56.25%',
+  },
+];
+
 export const CATEGORIES: Category[] = [
   {
     slug: 'attorney-playbook',
