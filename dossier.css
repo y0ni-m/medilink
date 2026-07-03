@@ -141,11 +141,14 @@
 .pr-badge {
   font-family: "JetBrains Mono", monospace; letter-spacing: 0.1em; text-transform: uppercase; font-size: 10.5px;
 }
-.aud-card, .pr-card { position: relative; overflow: hidden; }
+.aud-card { position: relative; overflow: hidden; }
+/* pr-card must NOT clip — the "Most popular" badge overhangs its top edge */
+.pr-card { position: relative; overflow: visible; }
 .aud-card::after, .pr-card::after {
   content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
   background: var(--teal); transform: scaleY(0); transform-origin: top; transition: transform 0.22s ease;
 }
+.pr-card::after { top: 16px; bottom: 16px; border-radius: 3px; }
 .aud-card:hover::after, .pr-card:hover::after { transform: scaleY(1); }
 
 /* ===================================================================
