@@ -88,7 +88,6 @@ export default function Nav() {
         <Link href="/#how-it-works">How it works</Link>
         <Link href="/resources">Resources</Link>
         <Link href="/pricing">Pricing</Link>
-        <Link href="/onboarding">Onboarding</Link>
       </div>
       <div className="nav-cta">
         <a className="btn btn-ghost-pill" href="https://app.medilink.vip/login">Sign in</a>
@@ -152,7 +151,6 @@ export default function Nav() {
             <Link href="/#how-it-works" className="nav-mobile-link" onClick={closeMobile}>How it works</Link>
             <Link href="/resources" className="nav-mobile-link" onClick={closeMobile}>Resources</Link>
             <Link href="/pricing" className="nav-mobile-link" onClick={closeMobile}>Pricing</Link>
-            <Link href="/onboarding" className="nav-mobile-link" onClick={closeMobile}>Onboarding</Link>
           </div>
           <div className="nav-mobile-cta">
             <a
