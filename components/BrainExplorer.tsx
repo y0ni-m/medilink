@@ -10,8 +10,15 @@ const MODEL_URL = '/models/brain.glb';
 type Region = {
   id: string;
   name: string;
-  /** local direction from the brain centre used to anchor the hotspot on the surface */
+  /** direction from the brain centre used to place the HTML hotspot pin */
   dir: [number, number, number];
+  /**
+   * One or more direction anchors used to PARTITION the surface. Every vertex
+   * is assigned to whichever region has the closest anchor (spherical Voronoi),
+   * so highlights never bleed between regions and bilateral structures
+   * (e.g. the temporal lobes) list an anchor on each hemisphere (±Z).
+   */
+  anchors: [number, number, number][];
   blurb: string;
   relevance: string;
 };
@@ -21,6 +28,11 @@ const REGIONS: Region[] = [
     id: 'frontal',
     name: 'Frontal lobe',
     dir: [-0.9, 0.4, 0.25],
+    anchors: [
+      [-0.85, 0.35, 0.5],
+      [-0.85, 0.35, -0.5],
+      [-0.98, 0.08, 0],
+    ],
     blurb: 'Executive function, judgment, and personality.',
     relevance:
       'Coup–contrecoup forces in a collision frequently bruise the frontal lobes, driving the personality and executive-function changes seen after a TBI.',
@@ -29,6 +41,10 @@ const REGIONS: Region[] = [
     id: 'temporal',
     name: 'Temporal lobe',
     dir: [-0.35, -0.45, 0.85],
+    anchors: [
+      [-0.2, -0.5, 0.86],
+      [-0.2, -0.5, -0.86],
+    ],
     blurb: 'Memory, language, and emotion.',
     relevance:
       'The temporal lobes sit against the skull base and are vulnerable in rotational injuries — often behind post-injury memory and word-finding complaints.',
@@ -37,6 +53,10 @@ const REGIONS: Region[] = [
     id: 'parietal',
     name: 'Parietal lobe',
     dir: [0.1, 0.95, 0.15],
+    anchors: [
+      [0.15, 0.93, 0.34],
+      [0.15, 0.93, -0.34],
+    ],
     blurb: 'Sensory integration and spatial awareness.',
     relevance:
       'Parietal damage shows up as sensory and spatial deficits — subtle, but documentable with the right specialist.',
@@ -45,6 +65,11 @@ const REGIONS: Region[] = [
     id: 'occipital',
     name: 'Occipital lobe',
     dir: [0.95, 0.25, 0.1],
+    anchors: [
+      [0.93, 0.16, 0.33],
+      [0.93, 0.16, -0.33],
+      [0.99, 0.08, 0],
+    ],
     blurb: 'Visual processing.',
     relevance:
       'Visual disturbances after head trauma can trace to the occipital cortex, even when imaging looks unremarkable.',
@@ -53,6 +78,10 @@ const REGIONS: Region[] = [
     id: 'cerebellum',
     name: 'Cerebellum',
     dir: [0.7, -0.6, 0.2],
+    anchors: [
+      [0.72, -0.62, 0.33],
+      [0.72, -0.62, -0.33],
+    ],
     blurb: 'Balance and coordination.',
     relevance:
       'Dizziness, imbalance, and coordination problems after a concussion frequently implicate the cerebellum.',
@@ -61,6 +90,10 @@ const REGIONS: Region[] = [
     id: 'brainstem',
     name: 'Brain stem',
     dir: [0.15, -0.95, 0.1],
+    anchors: [
+      [0.0, -0.97, 0.05],
+      [-0.18, -0.92, 0],
+    ],
     blurb: 'Vital functions and consciousness.',
     relevance:
       'Brain-stem involvement signals a severe injury — and a case that demands specialist documentation.',
@@ -71,14 +104,23 @@ const BASE_DIST = 3.4;
 const FOCUS_DIST = 2.7;
 
 // Base teal of the brain surface, and the highlight painted onto a selected
-// region. The brain is a single mesh, so we recolor the vertices within a soft
-// radius of the region's anchor — a natural patch on the lobe (no glow sprite).
+// region. The brain is a single mesh with no region data, so we PARTITION the
+// surface: each vertex belongs to whichever region's anchor points most nearly
+// toward it (spherical Voronoi). Selecting a region recolors exactly its
+// vertices — full-lobe coverage, both hemispheres, and zero bleed into neighbors.
 const BASE_COLOR = new THREE.Color(0x0c93b2);
 const HIGHLIGHT_COLOR = new THREE.Color(0xffb347);
-const HL_INNER = 0.85; // fully highlighted within this radius (covers most of a lobe)
-const HL_OUTER = 1.55; // fades to base by here
+const EDGE = 0.06; // soft-boundary half-width (in cosine space) between regions
 
-type ColorTarget = { colorAttr: THREE.BufferAttribute; worldPos: Float32Array; count: number };
+// Flattened, normalized anchor directions tagged with their region index.
+const ANCHORS = REGIONS.flatMap((r, ri) =>
+  r.anchors.map(([x, y, z]) => {
+    const len = Math.hypot(x, y, z) || 1;
+    return { ri, x: x / len, y: y / len, z: z / len };
+  })
+);
+
+type ColorTarget = { colorAttr: THREE.BufferAttribute; dir: Float32Array; count: number };
 
 export default function BrainExplorer() {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -189,27 +231,27 @@ export default function BrainExplorer() {
         group.updateMatrixWorld(true);
         pickTarget = root;
 
-        // Seed each mesh with a base-teal color attribute and precompute its
-        // vertices' world positions (the group has no transform, so world space
-        // matches the anchors stored in regionLocal) for fast distance-based recolor.
+        // Seed each mesh with a base-teal color attribute and precompute each
+        // vertex's normalized direction from the brain centre (~origin, since the
+        // model is centered) so the recolor can partition by direction cheaply.
         const v = new THREE.Vector3();
         meshes.forEach((m) => {
           const geo = m.geometry as THREE.BufferGeometry;
           const pos = geo.attributes.position;
           const n = pos.count;
           const colors = new Float32Array(n * 3);
-          const wpos = new Float32Array(n * 3);
+          const dir = new Float32Array(n * 3);
           for (let i = 0; i < n; i++) {
             colors[i * 3] = BASE_COLOR.r;
             colors[i * 3 + 1] = BASE_COLOR.g;
             colors[i * 3 + 2] = BASE_COLOR.b;
-            v.fromBufferAttribute(pos, i).applyMatrix4(m.matrixWorld);
-            wpos[i * 3] = v.x;
-            wpos[i * 3 + 1] = v.y;
-            wpos[i * 3 + 2] = v.z;
+            v.fromBufferAttribute(pos, i).applyMatrix4(m.matrixWorld).normalize();
+            dir[i * 3] = v.x;
+            dir[i * 3 + 1] = v.y;
+            dir[i * 3 + 2] = v.z;
           }
           geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-          colorTargets.push({ colorAttr: geo.attributes.color as THREE.BufferAttribute, worldPos: wpos, count: n });
+          colorTargets.push({ colorAttr: geo.attributes.color as THREE.BufferAttribute, dir, count: n });
         });
 
         // Anchor each hotspot on the actual surface: raycast from outside → in.
@@ -266,10 +308,12 @@ export default function BrainExplorer() {
     const tmp = new THREE.Vector3();
     const camDir = new THREE.Vector3();
 
-    // Paint the highlight onto the actual brain surface: blend each vertex
-    // toward the highlight color by its distance to the selected anchor.
+    // Paint the highlight onto the region the vertex belongs to. For each vertex
+    // we take the best (closest) anchor of the SELECTED region vs. the best of
+    // every OTHER region; the vertex is "in" the selected region when the former
+    // wins, with a soft cosine-space boundary so edges aren't jagged.
     const recolor = (id: string | null) => {
-      const anchor = id ? regionLocal[id] : null;
+      const ri = id ? REGIONS.findIndex((r) => r.id === id) : -1;
       const dr = HIGHLIGHT_COLOR.r - BASE_COLOR.r;
       const dg = HIGHLIGHT_COLOR.g - BASE_COLOR.g;
       const db = HIGHLIGHT_COLOR.b - BASE_COLOR.b;
@@ -277,16 +321,22 @@ export default function BrainExplorer() {
         const arr = t.colorAttr.array as Float32Array;
         for (let i = 0; i < t.count; i++) {
           let mix = 0;
-          if (anchor) {
-            const dx = t.worldPos[i * 3] - anchor.x;
-            const dy = t.worldPos[i * 3 + 1] - anchor.y;
-            const dz = t.worldPos[i * 3 + 2] - anchor.z;
-            const d = Math.sqrt(dx * dx + dy * dy + dz * dz);
-            if (d <= HL_INNER) mix = 1;
-            else if (d < HL_OUTER) {
-              const u = (HL_OUTER - d) / (HL_OUTER - HL_INNER);
-              mix = u * u * (3 - 2 * u); // smoothstep
+          if (ri >= 0) {
+            const dx = t.dir[i * 3];
+            const dy = t.dir[i * 3 + 1];
+            const dz = t.dir[i * 3 + 2];
+            let sSel = -2;
+            let sOther = -2;
+            for (let a = 0; a < ANCHORS.length; a++) {
+              const an = ANCHORS[a];
+              const s = dx * an.x + dy * an.y + dz * an.z;
+              if (an.ri === ri) {
+                if (s > sSel) sSel = s;
+              } else if (s > sOther) sOther = s;
             }
+            const d = sSel - sOther; // >0 inside the selected region
+            const u = Math.min(1, Math.max(0, (d + EDGE) / (2 * EDGE)));
+            mix = u * u * (3 - 2 * u); // smoothstep across the boundary
           }
           arr[i * 3] = BASE_COLOR.r + dr * mix;
           arr[i * 3 + 1] = BASE_COLOR.g + dg * mix;
