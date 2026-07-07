@@ -82,7 +82,7 @@ export const AUDIENCES: Audience[] = [
       titleEm: 'without the phone tag.',
       sub: 'MediLink connects your firm with credentialed personal injury clinics that have capacity today — with LOPs and/or patient financial responsibility (depending on your state), intake packets, and live treatment status in one shared timeline.',
       primaryCta: { label: 'Refer a case', href: 'https://app.medilink.vip/register' },
-      secondaryCta: { label: 'Talk to our team', href: 'mailto:info@medilink.vip' },
+      secondaryCta: { label: 'Call our team', href: 'tel:+18334071005' },
     },
     stats: [
       { value: 'Free', label: 'Firms join at no cost' },
@@ -177,7 +177,7 @@ export const AUDIENCES: Audience[] = [
       titleEm: 'attorney-referred cases.',
       sub: 'MediLink routes personal injury imaging referrals to your center — with valid scripts, signed LOPs and/or patient financial responsibility, and report delivery handled inside one shared workspace.',
       primaryCta: { label: 'Join the network', href: 'https://app.medilink.vip/register' },
-      secondaryCta: { label: 'Talk to our team', href: 'mailto:info@medilink.vip' },
+      secondaryCta: { label: 'Call our team', href: 'tel:+18334071005' },
     },
     stats: [
       { value: 'PI', label: 'Cases matched to capacity' },
@@ -272,7 +272,7 @@ export const AUDIENCES: Audience[] = [
       titleEm: 'TBI expertise.',
       sub: 'MediLink matches neurology, concussion, and traumatic brain injury specialists with personal injury attorneys handling exactly the cases you’re equipped to treat — with documentation and LOPs handled in one place.',
       primaryCta: { label: 'Join the network', href: 'https://app.medilink.vip/register' },
-      secondaryCta: { label: 'Talk to our team', href: 'mailto:info@medilink.vip' },
+      secondaryCta: { label: 'Call our team', href: 'tel:+18334071005' },
     },
     stats: [
       { value: 'Neuro', label: 'Cases matched to specialty' },
@@ -367,7 +367,7 @@ export const AUDIENCES: Audience[] = [
       titleEm: 'steady, qualified referrals.',
       sub: 'MediLink sends personal injury cases that match your specialty and coverage area — with signed LOPs and/or patient financial responsibility, transparent attorney details, and clean settlement payouts.',
       primaryCta: { label: 'Join the network', href: 'https://app.medilink.vip/register' },
-      secondaryCta: { label: 'Talk to our team', href: 'mailto:info@medilink.vip' },
+      secondaryCta: { label: 'Call our team', href: 'tel:+18334071005' },
     },
     stats: [
       { value: '0', label: 'Upfront fees or contracts' },

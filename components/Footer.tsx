@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+import { PHONE_DISPLAY, PHONE_HREF } from '@/lib/site';
 
 export default function Footer() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -47,7 +48,7 @@ export default function Footer() {
                 <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </a>
-            <a className="ft-cta-secondary" href="mailto:info@medilink.vip">Talk to sales</a>
+            <a className="ft-cta-secondary" href={PHONE_HREF}>Call {PHONE_DISPLAY}</a>
           </div>
         </div>
       </div>
@@ -63,7 +64,6 @@ export default function Footer() {
             </p>
             <div className="ft-badges">
               <span className="ft-badge">HIPAA Compliant</span>
-              <span className="ft-badge">SOC 2 Type II</span>
             </div>
           </div>
 
@@ -83,11 +83,8 @@ export default function Footer() {
             </div>
             <div className="ft-col">
               <h4>Company</h4>
-              <a href="tel:+18334071005">+1 (833) 407-1005</a>
-              <a href="mailto:info@medilink.vip">Contact</a>
-              <a href="mailto:info@medilink.vip">Sales</a>
+              <a href={PHONE_HREF}>{PHONE_DISPLAY}</a>
               <Link href="/compliance">Compliance</Link>
-              <a href="mailto:security@medilink.vip">Security</a>
             </div>
             <div className="ft-col">
               <h4>Legal</h4>
@@ -101,8 +98,7 @@ export default function Footer() {
           <div className="ft-bar-inner">
             <span className="ft-copy">© 2026 MediLink Health, Inc. All rights reserved.</span>
             <div className="ft-contact">
-              <a href="tel:+18334071005">+1 (833) 407-1005</a>
-              <a href="mailto:info@medilink.vip">info@medilink.vip</a>
+              <a href={PHONE_HREF}>{PHONE_DISPLAY}</a>
             </div>
           </div>
         </div>

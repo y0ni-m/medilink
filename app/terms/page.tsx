@@ -118,8 +118,8 @@ export default function TermsPage() {
 
         <h2>13. Contact</h2>
         <p>
-          Questions? Email
-          <a href="mailto:legal@medilink.vip"> legal@medilink.vip</a>.
+          Questions? Call us at
+          <a href="tel:+18334071005"> +1 (833) 407-1005</a>.
         </p>
       </LegalDoc>
       <Footer />

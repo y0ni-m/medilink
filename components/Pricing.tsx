@@ -50,8 +50,8 @@ const PLANS: Plan[] = [
       'LOP and/or Patient financial responsibility depending on what state you are operating in tracking through settlement',
       'Dedicated success manager',
     ],
-    cta: 'Talk to our team',
-    href: 'mailto:info@medilink.vip',
+    cta: 'Call our team',
+    href: 'tel:+18334071005',
     featured: true,
   },
 ];
@@ -133,7 +133,7 @@ export default function Pricing() {
         </div>
 
         <p className="pr-footnote">
-          Multi-location health system or MSO? <a href="mailto:info@medilink.vip">Talk to our team →</a>
+          Multi-location health system or MSO? <a href="tel:+18334071005">Call +1 (833) 407-1005 →</a>
         </p>
       </div>
     </section>
