@@ -46,6 +46,12 @@ body::before {
 .nav-links a:hover { color: var(--ink); }
 .nav-links .chev { width: 10px; height: 10px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg) translate(-2px, -2px); display: inline-block; }
 .nav-cta { display: flex; gap: 10px; align-items: center; }
+.nav-phone { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 600; color: var(--teal-deep); text-decoration: none; margin-right: 4px; white-space: nowrap; transition: color 0.15s; }
+.nav-phone svg { width: 15px; height: 15px; }
+.nav-phone:hover { color: var(--teal); }
+.nav-mobile-phone { display: inline-flex; align-items: center; gap: 9px; font-size: 16px; font-weight: 600; color: var(--teal-deep); text-decoration: none; padding: 12px 10px 4px; }
+.nav-mobile-phone svg { width: 17px; height: 17px; }
+@media (max-width: 1040px) { .nav-phone { display: none; } }
 .btn { font-family: inherit; font-size: 14.5px; font-weight: 600; border: none; cursor: pointer; padding: 11px 20px; border-radius: 999px; transition: all 0.15s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
 .btn-ghost-pill { background: #fff; color: var(--ink); box-shadow: var(--shadow-sm); }
 .btn-ghost-pill:hover { transform: translateY(-1px); }
@@ -177,6 +183,13 @@ body::before {
 .btn-cta:hover .arrow { transform: translateX(2px); }
 .btn-secondary-cta { background: transparent; color: var(--ink); padding: 16px 22px; font-size: 15px; border-radius: 999px; border: 1px solid var(--line); }
 .btn-secondary-cta:hover { background: rgba(255,255,255,0.6); border-color: rgba(11,11,20,0.18); }
+
+.hero-call { display: inline-flex; align-items: center; gap: 10px; font-size: 14.5px; color: var(--muted); text-decoration: none; margin: 0 0 30px; transition: color 0.15s; }
+.hero-call strong { color: var(--teal-deep); font-weight: 600; }
+.hero-call:hover { color: var(--ink); }
+.hero-call:hover strong { color: var(--teal); }
+.hero-call-icon { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: rgba(13, 167, 202, 0.1); color: var(--teal-deep); flex: 0 0 auto; }
+.hero-call-icon svg { width: 14px; height: 14px; }
 
 .trust { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; padding-top: 28px; border-top: 1px solid var(--line); }
 .trust-stat { display: flex; flex-direction: column; gap: 2px; }

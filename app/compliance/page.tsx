@@ -6,7 +6,7 @@ import Nav from '@/components/Nav';
 export const metadata: Metadata = {
   title: 'MediLink — Compliance',
   description:
-    'MediLink is built around HIPAA, SOC 2, and the regulatory requirements that govern personal injury referrals.',
+    'MediLink is built around HIPAA and the regulatory requirements that govern personal injury referrals.',
 };
 
 export default function CompliancePage() {
@@ -25,8 +25,8 @@ export default function CompliancePage() {
             <span>Administrative, physical, and technical safeguards across the platform.</span>
           </div>
           <div className="legal-grid-item">
-            <b>SOC 2 Type II</b>
-            <span>Independent audit of security, availability, and confidentiality controls.</span>
+            <b>Encryption</b>
+            <span>PHI encrypted in transit (TLS 1.2+) and at rest (AES-256).</span>
           </div>
           <div className="legal-grid-item">
             <b>BAA available</b>
@@ -58,17 +58,9 @@ export default function CompliancePage() {
           reviewed in advance on request.
         </p>
 
-        <h2>SOC 2</h2>
-        <p>
-          MediLink&apos;s infrastructure is audited against the AICPA Trust Services Criteria for
-          security, availability, and confidentiality. Our most recent report is available under NDA
-          to current and prospective customers — request a copy from your account team or
-          <a href="mailto:security@medilink.vip"> security@medilink.vip</a>.
-        </p>
-
         <h2>Data security</h2>
         <ul>
-          <li>Hosted on SOC 2-certified U.S. cloud infrastructure</li>
+          <li>Hosted on U.S. cloud infrastructure</li>
           <li>Multi-factor authentication required for all staff and admin accounts</li>
           <li>Production access restricted to a small, audited group of engineers</li>
           <li>Continuous vulnerability scanning and periodic third-party penetration testing</li>
@@ -103,8 +95,8 @@ export default function CompliancePage() {
         <h2>Reporting a security issue</h2>
         <p>
           If you believe you&apos;ve found a security vulnerability or a privacy incident affecting
-          MediLink, please email
-          <a href="mailto:security@medilink.vip"> security@medilink.vip</a>. We acknowledge reports
+          MediLink, please call us at
+          <a href="tel:+18334071005"> +1 (833) 407-1005</a>. We acknowledge reports
           within one business day and respond on a coordinated-disclosure basis.
         </p>
       </LegalDoc>

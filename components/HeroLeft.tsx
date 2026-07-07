@@ -1,3 +1,5 @@
+import { PHONE_DISPLAY, PHONE_HREF } from '@/lib/site';
+
 export default function HeroLeft() {
   return (
     <div className="hero-left">
@@ -23,6 +25,19 @@ export default function HeroLeft() {
           For attorneys →
         </a>
       </div>
+      <a className="hero-call" href={PHONE_HREF}>
+        <span className="hero-call-icon">
+          <svg viewBox="0 0 16 16" fill="none">
+            <path
+              d="M5.2 2.3 3.4 2c-.5-.1-1 .2-1.2.7-.3 1-.4 2 .1 3.5.9 2.9 3.6 5.6 6.5 6.5 1.5.5 2.5.4 3.5.1.5-.2.8-.7.7-1.2l-.3-1.8c-.1-.4-.4-.7-.8-.8l-1.9-.4c-.4-.1-.8.1-1 .4l-.4.6C7.9 8.7 7.3 8.1 6.4 6.5l.6-.4c.3-.2.5-.6.4-1l-.4-1.9c-.1-.4-.4-.7-.8-.8Z"
+              stroke="currentColor"
+              strokeWidth="1.3"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
+        Prefer to talk? Call <strong>{PHONE_DISPLAY}</strong>
+      </a>
       <div className="trust">
         <div className="trust-badge">
           <svg viewBox="0 0 16 16" fill="none">
@@ -41,13 +56,6 @@ export default function HeroLeft() {
             />
           </svg>
           HIPAA compliant
-        </div>
-        <div className="trust-badge">
-          <svg viewBox="0 0 16 16" fill="none">
-            <rect x="2" y="6" width="12" height="8" rx="1.5" stroke="#6B6B7B" strokeWidth="1.4" />
-            <path d="M5 6V4a3 3 0 116 0v2" stroke="#6B6B7B" strokeWidth="1.4" />
-          </svg>
-          SOC 2 Type II
         </div>
       </div>
     </div>

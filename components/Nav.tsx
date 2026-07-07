@@ -3,6 +3,20 @@
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { AUDIENCES } from '@/lib/audiences';
+import { PHONE_DISPLAY, PHONE_HREF } from '@/lib/site';
+
+function PhoneIcon() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path
+        d="M5.2 2.3 3.4 2c-.5-.1-1 .2-1.2.7-.3 1-.4 2 .1 3.5.9 2.9 3.6 5.6 6.5 6.5 1.5.5 2.5.4 3.5.1.5-.2.8-.7.7-1.2l-.3-1.8c-.1-.4-.4-.7-.8-.8l-1.9-.4c-.4-.1-.8.1-1 .4l-.4.6C7.9 8.7 7.3 8.1 6.4 6.5l.6-.4c.3-.2.5-.6.4-1l-.4-1.9c-.1-.4-.4-.7-.8-.8Z"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -90,6 +104,10 @@ export default function Nav() {
         <Link href="/pricing">Pricing</Link>
       </div>
       <div className="nav-cta">
+        <a className="nav-phone" href={PHONE_HREF}>
+          <PhoneIcon />
+          {PHONE_DISPLAY}
+        </a>
         <a className="btn btn-ghost-pill" href="https://app.medilink.vip/login">Sign in</a>
         <a
           className="btn btn-primary"
@@ -152,6 +170,10 @@ export default function Nav() {
             <Link href="/resources" className="nav-mobile-link" onClick={closeMobile}>Resources</Link>
             <Link href="/pricing" className="nav-mobile-link" onClick={closeMobile}>Pricing</Link>
           </div>
+          <a className="nav-mobile-phone" href={PHONE_HREF} onClick={closeMobile}>
+            <PhoneIcon />
+            {PHONE_DISPLAY}
+          </a>
           <div className="nav-mobile-cta">
             <a
               className="btn btn-ghost-pill nav-mobile-signin"

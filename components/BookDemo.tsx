@@ -157,7 +157,7 @@ export default function BookDemo() {
       )}
 
       {status === 'error' && (
-        <p className="demo-error">Couldn’t send — email <a href="mailto:info@medilink.vip">info@medilink.vip</a> and we’ll set it up.</p>
+        <p className="demo-error">Couldn’t send — call <a href="tel:+18334071005">+1 (833) 407-1005</a> and we’ll get you set up.</p>
       )}
     </div>
   );

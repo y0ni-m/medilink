@@ -93,18 +93,18 @@ export default function PrivacyPage() {
         <p>
           Depending on where you live, you may have rights to access, correct, delete, or export
           your personal information, or to object to certain processing. To exercise these rights,
-          contact <a href="mailto:privacy@medilink.vip">privacy@medilink.vip</a>. If you are a
+          call us at <a href="tel:+18334071005">+1 (833) 407-1005</a>. If you are a
           patient and your information was uploaded by a clinic or firm, please contact that
           provider first — they are the covered entity that controls your record.
         </p>
 
         <h2>7. Security</h2>
         <p>
-          MediLink uses encryption in transit and at rest, role-based access controls, continuous
-          monitoring, and independent SOC 2 audits. Details are available on our
+          MediLink uses encryption in transit and at rest, role-based access controls, and continuous
+          monitoring. Details are available on our
           <a href="/compliance"> Compliance</a> page. No system is perfectly secure; if you believe
-          your account has been compromised, contact
-          <a href="mailto:security@medilink.vip"> security@medilink.vip</a> immediately.
+          your account has been compromised, call us at
+          <a href="tel:+18334071005"> +1 (833) 407-1005</a> immediately.
         </p>
 
         <h2>8. International users</h2>
@@ -123,8 +123,8 @@ export default function PrivacyPage() {
 
         <h2>10. Contact</h2>
         <p>
-          Questions about this policy? Email
-          <a href="mailto:privacy@medilink.vip"> privacy@medilink.vip</a>.
+          Questions about this policy? Call us at
+          <a href="tel:+18334071005"> +1 (833) 407-1005</a>.
         </p>
       </LegalDoc>
       <Footer />
