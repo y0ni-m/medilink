@@ -50,7 +50,7 @@ export const ONBOARDING_VIDEOS: OnboardingVideo[] = [
     description:
       'From profile setup to your first matched referral — how clinics get verified and live on MediLink.',
     vimeoId: '1206840423',
-    aspect: '75%',
+    aspect: '56.25%',
   },
   {
     slug: 'law-firms',
