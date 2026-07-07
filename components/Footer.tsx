@@ -83,6 +83,7 @@ export default function Footer() {
             </div>
             <div className="ft-col">
               <h4>Company</h4>
+              <a href="tel:+18334071005">+1 (833) 407-1005</a>
               <a href="mailto:info@medilink.vip">Contact</a>
               <a href="mailto:info@medilink.vip">Sales</a>
               <Link href="/compliance">Compliance</Link>
@@ -100,6 +101,7 @@ export default function Footer() {
           <div className="ft-bar-inner">
             <span className="ft-copy">© 2026 MediLink Health, Inc. All rights reserved.</span>
             <div className="ft-contact">
+              <a href="tel:+18334071005">+1 (833) 407-1005</a>
               <a href="mailto:info@medilink.vip">info@medilink.vip</a>
             </div>
           </div>

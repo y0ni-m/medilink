@@ -50,7 +50,7 @@ export default function ResourcesPage({
                 <article className="res-onb-card" key={v.slug}>
                   <div className="res-onb-frame" style={{ paddingTop: v.aspect }}>
                     <iframe
-                      src={`https://player.vimeo.com/video/${v.vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479`}
+                      src={`https://player.vimeo.com/video/${v.vimeoId}?badge=0&autopause=0&loop=1&title=0&byline=0&portrait=0&dnt=1&player_id=0&app_id=58479`}
                       allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                       referrerPolicy="strict-origin-when-cross-origin"
                       title={v.title}

@@ -38,11 +38,13 @@
   color: var(--ink); margin: 0 0 10px;
 }
 .res-onb-sub { font-size: 15.5px; line-height: 1.55; color: var(--muted); margin: 0; }
-.res-onb-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; align-items: start; }
+.res-onb-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; align-items: stretch; }
 .res-onb-card {
+  display: flex; flex-direction: column;
   background: #fff; border: 1px solid var(--line); border-radius: 18px; overflow: hidden;
   box-shadow: var(--shadow-sm); transition: transform 0.16s, box-shadow 0.16s;
 }
+.res-onb-body { flex: 1; }
 .res-onb-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
 .res-onb-frame { position: relative; width: 100%; background: #0b1620; }
 .res-onb-frame iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
