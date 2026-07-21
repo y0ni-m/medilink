@@ -22,6 +22,31 @@ export default function Home() {
       <HowItWorks />
       <Audiences />
       <Pricing />
+
+      <section className="book" id="book">
+        <div className="book-inner">
+          <header className="book-head">
+            <span className="book-eyebrow">
+              <span className="book-eyebrow-dot" />
+              Book a demo
+            </span>
+            <h2 className="book-title">
+              Pick a time that <em>works for you</em>.
+            </h2>
+            <p className="book-sub">
+              Grab a slot and we’ll walk your team through MediLink live — referrals, LOPs and
+              patient financial responsibility, and case tracking end to end.
+            </p>
+          </header>
+          <iframe
+            className="book-frame"
+            src="https://vienta.app/book/medilink/book-a-demo"
+            title="Book a Demo"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
       <Footer />
     </div>
   );
