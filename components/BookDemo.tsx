@@ -9,9 +9,9 @@ import { useState, type KeyboardEvent } from 'react';
 const ENDPOINT = 'https://formsubmit.co/ajax/info@medilink.vip';
 
 type Field = {
-  key: 'role' | 'name' | 'email' | 'org';
+  key: 'role' | 'name' | 'email' | 'phone' | 'org';
   q: string;
-  type: 'choice' | 'text' | 'email';
+  type: 'choice' | 'text' | 'email' | 'tel';
   placeholder?: string;
   choices?: string[];
 };
@@ -20,6 +20,7 @@ const STEPS: Field[] = [
   { key: 'role', q: 'First — who are you?', type: 'choice', choices: ['Attorney / Law firm', 'Clinic / Provider', 'Something else'] },
   { key: 'name', q: 'Nice to meet you. What’s your name?', type: 'text', placeholder: 'Jane Doe' },
   { key: 'email', q: 'Where should we send your demo invite?', type: 'email', placeholder: 'you@firm.com' },
+  { key: 'phone', q: 'Best number to reach you?', type: 'tel', placeholder: '(555) 123-4567' },
   { key: 'org', q: 'Last one — your firm or clinic name?', type: 'text', placeholder: 'Acme Injury Law' },
 ];
 
@@ -27,7 +28,7 @@ type Answers = Record<Field['key'], string>;
 
 export default function BookDemo() {
   const [step, setStep] = useState(0);
-  const [a, setA] = useState<Answers>({ role: '', name: '', email: '', org: '' });
+  const [a, setA] = useState<Answers>({ role: '', name: '', email: '', phone: '', org: '' });
   const [status, setStatus] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
 
   const cur = STEPS[step];
@@ -38,6 +39,7 @@ export default function BookDemo() {
     const v = value.trim();
     if (!v) return false;
     if (cur.type === 'email') return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
+    if (cur.type === 'tel') return (v.match(/\d/g) || []).length >= 10; // require a real number
     return true;
   })();
 
@@ -57,6 +59,7 @@ export default function BookDemo() {
           Role: answers.role,
           Name: answers.name,
           Email: answers.email,
+          Phone: answers.phone,
           Organization: answers.org,
         }),
       });
@@ -98,6 +101,10 @@ export default function BookDemo() {
         </span>
         <h3>You’re on the list, {a.name.split(' ')[0] || 'there'}.</h3>
         <p>We’ll reach out at <strong>{a.email}</strong> to set up your MediLink demo.</p>
+        <a className="demo-book-link" href="#book">
+          Prefer to pick a time now?
+          <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" /></svg>
+        </a>
       </div>
     );
   }
@@ -132,14 +139,16 @@ export default function BookDemo() {
         ) : (
           <input
             className="demo-input"
-            type={cur.type === 'email' ? 'email' : 'text'}
-            inputMode={cur.type === 'email' ? 'email' : 'text'}
+            type={cur.type === 'email' ? 'email' : cur.type === 'tel' ? 'tel' : 'text'}
+            inputMode={cur.type === 'email' ? 'email' : cur.type === 'tel' ? 'tel' : 'text'}
             placeholder={cur.placeholder}
             value={value}
             onChange={(e) => set(e.target.value)}
             onKeyDown={onKey}
             autoFocus
-            autoComplete={cur.key === 'email' ? 'email' : cur.key === 'name' ? 'name' : 'organization'}
+            autoComplete={
+              cur.key === 'email' ? 'email' : cur.key === 'phone' ? 'tel' : cur.key === 'name' ? 'name' : 'organization'
+            }
           />
         )}
       </div>
