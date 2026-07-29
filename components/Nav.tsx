@@ -102,20 +102,15 @@ export default function Nav() {
         <Link href="/#how-it-works">How it works</Link>
         <Link href="/resources">Resources</Link>
         <Link href="/pricing">Pricing</Link>
+        <Link href="/faq">FAQ</Link>
       </div>
       <div className="nav-cta">
         <a className="nav-phone" href={PHONE_HREF}>
           <PhoneIcon />
           {PHONE_DISPLAY}
         </a>
+        <Link className="btn nav-demo-btn" href="/demo">Request a demo</Link>
         <a className="btn btn-ghost-pill" href="https://app.medilink.vip/login">Sign in</a>
-        <a
-          className="btn btn-primary"
-          href="https://app.medilink.vip/register"
-          style={{ backgroundColor: 'rgb(13, 167, 202)' }}
-        >
-          Sign up
-        </a>
       </div>
 
       {/* Hamburger — visible only below the tablet breakpoint */}
@@ -169,12 +164,20 @@ export default function Nav() {
             <Link href="/#how-it-works" className="nav-mobile-link" onClick={closeMobile}>How it works</Link>
             <Link href="/resources" className="nav-mobile-link" onClick={closeMobile}>Resources</Link>
             <Link href="/pricing" className="nav-mobile-link" onClick={closeMobile}>Pricing</Link>
+            <Link href="/faq" className="nav-mobile-link" onClick={closeMobile}>FAQ</Link>
           </div>
           <a className="nav-mobile-phone" href={PHONE_HREF} onClick={closeMobile}>
             <PhoneIcon />
             {PHONE_DISPLAY}
           </a>
           <div className="nav-mobile-cta">
+            <Link
+              className="btn nav-demo-btn nav-mobile-demo"
+              href="/demo"
+              onClick={closeMobile}
+            >
+              Request a demo
+            </Link>
             <a
               className="btn btn-ghost-pill nav-mobile-signin"
               href="https://app.medilink.vip/login"

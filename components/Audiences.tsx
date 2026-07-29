@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import Polaroid from '@/components/Polaroid';
 
 const CARDS = [
   {
@@ -64,6 +65,11 @@ export default function Audiences() {
             One network, <em>two</em> workflows.
           </h2>
         </header>
+
+        <div className="aud-photos">
+          <Polaroid src="/photos/jen.jpg" alt="Attorney reviewing a case on MediLink" caption="Case matched ✓" rotate={-4} tape="top" width={244} />
+          <Polaroid src="/photos/maya.jpg" alt="Clinic front-desk coordinator on a call" caption="New referral!" rotate={3.5} tape="top-right" width={244} />
+        </div>
 
         <div className="aud-grid">
           {CARDS.map((c, i) => (

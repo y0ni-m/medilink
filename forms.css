@@ -130,6 +130,134 @@
   border-radius: 16px; background: #fff; box-shadow: var(--shadow-sm);
 }
 
+/* ===================================================================
+   Vienta booking calendar (custom, built on the public API)
+   =================================================================== */
+.vb {
+  background: #fff; border: 1px solid var(--line); border-radius: 20px;
+  padding: 26px; box-shadow: var(--shadow-sm);
+}
+.vb-grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+
+/* calendar */
+.vb-cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.vb-month {
+  font-family: "Space Grotesk", -apple-system, system-ui, sans-serif;
+  font-size: 18px; font-weight: 600; letter-spacing: -0.01em; color: var(--ink);
+}
+.vb-nav {
+  width: 34px; height: 34px; border-radius: 9px; border: 1px solid var(--line);
+  background: #fff; color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer;
+  display: grid; place-items: center; transition: all 0.14s;
+}
+.vb-nav:hover:not(:disabled) { border-color: var(--teal); color: var(--teal-deep); }
+.vb-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+.vb-dow {
+  display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 6px;
+}
+.vb-dow span {
+  text-align: center; font-family: "JetBrains Mono", monospace; font-size: 11px;
+  letter-spacing: 0.04em; color: var(--muted); padding: 4px 0;
+}
+.vb-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.vb-day {
+  aspect-ratio: 1; border: none; background: var(--bg-soft); border-radius: 9px;
+  font-family: inherit; font-size: 14px; font-weight: 500; color: var(--ink-2); cursor: pointer;
+  transition: all 0.13s;
+}
+.vb-day:hover:not(:disabled) { background: rgba(13, 167, 202, 0.14); color: var(--teal-deep); }
+.vb-day:disabled { background: transparent; color: rgba(11, 11, 20, 0.22); cursor: not-allowed; }
+.vb-day-empty { background: transparent; cursor: default; }
+.vb-day.is-today { box-shadow: inset 0 0 0 1.5px rgba(13, 167, 202, 0.5); }
+.vb-day.is-sel { background: var(--teal); color: #fff; }
+.vb-day.is-sel:hover { background: var(--teal-deep); color: #fff; }
+
+/* right panel */
+.vb-panel { border-left: 1px solid var(--line); padding-left: 26px; min-height: 320px; }
+.vb-panel-head {
+  font-family: "Space Grotesk", -apple-system, system-ui, sans-serif;
+  font-size: 17px; font-weight: 600; color: var(--ink); margin-bottom: 16px;
+}
+.vb-empty {
+  height: 100%; min-height: 300px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center; gap: 10px; color: var(--muted);
+}
+.vb-empty-icon {
+  width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
+  background: rgba(13, 167, 202, 0.1); color: var(--teal-deep);
+}
+.vb-empty-icon svg { width: 24px; height: 24px; }
+.vb-empty p { margin: 0; font-size: 15px; }
+.vb-dur { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.vb-note { font-size: 14px; color: var(--muted); }
+
+.vb-slots {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;
+  max-height: 300px; overflow-y: auto; padding-right: 4px;
+}
+.vb-slot {
+  font-family: inherit; font-size: 14px; font-weight: 600; color: var(--teal-deep);
+  background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 12px 8px; cursor: pointer;
+  transition: all 0.14s;
+}
+.vb-slot:hover { border-color: var(--teal); background: rgba(13, 167, 202, 0.06); }
+
+/* booking form */
+.vb-form { display: flex; flex-direction: column; gap: 10px; }
+.vb-selected {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  background: var(--bg-soft); border-radius: 10px; padding: 12px 14px; margin-bottom: 4px;
+}
+.vb-selected span { font-weight: 600; font-size: 14.5px; color: var(--ink); }
+.vb-change { background: none; border: none; color: var(--teal-deep); font-weight: 600; font-size: 13px; cursor: pointer; }
+.vb-change:hover { color: var(--teal); }
+.vb-input {
+  width: 100%; box-sizing: border-box; font-family: inherit; font-size: 15px; color: var(--ink);
+  background: var(--bg-soft); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px;
+  outline: none; transition: border-color 0.15s, box-shadow 0.15s;
+}
+.vb-input::placeholder { color: var(--muted); opacity: 0.75; }
+.vb-input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(13, 167, 202, 0.14); }
+.vb-textarea { resize: vertical; min-height: 46px; }
+.vb-error { font-size: 13px; color: #c0392b; margin: 0; }
+.vb-submit {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-top: 4px;
+  font-family: inherit; font-size: 15px; font-weight: 600; color: #fff;
+  background: var(--teal); border: none; border-radius: 999px; padding: 14px 22px; cursor: pointer;
+  transition: background 0.15s, transform 0.15s, opacity 0.15s;
+}
+.vb-submit svg { width: 14px; height: 14px; }
+.vb-submit:hover:not(:disabled) { background: var(--teal-deep); transform: translateY(-1px); }
+.vb-submit:disabled { opacity: 0.55; cursor: not-allowed; }
+
+/* confirmation */
+.vb-confirm { text-align: center; padding: 54px 30px; }
+.vb-check {
+  display: inline-grid; place-items: center; width: 60px; height: 60px; border-radius: 50%;
+  background: rgba(13, 167, 202, 0.12); color: var(--teal-deep); margin-bottom: 20px;
+}
+.vb-check svg { width: 30px; height: 30px; }
+.vb-confirm h3 {
+  font-family: "Space Grotesk", -apple-system, system-ui, sans-serif;
+  font-weight: 500; font-size: 26px; letter-spacing: -0.02em; color: var(--ink); margin: 0 0 8px;
+}
+.vb-confirm-when { font-size: 17px; font-weight: 600; color: var(--teal-deep); margin: 0 0 8px; }
+.vb-confirm-sub { font-size: 15px; line-height: 1.55; color: var(--muted); margin: 0 auto; max-width: 380px; }
+.vb-confirm-sub strong { color: var(--ink-2); }
+.vb-video {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 24px;
+  font-size: 15px; font-weight: 600; color: #fff; background: var(--teal);
+  padding: 13px 24px; border-radius: 999px; text-decoration: none; transition: background 0.15s, transform 0.15s;
+}
+.vb-video svg { width: 14px; height: 14px; }
+.vb-video:hover { background: var(--teal-deep); transform: translateY(-1px); }
+
+@media (max-width: 760px) {
+  .vb-grid-layout { grid-template-columns: 1fr; gap: 20px; }
+  .vb-panel { border-left: none; border-top: 1px solid var(--line); padding-left: 0; padding-top: 20px; min-height: 0; }
+  .vb-empty { min-height: 160px; }
+}
+
 @media (max-width: 900px) {
   .book { padding: 24px 24px 64px; }
   .book-frame { min-height: 720px; }

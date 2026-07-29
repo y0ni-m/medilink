@@ -1,5 +1,5 @@
 /* Network graph styles — append to existing styles */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500;600&display=swap');
 
 :root {
   --bg: #ECEAF3;
@@ -46,6 +46,8 @@ body::before {
 .nav-links a:hover { color: var(--ink); }
 .nav-links .chev { width: 10px; height: 10px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg) translate(-2px, -2px); display: inline-block; }
 .nav-cta { display: flex; gap: 10px; align-items: center; }
+.nav-demo-btn { background: var(--teal); color: #fff; }
+.nav-demo-btn:hover { background: var(--teal-deep); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(13,167,202,0.35); }
 .nav-phone { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 600; color: var(--teal-deep); text-decoration: none; margin-right: 4px; white-space: nowrap; transition: color 0.15s; }
 .nav-phone svg { width: 15px; height: 15px; }
 .nav-phone:hover { color: var(--teal); }

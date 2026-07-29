@@ -27,6 +27,8 @@ export type Audience = {
     stages: string[];
     activeStage: number;
   };
+  /** Polaroid photo shown in the problem section */
+  photo: { src: string; alt: string; caption: string; rotate: number };
   /** SEO */
   metaTitle: string;
   metaDescription: string;
@@ -74,6 +76,7 @@ export const AUDIENCES: Audience[] = [
       stages: ['Referred', 'Matched', 'Treating', 'Settled'],
       activeStage: 1,
     },
+    photo: { src: '/photos/marcus.jpg', alt: 'Personal injury attorney reviewing a case file', caption: 'Signed & filed', rotate: -3.5 },
     metaTitle: 'MediLink for Personal Injury Lawyers',
     metaDescription:
       'Refer clients to vetted PI clinics with open capacity — LOPs and/or patient financial responsibility, intake packets, and live treatment status in one shared timeline.',
@@ -169,6 +172,7 @@ export const AUDIENCES: Audience[] = [
       stages: ['Ordered', 'Scheduled', 'Read', 'Delivered'],
       activeStage: 1,
     },
+    photo: { src: '/photos/maya.jpg', alt: 'Imaging center coordinator scheduling a scan', caption: 'Scan scheduled!', rotate: 3.5 },
     metaTitle: 'MediLink for MRI & Imaging Centers',
     metaDescription:
       'Fill open imaging slots with attorney-referred PI cases. Signed LOPs, clean report delivery, and settlement tracking in one workspace.',
@@ -264,6 +268,7 @@ export const AUDIENCES: Audience[] = [
       stages: ['Referred', 'Eval', 'Treating', 'Settled'],
       activeStage: 2,
     },
+    photo: { src: '/photos/sharma.jpg', alt: 'Neurology specialist reviewing a patient case', caption: 'Documented ✓', rotate: -3 },
     metaTitle: 'MediLink for TBI & Neurology Specialists',
     metaDescription:
       'Connect with personal injury attorneys who need traumatic brain injury expertise. Complex-case referrals, documentation that holds up, and settlement tracking.',
@@ -359,6 +364,7 @@ export const AUDIENCES: Audience[] = [
       stages: ['Referred', 'Intake', 'Treating', 'Settled'],
       activeStage: 2,
     },
+    photo: { src: '/photos/sharma.jpg', alt: 'Chiropractor in the clinic with a spine model', caption: 'Case accepted!', rotate: 3 },
     metaTitle: 'MediLink for Chiropractors & Rehab Clinics',
     metaDescription:
       'Grow your personal injury caseload with steady, qualified referrals. Signed LOPs, clean documentation, and settlement tracking in one workspace.',

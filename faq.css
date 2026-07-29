@@ -1,0 +1,94 @@
+/* ===================================================================
+   FAQ page — grouped accordions in the dossier style
+   =================================================================== */
+
+.faq { position: relative; z-index: 1; }
+.faq-inner { max-width: 820px; margin: 0 auto; padding: 0 56px; }
+
+/* hero */
+.faq-hero { padding: 48px 0 36px; }
+.faq-eyebrow {
+  display: inline-flex; align-items: center; gap: 11px;
+  font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px;
+}
+.faq-eyebrow::before { content: ""; width: 42px; height: 1px; background: var(--ink); opacity: 0.25; }
+.faq-eyebrow-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--teal);
+  box-shadow: 0 0 0 4px rgba(13, 167, 202, 0.18); animation: pulse 1.8s ease-in-out infinite;
+}
+.faq-title {
+  font-family: "Space Grotesk", -apple-system, system-ui, sans-serif;
+  font-weight: 400; font-size: clamp(38px, 5vw, 58px); line-height: 1.0; letter-spacing: -0.02em;
+  color: var(--ink); margin: 0 0 16px;
+}
+.faq-title em { font-style: normal; color: var(--teal); }
+.faq-sub { font-size: 17px; line-height: 1.6; color: var(--muted); margin: 0; max-width: 620px; }
+.faq-sub a { color: var(--teal-deep); font-weight: 600; text-decoration: none; }
+.faq-sub a:hover { color: var(--teal); }
+
+/* body */
+.faq-body { padding: 12px 0 80px; }
+.faq-section { margin-bottom: 44px; }
+.faq-section-title {
+  display: flex; align-items: center; gap: 16px;
+  font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2);
+  margin: 0 0 16px;
+}
+.faq-section-rule { width: 32px; height: 1px; background: var(--teal); }
+
+.faq-list { display: flex; flex-direction: column; gap: 10px; }
+.faq-item {
+  border: 1px solid var(--line); border-radius: 14px; background: #fff;
+  overflow: hidden; transition: border-color 0.16s;
+}
+.faq-item[open] { border-color: color-mix(in srgb, var(--teal) 40%, var(--line)); }
+.faq-item summary {
+  list-style: none; cursor: pointer; padding: 18px 20px;
+  font-size: 16px; font-weight: 600; color: var(--ink);
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-icon { position: relative; flex: 0 0 auto; width: 14px; height: 14px; }
+.faq-icon::before, .faq-icon::after {
+  content: ""; position: absolute; background: var(--teal); border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.faq-icon::before { top: 6px; left: 0; width: 14px; height: 2px; }
+.faq-icon::after { left: 6px; top: 0; width: 2px; height: 14px; }
+.faq-item[open] .faq-icon::after { transform: rotate(90deg); opacity: 0; }
+.faq-item p { margin: 0; padding: 0 20px 20px; font-size: 15px; line-height: 1.65; color: var(--muted); }
+
+/* closing CTA */
+.faq-cta {
+  margin-top: 40px; text-align: center;
+  background: var(--bg-soft); border: 1px solid var(--line); border-radius: 20px; padding: 44px 32px;
+}
+.faq-cta h3 {
+  font-family: "Space Grotesk", -apple-system, system-ui, sans-serif;
+  font-weight: 500; font-size: 26px; letter-spacing: -0.02em; color: var(--ink); margin: 0 0 8px;
+}
+.faq-cta p { font-size: 16px; color: var(--muted); margin: 0 0 24px; }
+.faq-cta-actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+.faq-cta-btn {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-size: 15px; font-weight: 600; color: #fff; background: var(--teal);
+  padding: 14px 24px; border-radius: 999px; text-decoration: none;
+  box-shadow: 0 12px 26px -12px rgba(13, 167, 202, 0.6); transition: background 0.15s, transform 0.15s;
+}
+.faq-cta-btn svg { width: 14px; height: 14px; }
+.faq-cta-btn:hover { background: var(--teal-deep); transform: translateY(-1px); }
+.faq-cta-call {
+  display: inline-flex; align-items: center; font-size: 15px; font-weight: 600; color: var(--ink);
+  padding: 14px 22px; border-radius: 999px; border: 1px solid var(--line); text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+.faq-cta-call:hover { border-color: rgba(11, 11, 20, 0.2); background: #fff; }
+
+@media (max-width: 900px) {
+  .faq-inner { padding: 0 28px; }
+  .faq-cta { padding: 36px 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) { .faq-eyebrow-dot { animation: none; } }

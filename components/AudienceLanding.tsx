@@ -5,6 +5,7 @@ import { CATEGORIES, postsByCategory } from '@/lib/resources';
 import ReferralTicket from '@/components/ReferralTicket';
 import BrainExplorer from '@/components/BrainExplorer';
 import SpineExplorer from '@/components/SpineExplorer';
+import Polaroid from '@/components/Polaroid';
 
 const GLYPHS: Record<Audience['design']['glyph'], ReactNode> = {
   legal: (
@@ -123,6 +124,15 @@ export default function AudienceLanding({ audience }: { audience: Audience }) {
 
       {/* ---------- Benefits ---------- */}
       <section className="sol-benefits">
+        <Polaroid
+          className="sol-photo"
+          src={audience.photo.src}
+          alt={audience.photo.alt}
+          caption={audience.photo.caption}
+          rotate={audience.photo.rotate}
+          tape="top-right"
+          width={252}
+        />
         <div className="sol-section-inner">
           <SectionIndex n="03" label={audience.benefits.eyebrow} accent />
           <h2 className="sol-section-title">{audience.benefits.title}</h2>
