@@ -80,6 +80,7 @@ export default function Footer() {
               <Link href="/#how-it-works">How it works</Link>
               <Link href="/pricing">Pricing</Link>
               <Link href="/resources">Resources</Link>
+              <Link href="/faq">FAQ</Link>
             </div>
             <div className="ft-col">
               <h4>Company</h4>
