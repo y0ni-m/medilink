@@ -130,8 +130,9 @@ export default function AudienceLanding({ audience }: { audience: Audience }) {
           alt={audience.photo.alt}
           caption={audience.photo.caption}
           rotate={audience.photo.rotate}
+          aspect={audience.photo.aspect}
           tape="top-right"
-          width={252}
+          width={audience.photo.aspect ? 300 : 252}
         />
         <div className="sol-section-inner">
           <SectionIndex n="03" label={audience.benefits.eyebrow} accent />
