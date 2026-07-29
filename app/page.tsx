@@ -18,15 +18,28 @@ export default function Home() {
         <HeroLeft />
         <div className="sol-hero-right">
           <div className="hero-demo">
-            <Polaroid
-              className="hero-demo-photo"
-              src="/photos/sharma.jpg"
-              alt="A MediLink provider ready to walk you through the platform"
-              caption="See it live"
-              rotate={-2.5}
-              tape="top"
-              width={300}
-            />
+            <div className="hero-photos">
+              <Polaroid
+                className="hero-photo-back"
+                src="/photos/partners.jpg"
+                alt="A MediLink doctor and attorney shaking hands"
+                caption="Partners"
+                rotate={-4}
+                tape="top-left"
+                width={300}
+                aspect="3 / 2"
+              />
+              <Polaroid
+                className="hero-photo-front"
+                src="/photos/doctor.jpg"
+                alt="A MediLink provider ready to walk you through the platform"
+                caption="See it live"
+                rotate={5}
+                tape="top-right"
+                width={186}
+                aspect="4 / 5"
+              />
+            </div>
             <Link className="hero-demo-cta" href="/demo">
               <span className="hero-demo-cta-lead">See MediLink in action</span>
               <span className="hero-demo-cta-btn">

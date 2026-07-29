@@ -103,8 +103,22 @@
   margin: 8px auto 54px;
 }
 
-/* ---- Placement: hero "Request a demo" — doctor polaroid + CTA ---- */
-.hero-demo { display: flex; flex-direction: column; align-items: center; gap: 28px; }
+/* ---- Placement: hero "Request a demo" — two overlapping polaroids + CTA ---- */
+.hero-demo { display: flex; flex-direction: column; align-items: center; gap: 34px; }
+.hero-photos { position: relative; width: 356px; height: 348px; margin: 0 auto; }
+.hero-photo-back { position: absolute; top: 0; left: 0; z-index: 1; }
+.hero-photo-front { position: absolute; bottom: -8px; right: -22px; z-index: 2; }
+.hero-photo-front:hover { z-index: 4; }
+@media (max-width: 1090px) {
+  .hero-photos { width: 300px; height: 300px; }
+  .hero-photo-back { width: 256px !important; }
+  .hero-photo-front { width: 160px !important; }
+}
+@media (max-width: 400px) {
+  .hero-photos { width: 264px; height: 272px; }
+  .hero-photo-back { width: 228px !important; }
+  .hero-photo-front { width: 140px !important; }
+}
 .hero-demo-cta {
   display: flex; flex-direction: column; align-items: center; gap: 12px;
   text-decoration: none; text-align: center;

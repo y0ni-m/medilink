@@ -11,6 +11,8 @@ type Props = {
   tape?: 'top' | 'top-left' | 'top-right' | 'both';
   /** width in px (photo scales to fit) */
   width?: number;
+  /** photo window aspect ratio, e.g. "4 / 5" (portrait) or "3 / 2" (landscape) */
+  aspect?: string;
   className?: string;
 };
 
@@ -21,9 +23,11 @@ export default function Polaroid({
   rotate = -3,
   tape = 'top',
   width = 260,
+  aspect = '4 / 5',
   className = '',
 }: Props) {
   const style = { '--rot': `${rotate}deg`, width } as CSSProperties;
+  const photoStyle = { aspectRatio: aspect } as CSSProperties;
   const tapes =
     tape === 'both' ? ['top-left', 'top-right'] : [tape];
 
@@ -32,7 +36,7 @@ export default function Polaroid({
       {tapes.map((t) => (
         <span key={t} className={`polaroid-tape polaroid-tape-${t}`} aria-hidden="true" />
       ))}
-      <div className="polaroid-photo">
+      <div className="polaroid-photo" style={photoStyle}>
         <img src={src} alt={alt} loading="lazy" />
       </div>
       <figcaption className="polaroid-caption">{caption}</figcaption>
