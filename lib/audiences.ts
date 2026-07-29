@@ -28,7 +28,7 @@ export type Audience = {
     activeStage: number;
   };
   /** Polaroid photo shown in the problem section */
-  photo: { src: string; alt: string; caption: string; rotate: number };
+  photo: { src: string; alt: string; caption: string; rotate: number; aspect?: string };
   /** SEO */
   metaTitle: string;
   metaDescription: string;
@@ -364,7 +364,7 @@ export const AUDIENCES: Audience[] = [
       stages: ['Referred', 'Intake', 'Treating', 'Settled'],
       activeStage: 2,
     },
-    photo: { src: '/photos/sharma.jpg', alt: 'Chiropractor in the clinic with a spine model', caption: 'Case accepted!', rotate: 3 },
+    photo: { src: '/photos/maya_patient.jpg', alt: 'A rehab clinician going over care with a patient', caption: 'In good hands', rotate: 3, aspect: '3 / 2' },
     metaTitle: 'MediLink for Chiropractors & Rehab Clinics',
     metaDescription:
       'Grow your personal injury caseload with steady, qualified referrals. Signed LOPs, clean documentation, and settlement tracking in one workspace.',
