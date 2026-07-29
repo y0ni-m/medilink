@@ -268,7 +268,7 @@ export const AUDIENCES: Audience[] = [
       stages: ['Referred', 'Eval', 'Treating', 'Settled'],
       activeStage: 2,
     },
-    photo: { src: '/photos/sharma.jpg', alt: 'Neurology specialist reviewing a patient case', caption: 'Documented ✓', rotate: -3 },
+    photo: { src: '/photos/doctor.jpg', alt: 'Neurology specialist reviewing a patient case', caption: 'Documented ✓', rotate: -3 },
     metaTitle: 'MediLink for TBI & Neurology Specialists',
     metaDescription:
       'Connect with personal injury attorneys who need traumatic brain injury expertise. Complex-case referrals, documentation that holds up, and settlement tracking.',
