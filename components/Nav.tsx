@@ -109,7 +109,7 @@ export default function Nav() {
           <PhoneIcon />
           {PHONE_DISPLAY}
         </a>
-        <Link className="btn nav-demo-btn" href="/demo">Request a demo</Link>
+        <a className="btn nav-demo-btn" href="https://app.medilink.vip/register">Sign up</a>
         <a className="btn btn-ghost-pill" href="https://app.medilink.vip/login">Sign in</a>
       </div>
 
@@ -171,13 +171,6 @@ export default function Nav() {
             {PHONE_DISPLAY}
           </a>
           <div className="nav-mobile-cta">
-            <Link
-              className="btn nav-demo-btn nav-mobile-demo"
-              href="/demo"
-              onClick={closeMobile}
-            >
-              Request a demo
-            </Link>
             <a
               className="btn btn-ghost-pill nav-mobile-signin"
               href="https://app.medilink.vip/login"
