@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import '../styles.css';
 import '../pricing.css';
 import '../solutions.css';
@@ -20,6 +21,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <div id="root">{children}</div>
+        {/* Leadsy / vtag visitor tag */}
+        <Script
+          id="vtag-ai-js"
+          src="https://r2.leadsy.ai/tag.js"
+          strategy="afterInteractive"
+          data-pid="EBqydQhZY0l1wstN"
+          data-version="062024"
+        />
       </body>
     </html>
   );
