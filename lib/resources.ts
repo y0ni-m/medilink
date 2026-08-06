@@ -88,6 +88,239 @@ export const CATEGORIES: Category[] = [
 
 export const POSTS: Post[] = [
   {
+    slug: 'two-worlds-one-case-fax-machines',
+    title: 'Two Worlds, One Case: Why Personal Injury Still Runs on Fax Machines',
+    excerpt:
+      'Two professionals work the same case for the same person — with no shared system between them. In personal injury, that disconnect is the default, and it’s expensive.',
+    category: 'attorney-playbook',
+    author: { name: 'MediLink Team', role: 'Editorial' },
+    date: '2026-08-06',
+    readMinutes: 5,
+    tags: ['coordination', 'legal tech', 'referrals', 'workflow'],
+    featured: true,
+    body: [
+      {
+        type: 'p',
+        text: 'Walk into almost any personal injury law firm and you’ll find someone on hold. On the other end is a medical clinic’s front desk, and the question is always some version of the same thing: can you tell me the status of my client’s treatment, or have those records gone out yet?',
+      },
+      {
+        type: 'p',
+        text: 'Now walk into the clinic. Someone there is feeding a document into a fax machine — in 2026 — because that’s still how a lot of treatment updates and records move between a provider and the attorney representing the patient.',
+      },
+      {
+        type: 'p',
+        text: 'Two professionals, working the exact same case, for the exact same person, with no shared system between them. That’s not an edge case. In personal injury, it’s the default.',
+      },
+      { type: 'h2', text: 'The case lives in two worlds' },
+      {
+        type: 'p',
+        text: 'Every personal injury matter has two sides that have to move together: the law firm, building the case and gathering the documentation that determines the outcome, and the medical practice, treating the patient and producing the records the case rests on. The patient sits in the middle — often signing paper forms in a waiting room and answering the same questions for the third time.',
+      },
+      {
+        type: 'p',
+        text: 'These two worlds are deeply dependent on each other, yet they almost never share infrastructure. The firm has its case management software. The clinic has its scheduling and charting. Between them? Phone calls, faxes, and a lot of “let me check and get back to you.”',
+      },
+      { type: 'h2', text: 'Why the disconnect is expensive' },
+      {
+        type: 'p',
+        text: 'It’s easy to write this off as annoying but harmless. It isn’t. The gap between the legal and medical sides of a case creates real, compounding costs:',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Time bleeds out of every case — status calls and records requests are never billable, never clinical, and never end.',
+          'Documentation gaps weaken cases — when updates travel by fax and memory, a missing baseline or an unlogged visit quietly erodes the record.',
+          'The patient experience suffers — the injured person re-signs forms and repeats their history, wondering why their lawyer and doctor aren’t talking.',
+          'Referrals stay fragile — a trusted relationship lives in one paralegal’s contacts, one staffing change away from breaking.',
+        ],
+      },
+      { type: 'h2', text: 'What “connected” actually looks like' },
+      {
+        type: 'p',
+        text: 'The fix isn’t a better fax machine. It’s a shared workspace where the firm and the clinic see the same case at the same time.',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Appointments visible the moment they’re booked — the firm doesn’t call to ask; it just sees.',
+          'Records that flow to the right partner automatically, with an audit trail, instead of a records-request queue.',
+          'Forms and e-signatures the patient completes from their phone, before they reach the waiting room.',
+          'Referrals that become trackable relationships in a directory, not sticky notes.',
+        ],
+      },
+      {
+        type: 'p',
+        text: 'None of this replaces the lawyer’s judgment or the doctor’s care. It removes the busywork around them — the coordination tax that neither side signed up to pay.',
+      },
+      { type: 'h2', text: 'The quiet shift already underway' },
+      {
+        type: 'p',
+        text: 'The firms and practices pulling ahead aren’t necessarily better at law or medicine than their peers. They’ve just stopped treating coordination as a manual chore and started treating it as infrastructure.',
+      },
+      {
+        type: 'p',
+        text: 'That’s the idea behind MediLink — one HIPAA-built platform where personal injury law firms and medical practices work the same cases together: shared scheduling, records, document exchange, and e-signatures, instead of phone tag and fax machines. Law firms use it free; practices start with a 30-day trial.',
+      },
+      { type: 'quote', text: 'Two worlds. One case. It’s time they shared a page.' },
+    ],
+  },
+  {
+    slug: 'attorney-guide-coordinating-medical-care',
+    title: 'A Personal Injury Attorney’s Guide to Coordinating Medical Care',
+    excerpt:
+      'The law is the law — but the treatment record is the evidence. A practical framework for managing the medical side of a personal injury case.',
+    category: 'attorney-playbook',
+    author: { name: 'MediLink Team', role: 'Attorney Success' },
+    date: '2026-08-05',
+    readMinutes: 6,
+    tags: ['attorneys', 'medical records', 'case management', 'referrals'],
+    featured: true,
+    body: [
+      {
+        type: 'p',
+        text: 'Ask a seasoned personal injury attorney what separates a strong case from a weak one, and medical coordination will come up fast. The law is the law — but the treatment record is the evidence. How well you manage the medical side of a case often decides how well the case ends.',
+      },
+      {
+        type: 'p',
+        text: 'Most of that coordination happens outside the courtroom, in the unglamorous world of scheduling, records, and follow-up. Here’s a practical framework for doing it well.',
+      },
+      { type: 'h2', text: '1. Get the client to the right provider — quickly' },
+      {
+        type: 'p',
+        text: 'Two things matter most in the first weeks: specialty fit and speed. A suspected traumatic brain injury doesn’t belong at a general clinic, and soft-tissue rehab doesn’t belong at an imaging center — matching the injury to the right provider produces better care and a cleaner record. And a provider who can’t see your client for six weeks isn’t really available; gaps in early treatment are one of the first things scrutinized.',
+      },
+      {
+        type: 'p',
+        text: 'Before you refer, confirm the basics: active NPI and appropriate taxonomy, current state license, malpractice coverage, and no exclusions on the OIG or SAM lists. Credentialing is the floor, not the ceiling — but skipping it is how cases get exposed.',
+      },
+      { type: 'h2', text: '2. Treat documentation as evidence from day one' },
+      {
+        type: 'p',
+        text: 'When a case is evaluated, the medical record carries the weight. Providers who keep consistent, structured notes — clear baselines, objective findings, a coherent treatment arc — give you far more to work with. You can’t dictate another professional’s charting, but you can:',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Refer to providers with documentation discipline — it’s a real differentiator; treat it like one.',
+          'Establish clear baselines early, especially for injuries (TBI, spinal) where the finding is the case.',
+          'Watch for continuity — scattered notes and missing visits read as a scattered injury.',
+        ],
+      },
+      { type: 'h2', text: '3. Sort out the financial arrangement before treatment starts' },
+      {
+        type: 'p',
+        text: 'Who pays, and when, is rarely as simple as a standard insurance claim. Depending on your state, treatment may proceed on a letter of protection (LOP) — payment deferred until settlement — or on the basis of the patient’s own financial responsibility. States differ on disclosure, fee-splitting, and anti-kickback rules, so don’t let the paperwork trail the treatment: the right agreement, signed up front, keeps the financial picture clean all the way to settlement.',
+      },
+      {
+        type: 'p',
+        text: 'This is general information, not legal advice — confirm the rules that apply in your jurisdiction.',
+      },
+      { type: 'h2', text: '4. Kill the status-call habit' },
+      {
+        type: 'p',
+        text: 'The quiet productivity drain in most firms is chasing the medical side by phone — calling for appointment status, for records, to confirm a client actually showed up. Every one of those calls is time that isn’t legal work. The fix isn’t to call more efficiently; it’s to not have to call at all. When you can see a client’s appointments as they’re scheduled and watch records flow back automatically, the whole category of “checking in” disappears.',
+      },
+      { type: 'h2', text: '5. Make the referral relationship durable' },
+      {
+        type: 'p',
+        text: 'When you find a clinic that treats your clients well and documents cleanly, that relationship is worth protecting. Too often it lives in one paralegal’s head. Put it on a system instead:',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Track which providers you work with, by location and specialty.',
+          'Make partnership and referral a repeatable process, not a favor.',
+          'Keep the case timeline in one shared place, so context survives staff changes.',
+        ],
+      },
+      { type: 'h2', text: 'The takeaway' },
+      {
+        type: 'p',
+        text: 'Coordinating medical care is a legal skill, even though none of it happens in front of a judge. The attorneys who do it well refer thoughtfully, insist on documentation, settle the financials early, and stop drowning in status calls — increasingly on shared infrastructure that puts the firm and the clinic on the same page.',
+      },
+      { type: 'quote', text: 'Your client’s treatment record is your case. Manage it like it.' },
+    ],
+  },
+  {
+    slug: 'providers-playbook-personal-injury',
+    title: 'Should Your Practice Take More Personal Injury Cases? A Provider’s Playbook',
+    excerpt:
+      'Most practices already take personal injury cases. The better question is how to take them in a way that’s actually good for the practice.',
+    category: 'clinic-growth',
+    author: { name: 'MediLink Team', role: 'Provider Growth' },
+    date: '2026-08-04',
+    readMinutes: 6,
+    tags: ['clinics', 'growth', 'LOP', 'intake'],
+    body: [
+      {
+        type: 'p',
+        text: 'For a lot of medical practices — orthopedics, chiropractic, imaging, pain management, surgery centers — personal injury patients are a meaningful part of the business. And for just as many, they’re a source of quiet frustration: unpredictable volume, murky payment, and a mountain of coordination with law firms.',
+      },
+      {
+        type: 'p',
+        text: 'The question isn’t really whether to take personal injury cases — most practices already do. The better question is how to take them in a way that’s actually good for the practice. Here’s a playbook.',
+      },
+      { type: 'h2', text: 'Start with the honest math' },
+      {
+        type: 'p',
+        text: 'Personal injury cases have a different economic profile than standard insurance visits. Three things make them harder to run:',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Unpredictable flow — case volume swings month to month, making staffing and scheduling a guessing game.',
+          'Slow, uncertain payment — treating on a lien means getting paid at settlement, sometimes much later, and only if the arrangement is documented and tracked.',
+          'Coordination overhead — every case comes with a law firm that needs records, updates, and confirmations, and that’s real staff time.',
+        ],
+      },
+      {
+        type: 'p',
+        text: 'None of these are reasons to avoid the work. They’re reasons to be deliberate about it.',
+      },
+      { type: 'h2', text: 'Fix the intake, not the marketing' },
+      {
+        type: 'p',
+        text: 'Most practices try to grow volume by spending more on marketing. But the bigger lever is usually intake quality — making sure the cases you already accept arrive complete. The fastest way to lose money on a personal injury case is to accept one that’s missing pieces: no valid script, no attorney details, no signed agreement. Then your staff spends the week on phone tag instead of patients. A clean case arrives with:',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Verified attorney information — you know exactly who’s representing the patient and how to reach them.',
+          'A signed agreement up front — a letter of protection and/or patient financial responsibility, depending on your state.',
+          'The clinical context you need to schedule and treat without chasing.',
+        ],
+      },
+      { type: 'h2', text: 'Protect yourself on the money' },
+      {
+        type: 'p',
+        text: 'If you’re treating on a lien, the agreement is the asset. A few disciplines make settlement reconciliation a confirmation instead of an investigation:',
+      },
+      {
+        type: 'ul',
+        items: [
+          'Get the signed LOP or financial-responsibility form before treatment, not after.',
+          'Track the running balance alongside the treatment record, so nothing is a surprise at settlement.',
+          'Know your state’s rules — LOPs aren’t treated the same everywhere; where they’re restricted, direct patient financial responsibility may be the right path.',
+        ],
+      },
+      { type: 'h2', text: 'Make documentation a system, not a habit' },
+      {
+        type: 'p',
+        text: 'For personal injury patients, your notes may be read closely long after the visit. Structured intake and consistent treatment notes — clear baselines, objective findings, a coherent arc — protect the patient’s case and your bill. Build it into your templates so it happens by default, not by discipline.',
+      },
+      { type: 'h2', text: 'Stop absorbing the coordination tax' },
+      {
+        type: 'p',
+        text: 'Most practices just accept the endless back-and-forth with law firms — faxing updates, fielding records requests, confirming appointments by phone. It doesn’t have to work that way. When the referring firm can see appointments the moment they’re booked, and records flow to them automatically with an audit trail, your staff stops being a switchboard. Patients can even book and complete intake forms from their own phone, so pending requests land ready for your front desk to confirm.',
+      },
+      { type: 'h2', text: 'The takeaway' },
+      {
+        type: 'p',
+        text: 'Taking more personal injury cases is only worth it if each case is clean, documented, and paid. That comes down to four things: better intake, protected financials, systematic documentation, and killing the coordination tax. Do those well, and personal injury stops being the frustrating corner of the schedule — and starts being a steady, predictable part of the practice.',
+      },
+    ],
+  },
+  {
     slug: 'lop-vs-patient-financial-responsibility',
     title: 'LOPs vs. patient financial responsibility: what changes by state',
     excerpt:
