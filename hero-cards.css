@@ -1,0 +1,123 @@
+/* ===================================================================
+   Hero "network" cards — floating provider / referral cards with
+   avatars + status pills. Clean, rounded, healthcare-SaaS feel.
+   =================================================================== */
+
+.hcards {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 30px 0;
+}
+
+/* base card */
+.hcard {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 20px 22px;
+  box-shadow:
+    0 1px 2px rgba(11, 11, 20, 0.04),
+    0 26px 50px -22px rgba(11, 11, 20, 0.26);
+  animation: hcardIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* the two cards, staggered + gently floating */
+.hcard-referral {
+  position: relative;
+  z-index: 2;
+  margin-right: 40px;
+  animation-delay: 0.1s, 0s;
+  animation-name: hcardIn, hcardFloatA;
+  animation-duration: 0.7s, 7s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1), ease-in-out;
+  animation-iteration-count: 1, infinite;
+  animation-fill-mode: both, none;
+}
+.hcard-provider {
+  position: relative;
+  z-index: 3;
+  margin: -14px 0 0 56px;
+  animation-delay: 0.24s, 0.6s;
+  animation-name: hcardIn, hcardFloatB;
+  animation-duration: 0.7s, 8s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1), ease-in-out;
+  animation-iteration-count: 1, infinite;
+  animation-fill-mode: both, none;
+}
+
+/* card head (eyebrow + pill) */
+.hcard-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.hcard-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: "JetBrains Mono", monospace; font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+}
+
+/* avatar */
+.hcard-avatar {
+  flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%; overflow: hidden;
+  background: var(--bg-soft); box-shadow: 0 0 0 3px #fff, 0 2px 6px rgba(11, 11, 20, 0.12);
+}
+.hcard-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; display: block; }
+
+/* rows */
+.hcard-row { display: flex; align-items: center; gap: 14px; }
+.hcard-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.hcard-info b {
+  font-family: "Space Grotesk", -apple-system, system-ui, sans-serif;
+  font-size: 16px; font-weight: 600; letter-spacing: -0.01em; color: var(--ink); line-height: 1.2;
+}
+.hcard-info span { font-size: 13px; color: var(--muted); }
+.hcard-grow { flex: 1; }
+
+/* connector between the two rows on the referral card */
+.hcard-connector { display: flex; align-items: center; gap: 10px; margin: 8px 0 8px 22px; color: var(--teal); }
+.hcard-line { width: 1px; height: 20px; background: linear-gradient(var(--teal), transparent); margin-left: 1px; }
+.hcard-connector svg { width: 15px; height: 15px; }
+
+/* pills */
+.hcard-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: "JetBrains Mono", monospace; font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.05em; text-transform: uppercase; padding: 5px 11px; border-radius: 999px;
+}
+.hcard-pill svg { width: 11px; height: 11px; }
+.hcard-pill-teal { background: var(--teal); color: #fff; }
+.hcard-pill-check { background: rgba(13, 167, 202, 0.12); color: var(--teal-deep); }
+
+/* provider card footer */
+.hcard-foot { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
+.hcard-avail { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: var(--ink-2); }
+
+/* dots */
+.hcard-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--teal);
+  box-shadow: 0 0 0 3px rgba(13, 167, 202, 0.18); animation: pulse 1.8s ease-in-out infinite;
+}
+.hcard-dot-green { background: #22c07a; box-shadow: 0 0 0 3px rgba(34, 192, 122, 0.18); }
+
+/* floating status pill */
+.hcard-float {
+  position: absolute; z-index: 4; right: -6px; top: 2px;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #fff; border: 1px solid var(--line); border-radius: 999px;
+  padding: 9px 15px; font-size: 12.5px; font-weight: 600; color: var(--ink-2);
+  box-shadow: 0 14px 30px -14px rgba(11, 11, 20, 0.28);
+  animation: hcardIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both, hcardFloatA 6s ease-in-out 1s infinite;
+}
+
+@keyframes hcardIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+@keyframes hcardFloatA { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+@keyframes hcardFloatB { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+
+@media (max-width: 1000px) {
+  .hcards { max-width: 400px; }
+  .hcard-referral { margin-right: 24px; }
+  .hcard-provider { margin-left: 32px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hcard, .hcard-referral, .hcard-provider, .hcard-float, .hcard-dot { animation: none !important; opacity: 1 !important; transform: none !important; }
+}

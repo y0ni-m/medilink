@@ -1,11 +1,10 @@
-import Link from 'next/link';
 import Audiences from '@/components/Audiences';
 import BrainExplorer from '@/components/BrainExplorer';
 import Footer from '@/components/Footer';
+import HeroCards from '@/components/HeroCards';
 import HeroLeft from '@/components/HeroLeft';
 import HowItWorks from '@/components/HowItWorks';
 import Nav from '@/components/Nav';
-import Polaroid from '@/components/Polaroid';
 import Pricing from '@/components/Pricing';
 import VientaBooking from '@/components/VientaBooking';
 
@@ -17,37 +16,7 @@ export default function Home() {
         <span className="hero-ghost" aria-hidden="true">REFERRALS</span>
         <HeroLeft />
         <div className="sol-hero-right">
-          <div className="hero-demo">
-            <div className="hero-photos">
-              <Polaroid
-                className="hero-photo-back"
-                src="/photos/partners.jpg"
-                alt="A MediLink doctor and attorney shaking hands"
-                caption="Partners"
-                rotate={-4}
-                tape="top-left"
-                width={300}
-                aspect="3 / 2"
-              />
-              <Polaroid
-                className="hero-photo-front"
-                src="/photos/doctor.jpg"
-                alt="A MediLink provider ready to walk you through the platform"
-                caption="See it live"
-                rotate={5}
-                tape="top-right"
-                width={186}
-                aspect="4 / 5"
-              />
-            </div>
-            <Link className="hero-demo-cta" href="/demo">
-              <span className="hero-demo-cta-lead">See MediLink in action</span>
-              <span className="hero-demo-cta-btn">
-                Request a demo
-                <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" /></svg>
-              </span>
-            </Link>
-          </div>
+          <HeroCards />
         </div>
       </section>
       <BrainExplorer />
