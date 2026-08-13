@@ -9,6 +9,7 @@ import '../explorer.css';
 import '../forms.css';
 import '../photos.css';
 import '../faq.css';
+import '../hero-cards.css';
 
 export const metadata: Metadata = {
   title: 'MediLink — Personal injury referrals, in one shared workspace.',
