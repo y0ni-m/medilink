@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Footer from '@/components/Footer';
 import LegalDoc from '@/components/LegalDoc';
 import Nav from '@/components/Nav';
+import CookieSettingsLink from '@/components/CookieSettingsLink';
 
 export const metadata: Metadata = {
   title: 'MediLink — Privacy Policy',
@@ -38,7 +39,12 @@ export default function PrivacyPage() {
         <h3>Information we collect automatically</h3>
         <ul>
           <li>Device, browser, and usage data (IP, pages viewed, timestamps)</li>
-          <li>Cookies and similar technologies used to keep you signed in and measure performance</li>
+          <li>
+            Cookies and similar technologies — strictly necessary ones always, and analytics or
+            marketing only with your consent. Every one is listed in our{' '}
+            <a href="/cookies">Cookie Policy</a>, and you can change your mind at any time in{' '}
+            <CookieSettingsLink variant="inline">cookie settings</CookieSettingsLink>.
+          </li>
         </ul>
         <h3>Protected Health Information (PHI)</h3>
         <p>

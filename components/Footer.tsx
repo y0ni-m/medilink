@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { PHONE_DISPLAY, PHONE_HREF } from '@/lib/site';
+import CookieSettingsLink from '@/components/CookieSettingsLink';
 
 export default function Footer() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -91,6 +92,9 @@ export default function Footer() {
               <h4>Legal</h4>
               <Link href="/privacy">Privacy</Link>
               <Link href="/terms">Terms</Link>
+              <Link href="/cookies">Cookie Policy</Link>
+              {/* Standing opt-out entry point — required to be reachable from every page. */}
+              <CookieSettingsLink>Your privacy choices</CookieSettingsLink>
             </div>
           </div>
         </div>
