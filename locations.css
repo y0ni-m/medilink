@@ -1,0 +1,350 @@
+/* ==================================================================
+   Location landing pages — /for/[specialty]/[state]/[place]
+   Built on the site tokens from styles.css.
+   ================================================================== */
+
+.loc {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 28px 24px 96px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------------- breadcrumbs ---------------- */
+
+.loc-crumbs ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 28px;
+  padding: 0;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.loc-crumbs li + li::before {
+  content: '/';
+  margin-right: 8px;
+  color: rgba(11, 11, 20, 0.25);
+}
+.loc-crumbs a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.loc-crumbs a:hover { color: var(--teal); }
+.loc-crumbs [aria-current] { color: var(--ink); font-weight: 500; }
+
+/* ---------------- hero ---------------- */
+
+.loc-hero {
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 40px;
+}
+.loc-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.loc-eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); }
+
+.loc-title {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: clamp(30px, 5vw, 44px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0 0 16px;
+  text-wrap: balance;
+}
+.loc-intro {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin: 0 0 24px;
+  max-width: 68ch;
+}
+
+.loc-cta { display: flex; flex-wrap: wrap; gap: 10px; }
+.loc-btn-primary,
+.loc-btn-ghost {
+  font-size: 14.5px;
+  font-weight: 600;
+  padding: 12px 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: background 0.15s, transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+}
+.loc-btn-primary { background: var(--teal); color: #fff; }
+.loc-btn-primary:hover {
+  background: var(--teal-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(13, 167, 202, 0.3);
+}
+.loc-btn-ghost { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+.loc-btn-ghost:hover { border-color: rgba(11, 11, 20, 0.2); transform: translateY(-1px); }
+
+/* fact strip */
+.loc-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 28px 0 0;
+}
+.loc-facts > div {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px 16px;
+  min-width: 130px;
+  flex: 1 1 130px;
+}
+.loc-facts dt {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+.loc-facts dd {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+}
+.loc-facts dd a { color: var(--teal-deep); text-decoration: none; }
+.loc-facts dd a:hover { text-decoration: underline; }
+
+/* ---------------- sections ---------------- */
+
+.loc-section { margin-bottom: 48px; }
+.loc-section h2 {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 0 0 16px;
+  text-wrap: balance;
+}
+.loc-section h3 {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 28px 0 12px;
+}
+.loc-section p {
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--ink-2);
+  margin: 0 0 14px;
+  max-width: 72ch;
+}
+.loc-role {
+  padding: 14px 16px;
+  border-left: 3px solid var(--teal);
+  background: rgba(13, 167, 202, 0.06);
+  border-radius: 0 10px 10px 0;
+}
+.loc-role strong { color: var(--ink); }
+
+/* law facts */
+.loc-lawgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 10px;
+  margin: 20px 0 24px;
+}
+.loc-lawfact {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.loc-lawfact-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.loc-lawfact-value { font-size: 14.5px; font-weight: 600; color: var(--ink); line-height: 1.4; }
+.loc-lawfact-cite {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.loc-callout {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px 20px;
+  margin: 22px 0;
+}
+.loc-callout-tag {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  margin-bottom: 8px;
+}
+.loc-callout p { margin: 0; }
+
+.loc-points { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+.loc-points li { display: flex; flex-direction: column; gap: 4px; }
+.loc-points strong { font-size: 14.5px; color: var(--ink); font-weight: 600; }
+.loc-points span { font-size: 14.5px; line-height: 1.65; color: var(--ink-2); }
+
+.loc-disclaimer {
+  font-size: 12px !important;
+  line-height: 1.6 !important;
+  color: var(--muted) !important;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+  margin-top: 24px !important;
+}
+
+/* value cards */
+.loc-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.loc-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
+}
+.loc-card h3 { margin: 0 0 8px; font-size: 15px; }
+.loc-card p { margin: 0; font-size: 14px; line-height: 1.6; }
+
+.loc-services {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.loc-services li {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-2);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 14px;
+}
+.loc-credentialing { font-size: 13.5px !important; color: var(--muted) !important; }
+
+/* ---------------- internal link grids ---------------- */
+
+.loc-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 8px;
+}
+.loc-links-dense { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
+.loc-links a {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 11px 14px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+.loc-links a span { font-size: 11.5px; font-weight: 500; color: var(--muted); }
+.loc-links a:hover {
+  border-color: var(--teal);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------------- faq ---------------- */
+
+.loc-faq dl { margin: 0; }
+.loc-faq dl > div {
+  border-top: 1px solid var(--line);
+  padding: 18px 0;
+}
+.loc-faq dl > div:last-child { border-bottom: 1px solid var(--line); }
+.loc-faq dt {
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.loc-faq dd {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--ink-2);
+  max-width: 72ch;
+}
+
+/* ---------------- closing cta ---------------- */
+
+.loc-final {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+.loc-final h2 {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+.loc-final p { font-size: 15px; color: var(--muted); margin: 0 0 20px; }
+.loc-final .loc-cta { justify-content: center; }
+
+@media (max-width: 640px) {
+  .loc { padding: 20px 18px 64px; }
+  .loc-section h2 { font-size: 22px; }
+  .loc-facts > div { min-width: 45%; }
+  .loc-final { padding: 24px 20px; border-radius: 18px; }
+  .loc-btn-primary, .loc-btn-ghost { flex: 1 1 100%; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loc-btn-primary, .loc-btn-ghost, .loc-links a { transition: none; }
+  .loc-btn-primary:hover, .loc-btn-ghost:hover, .loc-links a:hover { transform: none; }
+}

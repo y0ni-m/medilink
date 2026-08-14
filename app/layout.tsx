@@ -11,6 +11,7 @@ import '../photos.css';
 import '../faq.css';
 import '../hero-cards.css';
 import '../cookies.css';
+import '../locations.css';
 import CookieConsent from '@/components/CookieConsent';
 import ConsentScripts from '@/components/ConsentScripts';
 
