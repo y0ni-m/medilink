@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { PHONE_DISPLAY, PHONE_HREF } from '@/lib/site';
 import CookieSettingsLink from '@/components/CookieSettingsLink';
+import { AUDIENCES } from '@/lib/audiences';
+import { STATES } from '@/lib/locations';
 
 export default function Footer() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -71,10 +73,19 @@ export default function Footer() {
           <div className="ft-cols">
             <div className="ft-col">
               <h4>Solutions</h4>
-              <Link href="/for/lawyers">For Lawyers</Link>
-              <Link href="/for/mri-clinics">For MRI Clinics</Link>
-              <Link href="/for/tbi-doctors">For TBI Doctors</Link>
-              <Link href="/for/chiropractors">For Chiropractors</Link>
+              {AUDIENCES.map((a) => (
+                <Link href={`/for/${a.slug}`} key={a.slug}>
+                  {a.nav}
+                </Link>
+              ))}
+            </div>
+            <div className="ft-col">
+              <h4>Coverage</h4>
+              {STATES.map((st) => (
+                <Link href={`/for/lawyers/${st.slug}`} key={st.slug}>
+                  {st.name}
+                </Link>
+              ))}
             </div>
             <div className="ft-col">
               <h4>Product</h4>

@@ -17,7 +17,7 @@ export type Audience = {
     fileRef: string; // monospace reference, e.g. "CASE · PI-LAW"
     ghost: string; // oversized background word
     accent: string; // per-audience signature hex
-    glyph: 'legal' | 'imaging' | 'neuro' | 'rehab';
+    glyph: 'legal' | 'imaging' | 'neuro' | 'rehab' | 'ortho' | 'surgical' | 'plastics';
   };
   /** Content for the animated "live referral slip" hero object */
   ticket: {
@@ -437,6 +437,294 @@ export const AUDIENCES: Audience[] = [
       {
         q: 'How does settlement payout work?',
         a: 'Treatment balances and the signed LOP and/or patient financial responsibility are tracked in the shared timeline through to settlement, keeping reconciliation clean.',
+      },
+    ],
+    resourceCategories: ['clinic-growth', 'lops-billing'],
+  },
+  {
+    slug: 'orthopedics',
+    nav: 'For Orthopedics',
+    group: 'medical',
+    eyebrow: 'For orthopedic practices',
+    name: 'orthopedic practices',
+    design: { index: '05', fileRef: 'ORT · MSK', ghost: 'REPAIR', accent: '#2F7D6B', glyph: 'ortho' },
+    ticket: {
+      ref: 'ORT-4412',
+      status: 'Scheduled',
+      rows: [
+        { k: 'Injury', v: 'Lumbar · L4-L5' },
+        { k: 'Imaging', v: 'MRI on file', check: true },
+        { k: 'LOP', v: 'Signed', check: true },
+        { k: 'Consult', v: 'Thu 9:20 AM' },
+      ],
+      stages: ['Referred', 'Imaged', 'Consult', 'Treating'],
+      activeStage: 2,
+    },
+    photo: { src: '/photos/sharma_tablet.jpg', alt: 'An orthopedic surgeon reviewing imaging with a patient', caption: 'Reading the film', rotate: -3, aspect: '3 / 2' },
+    metaTitle: 'MediLink for Orthopedic Surgeons & Practices',
+    metaDescription:
+      'Receive personal injury referrals that arrive with imaging, records, and a signed LOP already in place — so the first consult is a consult, not a paperwork exercise.',
+    hero: {
+      titleLead: 'Injury referrals that arrive',
+      titleEm: 'ready for the consult.',
+      sub: 'MediLink routes orthopedic injury cases with imaging, treatment history, and a signed LOP and/or patient financial responsibility already attached — so your first appointment starts with the clinical picture, not a records request.',
+      primaryCta: { label: 'Join the network', href: 'https://app.medilink.vip/register' },
+      secondaryCta: { label: 'Call our team', href: 'tel:+18334071005' },
+    },
+    stats: [
+      { value: '0', label: 'Upfront fees or contracts' },
+      { value: '24h', label: 'Practice verification' },
+      { value: 'MRI', label: 'Attached before consult' },
+    ],
+    problem: {
+      eyebrow: 'The old way',
+      title: 'The records arrive after the appointment.',
+      points: [
+        {
+          title: 'Consults without imaging',
+          desc: 'A patient shows up for a surgical opinion and the MRI is still sitting at a facility nobody has called.',
+        },
+        {
+          title: 'Unclear payment posture',
+          desc: 'Whether the case is on a lien, a letter of protection, or nothing at all often surfaces only at check-in.',
+        },
+        {
+          title: 'Scheduling in the dark',
+          desc: 'Firms cannot see surgical availability, so urgent cases wait behind routine ones.',
+        },
+      ],
+    },
+    benefits: {
+      eyebrow: 'With MediLink',
+      title: 'The whole case, before the patient arrives.',
+      items: [
+        {
+          title: 'Imaging and records attached',
+          desc: 'Prior treatment, imaging, and the referring firm’s notes travel with the case into your workspace.',
+        },
+        {
+          title: 'Payment posture up front',
+          desc: 'Every referral states the LOP and/or patient financial responsibility arrangement before you accept it.',
+        },
+        {
+          title: 'Capacity you control',
+          desc: 'Set the case types and volume you want, and cases route around your surgical schedule.',
+        },
+        {
+          title: 'Documented to settlement',
+          desc: 'Impairment findings and treatment balances stay in one shared timeline through resolution.',
+        },
+      ],
+    },
+    steps: [
+      { n: '01', title: 'Set up your practice', desc: 'Add subspecialties, accepted case types, and coverage area. Verified in about 24 hours.' },
+      { n: '02', title: 'Receive complete referrals', desc: 'Cases arrive with imaging, history, and payment posture already attached.' },
+      { n: '03', title: 'Treat and document', desc: 'Log findings, procedures, and balances in the shared timeline through settlement.' },
+    ],
+    faqs: [
+      {
+        q: 'Do referrals include imaging?',
+        a: 'Where imaging has already been performed, the study and the radiologist’s report travel with the referral. Where it has not, MediLink can route the patient to an imaging center in the network first.',
+      },
+      {
+        q: 'Can I limit the case types I receive?',
+        a: 'Yes. You set subspecialty, case type, and volume, and cases route around your surgical schedule rather than into it.',
+      },
+      {
+        q: 'How is payment handled on surgical cases?',
+        a: 'Each referral states the LOP and/or patient financial responsibility arrangement before you accept, and balances are tracked in the shared timeline through settlement.',
+      },
+    ],
+    resourceCategories: ['clinic-growth', 'lops-billing'],
+  },
+  {
+    slug: 'plastic-surgeons',
+    nav: 'For Plastic Surgeons',
+    group: 'medical',
+    eyebrow: 'For plastic & reconstructive surgery',
+    name: 'plastic and reconstructive surgery practices',
+    design: { index: '06', fileRef: 'PRS · RECON', ghost: 'RESTORE', accent: '#B0568C', glyph: 'plastics' },
+    ticket: {
+      ref: 'PRS-2064',
+      status: 'Consult',
+      rows: [
+        { k: 'Injury', v: 'Facial laceration' },
+        { k: 'Photos', v: 'On file', check: true },
+        { k: 'LOP', v: 'Signed', check: true },
+        { k: 'Stage', v: 'Revision planning' },
+      ],
+      stages: ['Referred', 'Consult', 'Repair', 'Revision'],
+      activeStage: 1,
+    },
+    photo: { src: '/photos/jen_hallway.jpg', alt: 'A reconstructive surgeon consulting with a patient', caption: 'Before and after', rotate: 3.5, aspect: '3 / 2' },
+    metaTitle: 'MediLink for Plastic & Reconstructive Surgeons',
+    metaDescription:
+      'Reconstructive injury referrals with documented photography, a signed LOP, and the attorney on the case reachable in one shared timeline.',
+    hero: {
+      titleLead: 'Reconstructive referrals with',
+      titleEm: 'the record already built.',
+      sub: 'MediLink routes laceration, facial trauma, and scarring cases with injury photography, treatment history, and a signed LOP and/or patient financial responsibility attached — so permanence is documented while it still shows.',
+      primaryCta: { label: 'Join the network', href: 'https://app.medilink.vip/register' },
+      secondaryCta: { label: 'Call our team', href: 'tel:+18334071005' },
+    },
+    stats: [
+      { value: '0', label: 'Upfront fees or contracts' },
+      { value: '24h', label: 'Practice verification' },
+      { value: 'LOP', label: 'Signed before consult' },
+    ],
+    problem: {
+      eyebrow: 'The old way',
+      title: 'By the time you see it, it has already healed.',
+      points: [
+        {
+          title: 'Late referrals',
+          desc: 'Scarring cases arrive months after the injury, when the strongest documentation window has closed.',
+        },
+        {
+          title: 'No photographic record',
+          desc: 'Nobody captured the injury at presentation, so permanence has to be argued rather than shown.',
+        },
+        {
+          title: 'Elective work crowds it out',
+          desc: 'Injury cases compete with a scheduled elective calendar and quietly lose.',
+        },
+      ],
+    },
+    benefits: {
+      eyebrow: 'With MediLink',
+      title: 'Documented early, scheduled deliberately.',
+      items: [
+        {
+          title: 'Injury photography attached',
+          desc: 'Where the referring firm or prior provider captured the injury, those images travel with the case.',
+        },
+        {
+          title: 'Signed agreements up front',
+          desc: 'Reconstructive work is expensive; every referral states the LOP and/or patient financial responsibility before you accept.',
+        },
+        {
+          title: 'Volume on your terms',
+          desc: 'Set how many injury cases you want alongside your elective calendar, and cases route accordingly.',
+        },
+        {
+          title: 'Permanence documented',
+          desc: 'Findings on scarring and disfigurement stay in the shared record through resolution.',
+        },
+      ],
+    },
+    steps: [
+      { n: '01', title: 'Set up your practice', desc: 'Add reconstructive focus, accepted case types, and coverage area. Verified in about 24 hours.' },
+      { n: '02', title: 'Receive documented cases', desc: 'Referrals arrive with photography, history, and payment posture attached.' },
+      { n: '03', title: 'Treat and document', desc: 'Record repair, revision, and permanence findings in one shared timeline.' },
+    ],
+    faqs: [
+      {
+        q: 'How many injury cases would I receive?',
+        a: 'You set the volume. Reconstructive practices typically run injury work alongside an elective calendar, so cases route to the capacity you specify rather than filling your schedule.',
+      },
+      {
+        q: 'Is injury photography always included?',
+        a: 'Where the referring firm or a prior treating provider captured images, they travel with the referral. Where they did not, documenting at first presentation is the priority.',
+      },
+      {
+        q: 'How does payment work on reconstructive cases?',
+        a: 'Each referral states the LOP and/or patient financial responsibility arrangement before you accept it, and balances are tracked through settlement.',
+      },
+    ],
+    resourceCategories: ['clinic-growth', 'lops-billing'],
+  },
+  {
+    slug: 'surgery-centers',
+    nav: 'For Surgery Centers',
+    group: 'medical',
+    eyebrow: 'For ambulatory surgery centers',
+    name: 'ambulatory surgery centers',
+    design: { index: '07', fileRef: 'ASC · FAC', ghost: 'THEATRE', accent: '#4A63C9', glyph: 'surgical' },
+    ticket: {
+      ref: 'ASC-7731',
+      status: 'Booked',
+      rows: [
+        { k: 'Procedure', v: 'Lumbar ESI' },
+        { k: 'Surgeon', v: 'In network', check: true },
+        { k: 'LOP', v: 'Signed', check: true },
+        { k: 'Block', v: 'Tue 7:00 AM' },
+      ],
+      stages: ['Referred', 'Cleared', 'Booked', 'Complete'],
+      activeStage: 2,
+    },
+    photo: { src: '/photos/doctor.jpg', alt: 'Clinical staff preparing an outpatient procedure room', caption: 'Room ready', rotate: -2.5, aspect: '3 / 2' },
+    metaTitle: 'MediLink for Ambulatory Surgery Centers',
+    metaDescription:
+      'Fill outpatient blocks with personal injury procedures that arrive cleared, documented, and with the letter of protection already signed.',
+    hero: {
+      titleLead: 'Fill your blocks with cases that',
+      titleEm: 'arrive already cleared.',
+      sub: 'MediLink routes outpatient injury procedures with the referring surgeon, imaging, clearance, and a signed LOP and/or patient financial responsibility attached — so scheduling is a scheduling decision, not an investigation.',
+      primaryCta: { label: 'Join the network', href: 'https://app.medilink.vip/register' },
+      secondaryCta: { label: 'Call our team', href: 'tel:+18334071005' },
+    },
+    stats: [
+      { value: '0', label: 'Upfront fees or contracts' },
+      { value: '24h', label: 'Facility verification' },
+      { value: 'LOP', label: 'Signed before booking' },
+    ],
+    problem: {
+      eyebrow: 'The old way',
+      title: 'Unfilled blocks and unclear payers.',
+      points: [
+        {
+          title: 'Last-minute cancellations',
+          desc: 'A case falls through the day before because the funding arrangement was never actually confirmed.',
+        },
+        {
+          title: 'Chasing clearance',
+          desc: 'Imaging, clearance, and surgeon notes arrive in pieces from three different offices.',
+        },
+        {
+          title: 'Facility billing disputes',
+          desc: 'Implant and facility charges get contested at settlement, long after the procedure.',
+        },
+      ],
+    },
+    benefits: {
+      eyebrow: 'With MediLink',
+      title: 'Booked cases that hold.',
+      items: [
+        {
+          title: 'Complete case packets',
+          desc: 'Referring surgeon, imaging, clearance, and history arrive together before you commit a block.',
+        },
+        {
+          title: 'Funding confirmed first',
+          desc: 'The LOP and/or patient financial responsibility is signed before the case reaches your schedule.',
+        },
+        {
+          title: 'Predictable block fill',
+          desc: 'Set the procedure types and volume you want and receive cases that match your capacity.',
+        },
+        {
+          title: 'Clean facility billing',
+          desc: 'Facility and implant charges are recorded in the shared timeline and tracked to settlement.',
+        },
+      ],
+    },
+    steps: [
+      { n: '01', title: 'Set up your facility', desc: 'Add procedure types, accreditation, and coverage area. Verified in about 24 hours.' },
+      { n: '02', title: 'Receive cleared cases', desc: 'Procedures arrive with surgeon, imaging, clearance, and signed agreements attached.' },
+      { n: '03', title: 'Schedule and bill', desc: 'Book the block and track facility and implant balances through settlement.' },
+    ],
+    faqs: [
+      {
+        q: 'Do cases arrive with a surgeon attached?',
+        a: 'Yes. Referrals identify the treating surgeon and include imaging and clearance, so the facility decision is about scheduling rather than case workup.',
+      },
+      {
+        q: 'Can we choose which procedures we take?',
+        a: 'Yes. You set procedure types, volume, and coverage area, and cases route to match your available blocks.',
+      },
+      {
+        q: 'How are facility and implant charges handled?',
+        a: 'They are recorded in the shared timeline alongside the signed LOP and/or patient financial responsibility, and tracked through to settlement so reconciliation is clean.',
       },
     ],
     resourceCategories: ['clinic-growth', 'lops-billing'],

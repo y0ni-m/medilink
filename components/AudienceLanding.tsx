@@ -6,6 +6,8 @@ import ReferralTicket from '@/components/ReferralTicket';
 import BrainExplorer from '@/components/BrainExplorer';
 import SpineExplorer from '@/components/SpineExplorer';
 import Polaroid from '@/components/Polaroid';
+import { getSpecialty } from '@/lib/specialties';
+import { STATES, citiesIn, countiesIn, largestCities } from '@/lib/locations';
 
 const GLYPHS: Record<Audience['design']['glyph'], ReactNode> = {
   legal: (
@@ -30,6 +32,26 @@ const GLYPHS: Record<Audience['design']['glyph'], ReactNode> = {
   rehab: (
     <svg viewBox="0 0 32 32" fill="none">
       <path d="M13 5c0 2 6 2 6 0M12.5 9c0 2.5 7 2.5 7 0M12 14c0 3 8 3 8 0M12.5 19c0 2.5 7 2.5 7 0M13 24c0 2 6 2 6 0" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  ),
+  ortho: (
+    <svg viewBox="0 0 32 32" fill="none">
+      <path d="M9 6a3 3 0 00-3 3 3 3 0 000 4l7 7 4-4-7-7a3 3 0 00-1-3z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M23 26a3 3 0 003-3 3 3 0 000-4l-7-7-4 4 7 7a3 3 0 001 3z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M14 14l4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+    </svg>
+  ),
+  surgical: (
+    <svg viewBox="0 0 32 32" fill="none">
+      <path d="M6 24l14-14 3-4 3 3-4 3-14 14H6v-2z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M17 13l2 2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+      <path d="M5 8h6M8 5v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  ),
+  plastics: (
+    <svg viewBox="0 0 32 32" fill="none">
+      <path d="M16 27s-9-5.5-9-12a5 5 0 019-3 5 5 0 019 3c0 6.5-9 12-9 12z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M11 15h3l1.5-3 2 6 1.5-3h3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   ),
 };
@@ -216,6 +238,36 @@ export default function AudienceLanding({ audience }: { audience: Audience }) {
                   </Link>
                 );
               })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ---------- Coverage ----------
+          Without this the state hubs, and everything under them, would be reachable only from
+          the sitemap. Internal links are what actually carry authority down to them. */}
+      {getSpecialty(audience.slug) && (
+        <section className="sol-related">
+          <div className="sol-section-inner">
+            <SectionIndex n="07" label="Coverage" />
+            <h2 className="sol-section-title">Where MediLink covers.</h2>
+            <div className="loc-links">
+              {STATES.map((st) => (
+                <Link key={st.slug} href={`/for/${audience.slug}/${st.slug}`}>
+                  {st.name}
+                  <span>
+                    {countiesIn(st.slug).length} counties · {citiesIn(st.slug).length} cities
+                  </span>
+                </Link>
+              ))}
+              {STATES.flatMap((st) =>
+                largestCities(st.slug, 6).map((c) => (
+                  <Link key={`${st.slug}-${c.slug}`} href={`/for/${audience.slug}/${st.slug}/${c.slug}`}>
+                    {c.name}
+                    <span>{c.state}</span>
+                  </Link>
+                ))
+              )}
             </div>
           </div>
         </section>

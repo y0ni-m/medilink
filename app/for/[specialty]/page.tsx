@@ -6,11 +6,11 @@ import Nav from '@/components/Nav';
 import { audienceSlugs, getAudience } from '@/lib/audiences';
 
 export function generateStaticParams() {
-  return audienceSlugs().map((slug) => ({ slug }));
+  return audienceSlugs().map((specialty) => ({ specialty }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const audience = getAudience(params.slug);
+export function generateMetadata({ params }: { params: { specialty: string } }): Metadata {
+  const audience = getAudience(params.specialty);
   if (!audience) return { title: 'MediLink' };
   return {
     title: audience.metaTitle,
@@ -18,8 +18,8 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   };
 }
 
-export default function AudiencePage({ params }: { params: { slug: string } }) {
-  const audience = getAudience(params.slug);
+export default function AudiencePage({ params }: { params: { specialty: string } }) {
+  const audience = getAudience(params.specialty);
   if (!audience) notFound();
 
   return (
