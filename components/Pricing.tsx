@@ -41,7 +41,7 @@ const PLANS: Plan[] = [
     tag: 'For medical providers',
     price: 'Custom',
     priceSub: 'Built for your state and locations.',
-    note: 'No setup fees.',
+    note: '',
     features: [
       'Unlimited active referrals',
       'Priority placement in attorney searches',
@@ -108,7 +108,7 @@ export default function Pricing() {
               <div className="pr-card-price">
                 <span className="pr-card-price-val">{p.price}</span>
                 <span className="pr-card-price-sub">{p.priceSub}</span>
-                <span className="pr-card-price-note">{p.note}</span>
+                {p.note && <span className="pr-card-price-note">{p.note}</span>}
               </div>
               <ul className="pr-card-features">
                 {p.features.map((f, j) => (

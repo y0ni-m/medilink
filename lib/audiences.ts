@@ -185,7 +185,7 @@ export const AUDIENCES: Audience[] = [
     },
     stats: [
       { value: 'PI', label: 'Cases matched to capacity' },
-      { value: '0', label: 'Upfront fees or contracts' },
+      { value: '24h', label: 'Provider verification' },
       { value: 'LOP', label: 'Tracked through settlement' },
     ],
     problem: {
@@ -243,8 +243,8 @@ export const AUDIENCES: Audience[] = [
         a: 'Each referral carries a signed LOP and/or patient financial responsibility. Balances are tracked in the shared timeline through to settlement so there are no surprises.',
       },
       {
-        q: 'Is there a contract or upfront fee?',
-        a: 'No long-term contracts or upfront fees — you receive case flow on terms you set and can adjust your capacity anytime.',
+        q: 'How does pricing work?',
+        a: 'Pricing is tailored to your practice — reach out and we’ll put together a plan for your state and case mix. You receive case flow on terms you set and can adjust your capacity anytime.',
       },
     ],
     resourceCategories: ['clinic-growth', 'lops-billing'],
@@ -376,7 +376,7 @@ export const AUDIENCES: Audience[] = [
       secondaryCta: { label: 'Call our team', href: 'tel:+18334071005' },
     },
     stats: [
-      { value: '0', label: 'Upfront fees or contracts' },
+      { value: 'PI', label: 'Cases matched to capacity' },
       { value: '24h', label: 'Clinic verification' },
       { value: 'LOP', label: 'Tracked through settlement' },
     ],
@@ -431,8 +431,8 @@ export const AUDIENCES: Audience[] = [
         a: 'Cases are routed by geography, your accepted case types, and current capacity — so you receive PI referrals that actually fit your practice.',
       },
       {
-        q: 'Do I need a contract or pay upfront?',
-        a: 'No. There are no upfront fees or long-term contracts. You receive curated case flow on terms you control.',
+        q: 'How does pricing work?',
+        a: 'Pricing is tailored to your practice — reach out and we’ll put together a plan for your state and case mix. You receive curated case flow on terms you control.',
       },
       {
         q: 'How does settlement payout work?',
@@ -472,7 +472,7 @@ export const AUDIENCES: Audience[] = [
       secondaryCta: { label: 'Call our team', href: 'tel:+18334071005' },
     },
     stats: [
-      { value: '0', label: 'Upfront fees or contracts' },
+      { value: 'PI', label: 'Cases matched to capacity' },
       { value: '24h', label: 'Practice verification' },
       { value: 'MRI', label: 'Attached before consult' },
     ],
@@ -568,7 +568,7 @@ export const AUDIENCES: Audience[] = [
       secondaryCta: { label: 'Call our team', href: 'tel:+18334071005' },
     },
     stats: [
-      { value: '0', label: 'Upfront fees or contracts' },
+      { value: 'PI', label: 'Cases matched to capacity' },
       { value: '24h', label: 'Practice verification' },
       { value: 'LOP', label: 'Signed before consult' },
     ],
@@ -664,7 +664,7 @@ export const AUDIENCES: Audience[] = [
       secondaryCta: { label: 'Call our team', href: 'tel:+18334071005' },
     },
     stats: [
-      { value: '0', label: 'Upfront fees or contracts' },
+      { value: 'PI', label: 'Cases matched to capacity' },
       { value: '24h', label: 'Facility verification' },
       { value: 'LOP', label: 'Signed before booking' },
     ],

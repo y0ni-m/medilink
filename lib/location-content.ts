@@ -249,8 +249,8 @@ function buildFaqs(specialty: Specialty, place: Place): { q: string; a: string }
   });
 
   faqs.push({
-    q: `Is there a cost to join MediLink in ${where}?`,
-    a: 'No. There are no upfront fees or long-term contracts, and verification takes about 24 hours.',
+    q: `How do medical practices get started with MediLink in ${where}?`,
+    a: 'Set up your practice profile, get verified — usually within about 24 hours — and start receiving matched referrals. Pricing is tailored to your practice; reach out for a plan that fits your case mix.',
   });
 
   if (isCounty(place)) {
