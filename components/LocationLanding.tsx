@@ -303,7 +303,7 @@ export default function LocationLanding({ specialty, place }: Props) {
               : `Start receiving ${place.name} referrals`}
           </h2>
           <p>
-            Verification takes about 24 hours. No upfront fees, no long-term contract.
+            Verification takes about 24 hours.
           </p>
           <div className="loc-cta">
             <a className="loc-btn-primary" href="https://app.medilink.vip/register">

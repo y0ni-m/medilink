@@ -480,7 +480,7 @@ export const POSTS: Post[] = [
       { type: 'h2', text: 'How MediLink fits in' },
       {
         type: 'p',
-        text: 'MediLink routes PI cases to your clinic based on geography, specialty, and current capacity — with no upfront fees or long-term contracts. Each referral arrives with verified attorney information and a signed agreement, and every case is tracked through settlement in one shared timeline. The result is a pipeline you can actually plan around.',
+        text: 'MediLink routes PI cases to your clinic based on geography, specialty, and current capacity. Each referral arrives with verified attorney information and a signed agreement, and every case is tracked through settlement in one shared timeline. The result is a pipeline you can actually plan around.',
       },
     ],
   },

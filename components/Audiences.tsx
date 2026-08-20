@@ -24,7 +24,7 @@ const CARDS = [
     desc: 'Receive PI cases that match your specialty and coverage area — with transparent attorney info, automated LOP and/or Patient financial responsibility depending on what state you are operating in routing, and clean settlement payouts.',
     bullets: [
       'Curated case flow on your terms',
-      'No upfront fees or contracts',
+      'Verified attorney details on every case',
       'LOP and/or Patient financial responsibility depending on what state you are operating in tracking through settlement',
     ],
     cta: 'Join the network',
