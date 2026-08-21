@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Builds the Florida / Texas location dataset used by the /for/[specialty]/[state]/[place]
- * landing pages.
+ * Builds the multi-state location dataset used by the /for/[specialty]/[state]/[place]
+ * landing pages. States are listed in STATES below.
  *
  *   node scripts/build-locations.mjs [--min-population 25000]
  *
@@ -30,9 +30,22 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CACHE = path.join(ROOT, '.census-cache');
 const OUT = path.join(ROOT, 'lib', 'data', 'locations.json');
 
+/**
+ * `municipalityLevel` is the Census summary level that actually holds this state's
+ * municipalities:
+ *   162 = incorporated place — the norm in most states.
+ *   061 = minor civil division — New York and New Jersey, where towns and townships are the
+ *         real municipalities. Using places there would drop Hempstead NY (785k residents),
+ *         Brookhaven, Islip, and every New Jersey township including Lakewood and Edison.
+ */
 const STATES = [
-  { fips: '12', abbr: 'FL', slug: 'florida', name: 'Florida' },
-  { fips: '48', abbr: 'TX', slug: 'texas', name: 'Texas' },
+  { fips: '12', abbr: 'FL', slug: 'florida', name: 'Florida', municipalityLevel: '162' },
+  { fips: '48', abbr: 'TX', slug: 'texas', name: 'Texas', municipalityLevel: '162' },
+  { fips: '13', abbr: 'GA', slug: 'georgia', name: 'Georgia', municipalityLevel: '162' },
+  { fips: '06', abbr: 'CA', slug: 'california', name: 'California', municipalityLevel: '162' },
+  { fips: '36', abbr: 'NY', slug: 'new-york', name: 'New York', municipalityLevel: '061' },
+  { fips: '34', abbr: 'NJ', slug: 'new-jersey', name: 'New Jersey', municipalityLevel: '061' },
+  { fips: '04', abbr: 'AZ', slug: 'arizona', name: 'Arizona', municipalityLevel: '162' },
 ];
 
 const argMin = process.argv.indexOf('--min-population');
@@ -53,13 +66,13 @@ async function download(url, file) {
   return dest;
 }
 
-/** Census ships the county gazetteer as a zip; everything else is plain text. */
-async function downloadCountyGazetteer() {
+/** Census ships the county and county-subdivision gazetteers as zips. */
+async function downloadZippedGazetteer(name) {
   const zip = await download(
-    'https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2023_Gazetteer/2023_Gaz_counties_national.zip',
-    '2023_Gaz_counties_national.zip'
+    `https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2023_Gazetteer/${name}.zip`,
+    `${name}.zip`
   );
-  const txt = path.join(CACHE, '2023_Gaz_counties_national.txt');
+  const txt = path.join(CACHE, `${name}.txt`);
   if (!existsSync(txt)) execFileSync('unzip', ['-o', '-q', zip, '-d', CACHE]);
   return txt;
 }
@@ -99,10 +112,16 @@ const readCsv = async (file) => {
 
 /** "Miami city" -> "Miami"; "St. Petersburg city" -> "St. Petersburg". */
 const TYPE_SUFFIX =
-  /\s+(city|town|village|borough|municipality|CDP|urban county|metro(politan)? government|consolidated government)(\s+\(balance\))?$/i;
+  /\s+(city|town|township|village|borough|municipality|plantation|CDP|urban county|metro(politan)? government|consolidated government)(\s+\(balance\))?$/i;
 
 function cleanPlaceName(raw) {
   return raw.replace(TYPE_SUFFIX, '').replace(/\s+\(balance\)$/i, '').trim();
+}
+
+/** "Poughkeepsie town" -> "town". Used only to disambiguate same-county name clashes. */
+function municipalType(raw) {
+  const m = raw.match(TYPE_SUFFIX);
+  return m ? m[1].toLowerCase() : null;
 }
 
 function slugify(value) {
@@ -136,13 +155,19 @@ function milesBetween(a, b) {
 /* ------------------------------------------------------------------ */
 
 async function main() {
-  console.log(`Building FL/TX locations (city population floor: ${MIN_POPULATION.toLocaleString()})`);
+  console.log(
+    `Building ${STATES.length}-state locations (city population floor: ${MIN_POPULATION.toLocaleString()})`
+  );
 
   const subEstFile = await download(
     'https://www2.census.gov/programs-surveys/popest/datasets/2020-2023/cities/totals/sub-est2023.csv',
     'sub-est2023.csv'
   );
-  const countyGazFile = await downloadCountyGazetteer();
+  const countyGazFile = await downloadZippedGazetteer('2023_Gaz_counties_national');
+  // Centroids for town/township municipalities, which the place gazetteer does not cover.
+  const cousubGazFile = STATES.some((s) => s.municipalityLevel === '061')
+    ? await downloadZippedGazetteer('2023_Gaz_cousubs_national')
+    : null;
   const placeGazFiles = {};
   for (const st of STATES) {
     placeGazFiles[st.fips] = await download(
@@ -162,6 +187,11 @@ async function main() {
   }
   for (const st of STATES) {
     for (const row of await readTsv(placeGazFiles[st.fips])) {
+      geo.set(row.GEOID, { lat: toNum(row.INTPTLAT), lng: toNum(row.INTPTLONG), sqmi: toNum(row.ALAND_SQMI) });
+    }
+  }
+  if (cousubGazFile) {
+    for (const row of await readTsv(cousubGazFile)) {
       geo.set(row.GEOID, { lat: toNum(row.INTPTLAT), lng: toNum(row.INTPTLONG), sqmi: toNum(row.ALAND_SQMI) });
     }
   }
@@ -205,13 +235,37 @@ async function main() {
 
   /* ---- cities ---- */
   const cities = [];
-  for (const r of rows.filter((r) => r.SUMLEV === '162')) {
+  const municipalRows = rows.filter((r) => r.SUMLEV === fipsOf[r.STATE].municipalityLevel);
+
+  // MCD states: fold back any incorporated place with no same-name MCD. Without this New York
+  // City (8.26m) is absent entirely, since it has no county-subdivision record.
+  for (const st of STATES.filter((s) => s.municipalityLevel === '061')) {
+    const mcdNames = new Set(
+      rows.filter((r) => r.STATE === st.fips && r.SUMLEV === '061').map((r) => cleanPlaceName(r.NAME))
+    );
+    for (const r of rows) {
+      if (r.STATE !== st.fips || r.SUMLEV !== '162') continue;
+      if (mcdNames.has(cleanPlaceName(r.NAME))) continue;
+      municipalRows.push(r);
+    }
+  }
+  for (const r of municipalRows) {
     const population = pop(r);
     if (population < MIN_POPULATION) continue;
     const st = fipsOf[r.STATE];
-    const geoid = r.STATE + r.PLACE;
+    // Read the row, not the state: MCD states also carry folded-in place rows (New York City).
+    const isMcd = r.SUMLEV === '061';
+    const geoid = isMcd ? r.STATE + r.COUNTY + r.COUSUB : r.STATE + r.PLACE;
     const name = cleanPlaceName(r.NAME);
-    const county = countyByFips.get(primaryCounty.get(geoid)?.fips);
+    if (/^County subdivisions not defined/i.test(name)) continue;
+    const part = isMcd ? null : primaryCounty.get(geoid);
+    const share = part && population > 0 ? part.pop / population : 1;
+    const spansCounties = share < 0.6;
+    const county = spansCounties
+      ? undefined
+      : isMcd
+        ? countyByFips.get(r.STATE + r.COUNTY)
+        : countyByFips.get(part?.fips);
     const centroid = geo.get(geoid) ?? { lat: null, lng: null, sqmi: null };
     const pop2020 = toNum(r.POPESTIMATE2020) ?? 0;
     cities.push({
@@ -229,22 +283,32 @@ async function main() {
       density: centroid.sqmi ? Math.round(population / centroid.sqmi) : null,
       countySlug: county?.slug ?? null,
       countyName: county?.name ?? null,
+      municipalType: municipalType(r.NAME),
+      spansCounties,
       ...centroid,
     });
   }
 
   /* ---- slug collisions ---- */
-  // Place names repeat across a state rarely, but when they do the county disambiguates.
+  // Names repeat within a state, and in New York a city and a town of the same name sit in the
+  // same county (Poughkeepsie, Newburgh), so the county alone cannot separate them. Group by
+  // base slug: different counties disambiguate by county, same county by municipality type.
   for (const st of STATES) {
-    const seen = new Map();
+    const groups = new Map();
     for (const c of cities.filter((c) => c.state === st.abbr)) {
-      const clash = seen.get(c.slug);
-      if (clash) {
-        for (const dupe of [clash, c]) {
-          if (dupe.countySlug) dupe.slug = `${slugify(dupe.name)}-${dupe.countySlug.replace(/-county$/, '')}`;
-        }
-        console.warn(`  ! slug collision in ${st.abbr}: ${c.name} -> ${c.slug}`);
-      } else seen.set(c.slug, c);
+      const base = slugify(c.name);
+      if (!groups.has(base)) groups.set(base, []);
+      groups.get(base).push(c);
+    }
+    for (const [base, group] of groups) {
+      if (group.length === 1) continue;
+      const countiesDiffer = new Set(group.map((c) => c.countySlug)).size === group.length;
+      for (const c of group) {
+        c.slug = countiesDiffer && c.countySlug
+          ? `${base}-${c.countySlug.replace(/-county$/, '')}`
+          : `${base}-${c.municipalType ?? 'municipality'}`;
+      }
+      console.warn(`  ! ${st.abbr} name clash "${group[0].name}" -> ${group.map((c) => c.slug).join(', ')}`);
     }
   }
 

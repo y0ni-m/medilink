@@ -3,7 +3,7 @@
 // The point of this file is that two location pages should not read the same. Content varies
 // along five real axes:
 //
-//   specialty (7)  x  state (2)  x  market tier (3)  x  page kind (county/city)  x  place facts
+//   specialty (7)  x  state (7)  x  market tier (3)  x  page kind (county/city)  x  place facts
 //
 // Place facts — population, county, land area, named neighbours and their distances — come from
 // Census data, so the local paragraphs contain statements that are true of that place and false
