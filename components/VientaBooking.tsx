@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import { trackMeta } from '@/lib/track';
 
 // Custom booking calendar on top of the Vienta public API (see BOOKING_API.md).
 // No iframe, no SDK — just fetch calls, styled to match the site.
@@ -123,6 +124,8 @@ export default function VientaBooking() {
           video: data.booking?.video_link,
         });
         setStatus('done');
+        // Confirmed booking is the conversion Meta optimises against.
+        trackMeta('Lead', { content_name: 'demo_booking', content_category: 'demo' });
       } else if (res.status === 409) {
         setError('That time was just taken — please pick another.');
         setStatus('idle');

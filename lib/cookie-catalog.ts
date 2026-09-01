@@ -112,6 +112,14 @@ export const CATEGORY_META: CategoryMeta[] = [
         duration: 'Up to 12 months',
         party: 'Third-party',
       },
+      {
+        name: '_fbp / _fbc',
+        provider: 'Meta Platforms (connect.facebook.net)',
+        purpose:
+          'Meta (Facebook/Instagram) advertising pixel. Measures which ad led to a demo request and builds advertising audiences. The script is not loaded at all until you consent to marketing.',
+        duration: 'Up to 3 months',
+        party: 'Third-party',
+      },
     ],
   },
 ];
