@@ -15,8 +15,12 @@ export default function Home() {
       <section className="hero">
         <span className="hero-ghost" aria-hidden="true">REFERRALS</span>
         <HeroLeft />
-        <div className="sol-hero-right">
+        <div className="sol-hero-right hcards-stack">
           <HeroCards />
+          <a className="btn btn-cta hcards-cta" href="#book">
+            Book a demo
+            <span className="arrow">→</span>
+          </a>
         </div>
       </section>
       <BrainExplorer />
