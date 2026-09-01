@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { CONSENT_EVENT, type Categories, DEFAULT_CATEGORIES, getCategories, subscribe } from '@/lib/consent';
 
 /** Ad-account pixel for medilink.vip. Fires PageView on mount; conversions are sent by trackMeta(). */
-export const META_PIXEL_ID = '1788766738921557';
+export const META_PIXEL_ID = '1070112295758785';
 
 const META_PIXEL_SNIPPET = `
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
