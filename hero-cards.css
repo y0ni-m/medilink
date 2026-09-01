@@ -108,6 +108,13 @@
   animation: hcardIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both, hcardFloatA 6s ease-in-out 1s infinite;
 }
 
+/* CTA below the cards */
+.hcards-stack { flex-direction: column; align-items: center; }
+.hcards-cta {
+  margin-top: 6px;
+  animation: hcardIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}
+
 @keyframes hcardIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
 @keyframes hcardFloatA { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
 @keyframes hcardFloatB { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
@@ -119,5 +126,5 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hcard, .hcard-referral, .hcard-provider, .hcard-float, .hcard-dot { animation: none !important; opacity: 1 !important; transform: none !important; }
+  .hcard, .hcard-referral, .hcard-provider, .hcard-float, .hcard-dot, .hcards-cta { animation: none !important; opacity: 1 !important; transform: none !important; }
 }
