@@ -49,7 +49,11 @@ export default function VientaBooking() {
   const [loadingSlots, setLoadingSlots] = useState(false);
   const [slot, setSlot] = useState<Slot | null>(null);
 
-  const [form, setForm] = useState({ name: '', email: '', phone: '', notes: '', website: '' });
+  const [form, setForm] = useState({ name: '', email: '', phone: '', practice_type: '', notes: '', website: '' });
+  // Details are collected before the calendar so an abandoned booking is still
+  // a captured lead — previously nothing reached the CRM until the final click.
+  const [stage, setStage] = useState<'details' | 'schedule'>('details');
+  const [saving, setSaving] = useState(false);
   const [status, setStatus] = useState<'idle' | 'booking' | 'done'>('idle');
   const [error, setError] = useState('');
   const [booking, setBooking] = useState<{ display: string; dateLabel: string; video?: string } | null>(null);
@@ -124,8 +128,7 @@ export default function VientaBooking() {
           video: data.booking?.video_link,
         });
         setStatus('done');
-        // Confirmed booking is the conversion Meta optimises against.
-        trackMeta('Lead', { content_name: 'demo_booking', content_category: 'demo' });
+        trackMeta('Schedule', { content_name: 'demo_booking', content_category: 'demo' });
       } else if (res.status === 409) {
         setError('That time was just taken — please pick another.');
         setStatus('idle');
@@ -141,6 +144,32 @@ export default function VientaBooking() {
       setError('Network error — please try again.');
       setStatus('idle');
     }
+  };
+
+  const submitDetails = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    if (form.website) return;            // honeypot
+    setSaving(true);
+    try {
+      const res = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) {
+        setError('Could not save your details — please try again.');
+        setSaving(false);
+        return;
+      }
+      // The captured detail, not the completed booking, is the conversion we
+      // optimise against — there are far more of them for Meta to learn from.
+      trackMeta('Lead', { content_name: 'demo_details', content_category: 'demo' });
+      setStage('schedule');
+    } catch {
+      setError('Network error — please try again.');
+    }
+    setSaving(false);
   };
 
   // ----- confirmation -----
@@ -181,8 +210,53 @@ export default function VientaBooking() {
     setView({ y: d.getFullYear(), m: d.getMonth() });
   };
 
+  // ----- step 1: details -----
+  if (stage === 'details') {
+    return (
+      <div className="vb">
+        <form className="vb-form vb-details" onSubmit={submitDetails}>
+          <p className="vb-step">Step 1 of 2 · about your practice</p>
+          <input className="vb-input" placeholder="Full name" value={form.name} required
+            onChange={(e) => setForm({ ...form, name: e.target.value })} autoComplete="name" />
+          <input className="vb-input" type="email" placeholder="Work email" value={form.email} required
+            onChange={(e) => setForm({ ...form, email: e.target.value })} autoComplete="email" />
+          <input className="vb-input" type="tel" placeholder="Phone" value={form.phone} required
+            onChange={(e) => setForm({ ...form, phone: e.target.value })} autoComplete="tel" />
+          <select className="vb-input" value={form.practice_type} required
+            onChange={(e) => setForm({ ...form, practice_type: e.target.value })}>
+            <option value="" disabled>What type of practice do you run?</option>
+            <option value="chiro">Chiropractic / Rehab</option>
+            <option value="plastic">Plastic &amp; Reconstructive Surgery</option>
+            <option value="ortho">Orthopedics</option>
+            <option value="imaging">MRI / Imaging</option>
+            <option value="law">Law firm</option>
+            <option value="other">Other</option>
+          </select>
+          {/* honeypot */}
+          <input type="text" name="website" tabIndex={-1} aria-hidden="true" autoComplete="off"
+            value={form.website} onChange={(e) => setForm({ ...form, website: e.target.value })}
+            style={{ position: 'absolute', left: '-9999px' }} />
+          {error && <p className="vb-error">{error}</p>}
+          <button className="vb-submit" type="submit" disabled={saving}>
+            {saving ? 'Saving…' : 'Continue to pick a time'}
+            {!saving && <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" /></svg>}
+          </button>
+          <p className="vb-reassure">
+            {details?.duration_minutes ?? 30}-minute video call. No obligation — if you would rather we
+            call you, leave your details and we will reach out.
+          </p>
+        </form>
+      </div>
+    );
+  }
+
+  // ----- step 2: schedule -----
   return (
     <div className="vb">
+      <p className="vb-step">
+        Step 2 of 2 · pick a time
+        <button type="button" className="vb-change" onClick={() => setStage('details')}>Edit details</button>
+      </p>
       <div className="vb-grid-layout">
         {/* Calendar */}
         <div className="vb-cal">
@@ -247,12 +321,7 @@ export default function VientaBooking() {
                 <span>{MONTHS[date.getMonth()]} {date.getDate()} · {slot.display}</span>
                 <button type="button" className="vb-change" onClick={() => setSlot(null)}>Change</button>
               </div>
-              <input className="vb-input" placeholder="Full name" value={form.name} required
-                onChange={(e) => setForm({ ...form, name: e.target.value })} autoComplete="name" />
-              <input className="vb-input" type="email" placeholder="Email" value={form.email} required
-                onChange={(e) => setForm({ ...form, email: e.target.value })} autoComplete="email" />
-              <input className="vb-input" type="tel" placeholder="Phone" value={form.phone} required
-                onChange={(e) => setForm({ ...form, phone: e.target.value })} autoComplete="tel" />
+              <p className="vb-note">{form.name} · {form.email}</p>
               <textarea className="vb-input vb-textarea" placeholder="Anything we should know? (optional)" value={form.notes}
                 onChange={(e) => setForm({ ...form, notes: e.target.value })} rows={2} />
               {/* honeypot */}

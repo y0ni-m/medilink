@@ -22,3 +22,4 @@ PCFI*
 
 # Census source files cached by scripts/build-locations.mjs
 .census-cache/
+.vercel
