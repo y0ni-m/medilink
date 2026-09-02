@@ -264,3 +264,36 @@
 }
 
 @media (prefers-reduced-motion: reduce) { .demo-eyebrow-dot { animation: none; } }
+
+/* Two-step booking: details are captured before the calendar, so the widget
+   now has a first screen of its own and a step indicator across both. */
+.vb-details { max-width: 460px; margin: 0 auto; }
+.vb-step {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  font-size: 12.5px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--muted); margin: 0 0 4px;
+}
+.vb-reassure { font-size: 13px; line-height: 1.5; color: var(--muted); margin: 2px 0 0; text-align: center; }
+/* A select has to match the text inputs it sits between. */
+select.vb-input { appearance: none; cursor: pointer; padding-right: 38px;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 12px center; background-size: 16px; }
+select.vb-input:invalid { color: var(--muted); }
+
+/* Restates the ad's claim above the form so the click keeps its context. */
+.book-points {
+  list-style: none; padding: 0; margin: 0 auto 26px; max-width: 460px;
+  display: flex; flex-direction: column; gap: 9px;
+}
+.book-points li {
+  position: relative; padding-left: 26px; font-size: 14.5px; line-height: 1.5; color: var(--ink);
+}
+.book-points li::before {
+  content: ''; position: absolute; left: 0; top: 6px; width: 15px; height: 15px;
+  border-radius: 50%; background: var(--teal); opacity: 0.16;
+}
+.book-points li::after {
+  content: ''; position: absolute; left: 4.5px; top: 9.5px; width: 6px; height: 3.5px;
+  border-left: 1.8px solid var(--teal-deep); border-bottom: 1.8px solid var(--teal-deep);
+  transform: rotate(-45deg);
+}

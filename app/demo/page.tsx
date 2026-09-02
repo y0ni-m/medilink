@@ -28,6 +28,11 @@ export default function DemoPage() {
               responsibility, and case tracking end to end.
             </p>
           </header>
+          <ul className="book-points">
+            <li>Signed agreement and verified attorney before the first visit</li>
+            <li>You set the coverage area and the case volume</li>
+            <li>Case file attached — no chasing records</li>
+          </ul>
           <VientaBooking />
         </div>
       </main>
