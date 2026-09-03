@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
+import { currentRegime, type Regime } from '@/lib/regime';
 import {
   ALL_CATEGORIES,
   CATEGORY_META,
@@ -13,6 +14,7 @@ import {
   type ConsentRecord,
   formatDecisionDate,
   getCategories,
+  defaultCategories,
   hasOptOutSignal,
   openPreferences,
   readConsent,
@@ -40,6 +42,8 @@ export default function CookieConsent() {
   const [draft, setDraft] = useState<Categories>(DEFAULT_CATEGORIES);
   const [record, setRecord] = useState<ConsentRecord | null>(null);
   const [signalDetected, setSignalDetected] = useState(false);
+  // Opt-out jurisdictions see a notice, not a gate — the tags are already running.
+  const [regime, setRegime] = useState<Regime>('opt-in');
   const [expanded, setExpanded] = useState<CategoryId | null>(null);
 
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -54,7 +58,9 @@ export default function CookieConsent() {
     setMounted(true);
     const stored = readConsent();
     const signal = hasOptOutSignal();
+    const activeRegime = currentRegime();
     setSignalDetected(signal);
+    setRegime(activeRegime);
 
     if (stored) {
       setRecord(stored);
@@ -62,7 +68,7 @@ export default function CookieConsent() {
       return;
     }
 
-    setDraft({ ...DEFAULT_CATEGORIES });
+    setDraft(defaultCategories());
 
     if (signal) {
       // A Global Privacy Control header is a legally valid opt-out in several U.S. states, so we
@@ -222,13 +228,23 @@ export default function CookieConsent() {
               </div>
               <div className="cc-banner-text">
                 <h2 className="cc-banner-title" id={titleId}>
-                  We ask before we track.
+                  {regime === 'opt-out' ? 'You control your data.' : 'We ask before we track.'}
                 </h2>
                 <p className="cc-banner-copy" id={descId}>
-                  We use strictly necessary cookies to run this site. With your permission we would
-                  also use analytics and marketing cookies to see which pages help clinics and
-                  firms, and to measure our campaigns. Nothing optional runs until you say yes, and
-                  you can change your mind any time.{' '}
+                  {regime === 'opt-out' ? (
+                    <>
+                      We use cookies to run this site, to see which pages help clinics and firms,
+                      and to measure our campaigns. You can opt out of analytics and marketing at
+                      any time — one click, and we honour Global Privacy Control automatically.{' '}
+                    </>
+                  ) : (
+                    <>
+                      We use strictly necessary cookies to run this site. With your permission we
+                      would also use analytics and marketing cookies to see which pages help clinics
+                      and firms, and to measure our campaigns. Nothing optional runs until you say
+                      yes, and you can change your mind any time.{' '}
+                    </>
+                  )}
                   <Link href="/cookies">Cookie Policy</Link> ·{' '}
                   <Link href="/privacy">Privacy Policy</Link>
                 </p>
@@ -249,10 +265,10 @@ export default function CookieConsent() {
               <div className="cc-banner-choice">
                 {/* Equal prominence is the point: same size, same weight, one click each. */}
                 <button type="button" className="cc-btn cc-btn-secondary" onClick={rejectAll}>
-                  Reject all
+                  {regime === 'opt-out' ? 'Opt out' : 'Reject all'}
                 </button>
                 <button type="button" className="cc-btn cc-btn-primary" onClick={acceptAll}>
-                  Accept all
+                  {regime === 'opt-out' ? 'Got it' : 'Accept all'}
                 </button>
               </div>
             </div>

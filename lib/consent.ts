@@ -19,7 +19,9 @@
  * fingerprint — is stored in the record itself.
  */
 
+import { currentRegime } from '@/lib/regime';
 import {
+  ALL_CATEGORIES,
   CONSENT_TTL_DAYS,
   CONSENT_VERSION,
   DEFAULT_CATEGORIES,
@@ -167,8 +169,22 @@ export function readConsent(): ConsentRecord | null {
 }
 
 /** Current permissions. Absent or stale consent means everything optional is off. */
+/**
+ * What applies before the visitor has decided anything.
+ *
+ * Opt-in jurisdictions get everything denied, as before. Opt-out jurisdictions
+ * get the non-essential categories granted, which is what their law actually
+ * permits — but a Global Privacy Control signal outranks the regime everywhere,
+ * because GPC *is* the opt-out those states require us to honour.
+ */
+export function defaultCategories(): Categories {
+  if (hasOptOutSignal()) return { ...DEFAULT_CATEGORIES };
+  if (currentRegime() === 'opt-out') return { ...ALL_CATEGORIES };
+  return { ...DEFAULT_CATEGORIES };
+}
+
 export function getCategories(): Categories {
-  return readConsent()?.categories ?? { ...DEFAULT_CATEGORIES };
+  return readConsent()?.categories ?? defaultCategories();
 }
 
 export function hasConsent(category: CategoryId): boolean {
