@@ -297,3 +297,43 @@ select.vb-input:invalid { color: var(--muted); }
   border-left: 1.8px solid var(--teal-deep); border-bottom: 1.8px solid var(--teal-deep);
   transform: rotate(-45deg);
 }
+
+/* Inline capture on the /for/* landing pages. These previously handed paid
+   traffic straight to app.medilink.vip/register with nothing recorded if the
+   visitor stopped short. */
+.aus { padding: 0 20px 12px; }
+.aus-inner {
+  max-width: 1080px; margin: 0 auto; background: var(--bg-soft);
+  border: 1px solid var(--line); border-radius: 18px; padding: 32px;
+  display: grid; grid-template-columns: 1.05fr 1fr; gap: 34px; align-items: center;
+}
+.aus-eyebrow {
+  display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--teal-deep); margin-bottom: 10px;
+}
+.aus-copy h2 { font-size: 27px; line-height: 1.2; margin: 0 0 10px; color: var(--ink); }
+.aus-copy p { font-size: 15px; line-height: 1.6; color: var(--muted); margin: 0; }
+.aus-form { display: flex; flex-direction: column; gap: 10px; }
+.aus-input {
+  width: 100%; box-sizing: border-box; font-family: inherit; font-size: 15px; color: var(--ink);
+  background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; outline: none;
+}
+.aus-input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(13,167,202,0.16); }
+select.aus-input:invalid { color: var(--muted); }
+.aus-submit {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer;
+  background: var(--teal); color: #06121a; border: none; border-radius: 10px;
+  padding: 13px 18px; text-decoration: none;
+}
+.aus-submit:hover { background: var(--teal-deep); color: #fff; }
+.aus-submit:disabled { opacity: 0.6; cursor: default; }
+.aus-fine { font-size: 12.5px; color: var(--muted); text-align: center; margin: 2px 0 0; }
+.aus-error { font-size: 13.5px; color: #b42318; margin: 0; }
+.aus-done { display: block; text-align: center; }
+.aus-done h2 { font-size: 25px; margin: 0 0 8px; color: var(--ink); }
+.aus-done p { color: var(--muted); margin: 0 0 18px; }
+@media (max-width: 860px) {
+  .aus-inner { grid-template-columns: 1fr; padding: 24px; gap: 22px; }
+  .aus-copy h2 { font-size: 23px; }
+}
