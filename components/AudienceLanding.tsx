@@ -95,17 +95,15 @@ export default function AudienceLanding({ audience }: { audience: Audience }) {
             </h1>
             <p className="sol-hero-sub">{audience.hero.sub}</p>
 
-            <div className="sol-hero-cta">
-              <a className="sol-btn sol-btn-primary" href={audience.hero.primaryCta.href}>
-                {audience.hero.primaryCta.label}
-                <svg viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                  <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
-              <a className="sol-btn sol-btn-ghost" href={audience.hero.secondaryCta.href}>
-                {audience.hero.secondaryCta.label}
-              </a>
-            </div>
+            {/* Capture in the hero itself: paid traffic converts or leaves here,
+                and two competing buttons split the attention a form needs. */}
+            <AudienceSignup
+              compact
+              slug={audience.slug}
+              label={audience.name}
+              isLegal={audience.group === 'legal'}
+              callHref={audience.hero.secondaryCta.href}
+            />
 
             <div className="sol-stats">
               {audience.stats.map((s) => (
