@@ -8,6 +8,7 @@ import SpineExplorer from '@/components/SpineExplorer';
 import Polaroid from '@/components/Polaroid';
 import { getSpecialty } from '@/lib/specialties';
 import { STATES, citiesIn, countiesIn, largestCities } from '@/lib/locations';
+import AudienceSignup from '@/components/AudienceSignup';
 
 const GLYPHS: Record<Audience['design']['glyph'], ReactNode> = {
   legal: (
@@ -121,6 +122,12 @@ export default function AudienceLanding({ audience }: { audience: Audience }) {
           </div>
         </div>
       </section>
+
+      <AudienceSignup
+        slug={audience.slug}
+        label={audience.name}
+        isLegal={audience.group === 'legal'}
+      />
 
       {/* ---------- Interactive 3D anatomy (audience-specific) ---------- */}
       {design.glyph === 'neuro' && <BrainExplorer />}
