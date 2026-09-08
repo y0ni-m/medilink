@@ -16,10 +16,15 @@ export default function AudienceSignup({
   slug,
   label,
   isLegal,
+  compact = false,
+  callHref,
 }: {
   slug: string;
   label: string;
   isLegal: boolean;
+  /** Hero placement: three fields inline, no panel chrome. */
+  compact?: boolean;
+  callHref?: string;
 }) {
   const [form, setForm] = useState({ name: '', email: '', phone: '', org: '', state: '', website: '' });
   const [status, setStatus] = useState<'idle' | 'saving' | 'done'>('idle');
@@ -55,6 +60,42 @@ export default function AudienceSignup({
       setStatus('idle');
     }
   };
+
+  if (compact) {
+    if (status === 'done') {
+      return (
+        <div className="aus-hero aus-hero-done">
+          <p>Thanks — you&apos;re on the list.</p>
+          <a className="aus-submit" href="https://app.medilink.vip/register">
+            Create your free account
+          </a>
+        </div>
+      );
+    }
+    return (
+      <form className="aus-hero" onSubmit={submit}>
+        <div className="aus-hero-row">
+          <input className="aus-input" placeholder="Full name" required autoComplete="name"
+            value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+          <input className="aus-input" type="email" placeholder="Work email" required autoComplete="email"
+            value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+          <input className="aus-input" type="tel" placeholder="Phone" required autoComplete="tel"
+            value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+          <button className="aus-submit" type="submit" disabled={status === 'saving'}>
+            {status === 'saving' ? 'Saving…' : isLegal ? 'Get matched' : 'Get referrals'}
+          </button>
+        </div>
+        <input type="text" name="website" tabIndex={-1} aria-hidden="true" autoComplete="off"
+          value={form.website} onChange={(e) => setForm({ ...form, website: e.target.value })}
+          style={{ position: 'absolute', left: '-9999px' }} />
+        {error && <p className="aus-error">{error}</p>}
+        <p className="aus-fine aus-fine-left">
+          {isLegal ? 'Free for law firms. No card required.' : 'Free to join. Takes 30 seconds.'}
+          {callHref && <> · <a href={callHref}>or call our team</a></>}
+        </p>
+      </form>
+    );
+  }
 
   if (status === 'done') {
     return (

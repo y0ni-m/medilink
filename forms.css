@@ -337,3 +337,19 @@ select.aus-input:invalid { color: var(--muted); }
   .aus-inner { grid-template-columns: 1fr; padding: 24px; gap: 22px; }
   .aus-copy h2 { font-size: 23px; }
 }
+
+/* Hero placement of the capture form. Replaces the two-button CTA row: a form
+   and two buttons compete for the same click, and the form is the one that
+   leaves a record when the visitor doesn't finish. */
+.aus-hero { margin: 22px 0 4px; }
+.aus-hero-row { display: flex; flex-wrap: wrap; gap: 9px; }
+.aus-hero-row .aus-input { flex: 1 1 190px; min-width: 0; background: #fff; }
+.aus-hero-row .aus-submit { flex: 0 0 auto; padding: 13px 22px; white-space: nowrap; }
+.aus-fine-left { text-align: left; margin-top: 9px; }
+.aus-fine-left a { color: var(--teal-deep); text-decoration: underline; }
+.aus-hero-done { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.aus-hero-done p { margin: 0; font-size: 16px; font-weight: 600; color: var(--ink); }
+@media (max-width: 720px) {
+  .aus-hero-row { flex-direction: column; }
+  .aus-hero-row .aus-submit { width: 100%; }
+}
