@@ -30,6 +30,23 @@ export default function AudienceSignup({
   const [status, setStatus] = useState<'idle' | 'saving' | 'done'>('idle');
   const [error, setError] = useState('');
 
+  /** The ads are UTM-tagged; without reading them back a signup is only
+   *  attributable to a page, never to the creative that paid for it. */
+  const attribution = () => {
+    if (typeof window === 'undefined') return {};
+    const q = new URLSearchParams(window.location.search);
+    const pick = (k: string) => q.get(k) || undefined;
+    return {
+      page: window.location.pathname,
+      utm_source: pick('utm_source'),
+      utm_medium: pick('utm_medium'),
+      utm_campaign: pick('utm_campaign'),
+      utm_content: pick('utm_content'),
+      fbclid: pick('fbclid'),
+      referrer: document.referrer || undefined,
+    };
+  };
+
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (form.website) return; // honeypot
@@ -46,6 +63,7 @@ export default function AudienceSignup({
           practice_type: slug,
           notes: `${isLegal ? 'Firm' : 'Practice'}: ${form.org} · State: ${form.state}`,
           website: form.website,
+          attribution: attribution(),
         }),
       });
       if (!res.ok) {
