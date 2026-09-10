@@ -112,7 +112,7 @@ export default function Footer() {
 
         <div className="ft-bar">
           <div className="ft-bar-inner">
-            <span className="ft-copy">© 2026 MediLink Health, Inc. All rights reserved.</span>
+            <span className="ft-copy">© 2026 MediLink LLC All rights reserved.</span>
             <div className="ft-contact">
               <a href={PHONE_HREF}>{PHONE_DISPLAY}</a>
             </div>

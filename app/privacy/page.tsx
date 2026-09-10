@@ -22,7 +22,7 @@ export default function PrivacyPage() {
       >
         <h2>1. Who we are</h2>
         <p>
-          MediLink Health, Inc. (&quot;MediLink&quot;, &quot;we&quot;, &quot;us&quot;) operates a
+          MediLink LLC (&quot;MediLink&quot;, &quot;we&quot;, &quot;us&quot;) operates a
           referral and case-management platform that connects personal injury attorneys with vetted
           medical clinics. This policy covers our website, marketing pages, and the MediLink
           application.
