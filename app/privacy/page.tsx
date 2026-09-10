@@ -49,7 +49,7 @@ export default function PrivacyPage() {
         <h3>Protected Health Information (PHI)</h3>
         <p>
           When clinics and firms upload PHI to coordinate a case, MediLink processes that data as a
-          Business Associate under HIPAA. PHI is handled under the BAA you sign at onboarding and
+          Business Associate under HIPAA. PHI is handled under the <a href="/baa">Business Associate Agreement</a> accepted at onboarding and
           described further in our <a href="/compliance">Compliance</a> overview.
         </p>
 

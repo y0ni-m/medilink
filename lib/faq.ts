@@ -95,7 +95,7 @@ export const FAQ_SECTIONS: FaqSection[] = [
     items: [
       {
         q: 'Is MediLink HIPAA compliant?',
-        a: 'MediLink is built for HIPAA: encryption in transit and at rest, role-based access control, per-organization data isolation enforced at the API and database layers, and audit logging on record access, document activity, and sign-ins. We operate as a Business Associate to our practice customers and sign a BAA at onboarding. Our infrastructure providers that handle PHI are under signed BAAs with us.',
+        a: 'MediLink is built for HIPAA: encryption in transit and at rest, role-based access control, per-organization data isolation enforced at the API and database layers, and audit logging on record access, document activity, and sign-ins. We operate as a Business Associate to our practice customers, and our Business Associate Agreement is presented and accepted at onboarding — we are also glad to execute it by signature on request. We require a BAA with each infrastructure provider that handles PHI on our behalf.',
       },
       {
         q: 'Who can see a patient’s data?',
@@ -103,7 +103,7 @@ export const FAQ_SECTIONS: FaqSection[] = [
       },
       {
         q: 'Where is data hosted?',
-        a: 'In the United States, on enterprise cloud infrastructure (AWS and Supabase) under Business Associate Agreements.',
+        a: 'In the United States, on enterprise cloud infrastructure (AWS and Supabase). We require a Business Associate Agreement with each provider that handles PHI on our behalf.',
       },
       {
         q: 'Does MediLink sell or share data?',
