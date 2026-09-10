@@ -30,11 +30,11 @@ export default function CompliancePage() {
           </div>
           <div className="legal-grid-item">
             <b>BAA available</b>
-            <span>Business Associate Agreement signed with every clinic and firm at onboarding.</span>
+            <span>Business Associate Agreement presented and accepted at onboarding. A countersigned copy is available on request.</span>
           </div>
           <div className="legal-grid-item">
-            <b>State licensing</b>
-            <span>Provider credentials verified against NPI, state license, and malpractice records.</span>
+            <b>Provider verification</b>
+            <span>Practices verified against the CMS NPPES registry, with government-issued photo ID checked at signup.</span>
           </div>
         </div>
 
@@ -53,9 +53,10 @@ export default function CompliancePage() {
           <li>Documented breach notification procedures consistent with 45 CFR §164.400</li>
         </ul>
         <p>
-          We sign a Business Associate Agreement (BAA) with every clinic, firm, and downstream
-          subcontractor that touches PHI. A standard BAA is provided during onboarding and can be
-          reviewed in advance on request.
+          Every clinic and firm accepts our Business Associate Agreement at onboarding, and you can read
+          it in full at <a href="/baa">medilink.vip/baa</a> before you sign up. We are glad to
+          execute it by signature, or to review your own BAA form, on request. We also require a
+          BAA with each infrastructure subprocessor that handles PHI on our behalf.
         </p>
 
         <h2>Data security</h2>

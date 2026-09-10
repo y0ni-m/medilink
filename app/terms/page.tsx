@@ -58,8 +58,8 @@ export default function TermsPage() {
         <p>
           You retain ownership of the information your organization submits. You grant MediLink a
           limited license to host, process, and display that information solely as needed to
-          operate the service for you. PHI is governed by the Business Associate Agreement (BAA)
-          signed at onboarding, which controls in the event of any conflict with these Terms.
+          operate the service for you. PHI is governed by the <a href="/baa">Business Associate Agreement</a> accepted at
+          onboarding, which controls in the event of any conflict with these Terms.
         </p>
 
         <h2>6. No professional advice</h2>
