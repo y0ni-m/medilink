@@ -6,7 +6,7 @@ import Nav from '@/components/Nav';
 export const metadata: Metadata = {
   title: 'MediLink — Business Associate Agreement',
   description:
-    'The HIPAA Business Associate Agreement between MediLink Health, Inc. and the clinics and firms that use the platform.',
+    'The HIPAA Business Associate Agreement between MediLink LLC and the clinics and firms that use the platform.',
 };
 
 // Version 2026-07-24. Public copy of the agreement presented at onboarding.
@@ -25,7 +25,7 @@ export default function BaaPage() {
         intro="This agreement is presented and accepted when a clinic or firm creates a MediLink organization. We are also glad to execute it by signature, or to review your own BAA form, on request."
         lastUpdated="July 24, 2026"
       >
-        <p>This Business Associate Agreement (&quot;BAA&quot;) is entered into between the customer organization accepting it (&quot;Covered Entity&quot; or &quot;Customer&quot;) and <strong>MediLink Health, Inc.</strong> (&quot;Business Associate&quot; or &quot;MediLink&quot;), and is incorporated into and made part of the MediLink Terms of Service. It is effective as of the date the Customer creates a MediLink organization account (&quot;Effective Date&quot;). In the event of a conflict between this BAA and the Terms of Service with respect to Protected Health Information (&quot;PHI&quot;), this BAA controls.</p>
+        <p>This Business Associate Agreement (&quot;BAA&quot;) is entered into between the customer organization accepting it (&quot;Covered Entity&quot; or &quot;Customer&quot;) and <strong>MediLink LLC</strong> (&quot;Business Associate&quot; or &quot;MediLink&quot;), and is incorporated into and made part of the MediLink Terms of Service. It is effective as of the date the Customer creates a MediLink organization account (&quot;Effective Date&quot;). In the event of a conflict between this BAA and the Terms of Service with respect to Protected Health Information (&quot;PHI&quot;), this BAA controls.</p>
         <h2>1. Definitions</h2>
         <p>Capitalized terms used but not defined here have the meanings given in the Health Insurance Portability and Accountability Act of 1996 (&quot;HIPAA&quot;), the Health Information Technology for Economic and Clinical Health Act (&quot;HITECH&quot;), and their implementing regulations at 45 C.F.R. Parts 160 and 164 (collectively, the &quot;HIPAA Rules&quot;), including: Breach, Data Aggregation, Designated Record Set, Electronic PHI (&quot;ePHI&quot;), Individual, Protected Health Information, Required by Law, Secretary, Security Incident, Subcontractor, and Unsecured PHI. &quot;PHI&quot; here means only the PHI MediLink creates, receives, maintains, or transmits on behalf of Customer.</p>
         <h2>2. Permitted uses and disclosures</h2>

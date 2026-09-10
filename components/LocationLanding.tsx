@@ -66,7 +66,7 @@ export default function LocationLanding({ specialty, place }: Props) {
       '@context': 'https://schema.org',
       '@type': 'Service',
       serviceType: `Personal injury referral network for ${specialty.plural}`,
-      provider: { '@type': 'Organization', name: 'MediLink Health, Inc.', url: SITE_URL },
+      provider: { '@type': 'Organization', name: 'MediLink LLC', url: SITE_URL },
       areaServed: {
         '@type': isCounty(place) ? 'AdministrativeArea' : 'City',
         name: place.name,
