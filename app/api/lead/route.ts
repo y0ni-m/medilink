@@ -18,6 +18,7 @@ type Body = {
   practice_type?: string;
   notes?: string;
   website?: string; // honeypot
+  attribution?: Record<string, string | undefined>;
 };
 
 /** Very small in-process throttle. Resets on cold start, which is fine — it
@@ -62,15 +63,27 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: false, error: 'Phone is required' }, { status: 400 });
   }
 
+  const attr = body.attribution || {};
   const payload = {
     phone,
     name: (body.name || '').trim() || null,
     email: (body.email || '').trim() || null,
-    source: 'medilink_demo_page',
+    // Distinguish the page that converted, not just "a website form".
+    source: attr.page && attr.page !== '/demo'
+      ? `medilink_page${attr.page.replace(/\//g, '_')}`
+      : 'medilink_demo_page',
     service_type: body.practice_type || null,
     practice_area: body.practice_type || null,
     message: (body.notes || '').trim() || undefined,
-    metadata: { page: '/demo' },
+    metadata: {
+      page: attr.page || '/demo',
+      utm_source: attr.utm_source || null,
+      utm_medium: attr.utm_medium || null,
+      utm_campaign: attr.utm_campaign || null,
+      utm_content: attr.utm_content || null,   // identifies the creative
+      fbclid: attr.fbclid || null,
+      referrer: attr.referrer || null,
+    },
   };
 
   try {
