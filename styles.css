@@ -38,7 +38,7 @@ body::before {
 /* NAV */
 .nav { display: flex; align-items: center; justify-content: space-between; padding: 22px 56px; max-width: 1440px; margin: 0 auto; }
 .nav-logo { display: flex; align-items: center; gap: 10px; font-family: "Space Grotesk", -apple-system, "system-ui", "Segoe UI", sans-serif; font-size: 26px; letter-spacing: -0.01em; color: var(--ink); }
-.nav-logo-img { height: 32px; width: auto; display: block; }
+.nav-logo-img { height: 60px; width: auto; display: block; }
 .ml-logo-img { height: 22px; width: auto; display: block; }
 .ft-logo-img { height: 36px; width: auto; display: block; }
 .nav-links { display: flex; align-items: center; gap: 36px; }
@@ -1890,7 +1890,7 @@ body::before {
 /* ==================== MOBILE / PHONE ==================== */
 @media (max-width: 720px) {
   .nav { padding: 14px 18px; gap: 12px; }
-  .nav-logo-img { height: 26px; }
+  .nav-logo-img { height: 44px; }
 
   .hero { padding: 8px 18px 48px; gap: 32px; min-height: 0; }
   .hero-left { padding-right: 0; }
