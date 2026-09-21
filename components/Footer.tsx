@@ -81,7 +81,9 @@ export default function Footer() {
             </div>
             <div className="ft-col">
               <h4>Coverage</h4>
-              {STATES.map((st) => (
+              {/* Core markets only — the other states' SEO pages stay live
+                  (and in the sitemap), they just aren't footer-linked. */}
+              {STATES.filter((st) => st.slug === 'florida' || st.slug === 'texas').map((st) => (
                 <Link href={`/for/lawyers/${st.slug}`} key={st.slug}>
                   {st.name}
                 </Link>
