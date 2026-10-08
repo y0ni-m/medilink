@@ -18,7 +18,7 @@ export default function PrivacyPage() {
         eyebrow="Privacy Policy"
         title="How we handle your information."
         intro="This policy explains what MediLink collects, how we use it, and the rights you have over your data."
-        lastUpdated="May 19, 2026"
+        lastUpdated="October 8, 2026"
       >
         <h2>1. Who we are</h2>
         <p>
@@ -87,7 +87,16 @@ export default function PrivacyPage() {
           </li>
         </ul>
 
-        <h2>5. Data retention</h2>
+        <h2>5. Text messages (SMS)</h2>
+        <p>
+          If you opt in to text notifications, your mobile phone number and SMS opt-in consent
+          are used only to send the account and appointment notifications described in our{' '}
+          <a href="/sms-terms">SMS Terms</a>. We do not sell or share mobile numbers or SMS
+          opt-in consent with third parties or affiliates for marketing purposes. Reply STOP to
+          any message to opt out at any time.
+        </p>
+
+        <h2>6. Data retention</h2>
         <p>
           We retain account and case data for as long as your organization has an active MediLink
           account, plus the period required to satisfy contractual, audit, and legal obligations
@@ -95,7 +104,7 @@ export default function PrivacyPage() {
           Data is then deleted or de-identified.
         </p>
 
-        <h2>6. Your rights</h2>
+        <h2>7. Your rights</h2>
         <p>
           Depending on where you live, you may have rights to access, correct, delete, or export
           your personal information, or to object to certain processing. To exercise these rights,
@@ -104,7 +113,7 @@ export default function PrivacyPage() {
           provider first — they are the covered entity that controls your record.
         </p>
 
-        <h2>7. Security</h2>
+        <h2>8. Security</h2>
         <p>
           MediLink uses encryption in transit and at rest, role-based access controls, and continuous
           monitoring. Details are available on our
@@ -113,21 +122,21 @@ export default function PrivacyPage() {
           <a href="tel:+18334071005"> +1 (833) 407-1005</a> immediately.
         </p>
 
-        <h2>8. International users</h2>
+        <h2>9. International users</h2>
         <p>
           MediLink is operated from the United States and serves U.S. attorneys and clinics. If you
           access the service from outside the U.S., you understand that your information will be
           processed in the U.S. under U.S. law.
         </p>
 
-        <h2>9. Changes to this policy</h2>
+        <h2>10. Changes to this policy</h2>
         <p>
           We may update this policy from time to time. Material changes will be announced through
           the application or by email at least 30 days before they take effect. The
           &quot;Last updated&quot; date at the top of this page always reflects the current version.
         </p>
 
-        <h2>10. Contact</h2>
+        <h2>11. Contact</h2>
         <p>
           Questions about this policy? Call us at
           <a href="tel:+18334071005"> +1 (833) 407-1005</a>.

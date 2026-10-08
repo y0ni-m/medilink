@@ -38,6 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry('/privacy', 0.3, 'monthly'),
     entry('/terms', 0.3, 'monthly'),
     entry('/cookies', 0.3, 'monthly'),
+    entry('/sms-terms', 0.3, 'monthly'),
   ];
 
   const specialtyHubs = audienceSlugs().map((slug) => entry(`/for/${slug}`, 0.9, 'weekly'));

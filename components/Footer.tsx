@@ -106,6 +106,7 @@ export default function Footer() {
               <Link href="/privacy">Privacy</Link>
               <Link href="/terms">Terms</Link>
               <Link href="/cookies">Cookie Policy</Link>
+              <Link href="/sms-terms">SMS Terms</Link>
               {/* Standing opt-out entry point — required to be reachable from every page. */}
               <CookieSettingsLink>Your privacy choices</CookieSettingsLink>
             </div>
