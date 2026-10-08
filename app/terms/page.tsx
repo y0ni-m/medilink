@@ -65,7 +65,8 @@ export default function TermsPage() {
         <h2>6. Text message (SMS) notifications</h2>
         <p>
           If you opt in, MediLink sends transactional text notifications — appointment
-          confirmations, reminders and changes, and account notices. Consent is given by
+          confirmations, reminders and changes, referral updates (such as a clinic accepting
+          your referral and inviting you to choose a visit time), and account notices. Consent is given by
           checking the opt-in box in your MediLink profile and is not a condition of receiving
           care or legal services. Message and data rates may apply; message frequency varies
           with your appointments. Reply STOP to any message to unsubscribe or HELP for

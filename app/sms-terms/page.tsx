@@ -16,11 +16,11 @@ export default function SmsTermsPage() {
       <LegalDoc
         eyebrow="SMS Terms"
         title="Text message notifications."
-        intro="These terms describe the MediLink Appointment & Account Notifications program: what you'll receive, how you opted in, and how to stop."
+        intro="These terms describe the MediLink Appointment, Referral & Account Notifications program: what you'll receive, how you opted in, and how to stop."
         lastUpdated="October 8, 2026"
       >
         <h2>1. Program name</h2>
-        <p>MediLink Appointment &amp; Account Notifications.</p>
+        <p>MediLink Appointment, Referral &amp; Account Notifications.</p>
 
         <h2>2. Who sends them</h2>
         <p>
@@ -30,17 +30,18 @@ export default function SmsTermsPage() {
 
         <h2>3. What you&apos;ll receive</h2>
         <p>
-          Transactional notifications about your MediLink account and appointments — appointment
-          confirmations, reminders and changes, a link to choose an appointment time after a
-          referral, and account notices such as password or sign-in help. Messages never include
+          Transactional notifications about your MediLink account, appointments, and referrals —
+          appointment confirmations, reminders and changes, referral updates such as a clinic
+          accepting your referral with a link to choose your visit time, and account notices
+          such as password or sign-in help. Messages never include
           medical details. Message frequency varies with your appointments; typically 1&ndash;4
           messages per appointment. We do not send marketing messages.
         </p>
 
         <h2>4. How you opt in</h2>
         <p>
-          You enter your mobile number and check the box &quot;Text me appointment
-          notifications&quot; on the My Profile page of your MediLink portal, or you reply YES to a
+          You enter your mobile number and check the box &quot;Text me appointment &amp;
+          referral notifications&quot; on the My Profile page of your MediLink portal, or you reply YES to a
           message inviting you to receive texts. Consent is recorded with a timestamp. Consent is
           not a condition of receiving care or legal services.
         </p>

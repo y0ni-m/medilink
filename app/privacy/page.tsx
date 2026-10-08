@@ -90,7 +90,7 @@ export default function PrivacyPage() {
         <h2>5. Text messages (SMS)</h2>
         <p>
           If you opt in to text notifications, your mobile phone number and SMS opt-in consent
-          are used only to send the account and appointment notifications described in our{' '}
+          are used only to send the account, appointment, and referral notifications described in our{' '}
           <a href="/sms-terms">SMS Terms</a>. We do not sell or share mobile numbers or SMS
           opt-in consent with third parties or affiliates for marketing purposes. Reply STOP to
           any message to opt out at any time.
