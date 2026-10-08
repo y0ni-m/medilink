@@ -17,7 +17,7 @@ export default function TermsPage() {
         eyebrow="Terms of Service"
         title="The agreement between you and MediLink."
         intro="By creating a MediLink account or using the platform, you agree to these Terms on behalf of yourself and the organization you represent."
-        lastUpdated="May 19, 2026"
+        lastUpdated="October 8, 2026"
       >
         <h2>1. The service</h2>
         <p>
@@ -62,7 +62,18 @@ export default function TermsPage() {
           onboarding, which controls in the event of any conflict with these Terms.
         </p>
 
-        <h2>6. No professional advice</h2>
+        <h2>6. Text message (SMS) notifications</h2>
+        <p>
+          If you opt in, MediLink sends transactional text notifications — appointment
+          confirmations, reminders and changes, and account notices. Consent is given by
+          checking the opt-in box in your MediLink profile and is not a condition of receiving
+          care or legal services. Message and data rates may apply; message frequency varies
+          with your appointments. Reply STOP to any message to unsubscribe or HELP for
+          assistance. The full program terms are in our <a href="/sms-terms">SMS Terms</a>,
+          which control for SMS matters in the event of any conflict with these Terms.
+        </p>
+
+        <h2>7. No professional advice</h2>
         <p>
           MediLink does not endorse any clinic or attorney listed on the platform and does not
           guarantee outcomes. Attorneys remain solely responsible for legal representation,
@@ -70,14 +81,14 @@ export default function TermsPage() {
           solely responsible for clinical care.
         </p>
 
-        <h2>7. Disclaimers</h2>
+        <h2>8. Disclaimers</h2>
         <p>
           The service is provided &quot;as is.&quot; To the maximum extent permitted by law,
           MediLink disclaims all warranties, express or implied, including merchantability, fitness
           for a particular purpose, and non-infringement.
         </p>
 
-        <h2>8. Limitation of liability</h2>
+        <h2>9. Limitation of liability</h2>
         <p>
           To the maximum extent permitted by law, MediLink&apos;s aggregate liability arising from
           or related to the service will not exceed the greater of (a) the fees you paid to
@@ -86,14 +97,14 @@ export default function TermsPage() {
           consequential, or punitive damages.
         </p>
 
-        <h2>9. Indemnification</h2>
+        <h2>10. Indemnification</h2>
         <p>
           You agree to defend, indemnify, and hold MediLink harmless from claims arising from your
           breach of these Terms, your violation of law, or your provision of legal or medical
           services to a client or patient.
         </p>
 
-        <h2>10. Termination</h2>
+        <h2>11. Termination</h2>
         <p>
           Either party may terminate for material breach if the breach is not cured within 30 days
           of written notice. MediLink may suspend access immediately for security reasons or
@@ -101,7 +112,7 @@ export default function TermsPage() {
           before that date.
         </p>
 
-        <h2>11. Governing law &amp; disputes</h2>
+        <h2>12. Governing law &amp; disputes</h2>
         <p>
           These Terms are governed by the laws of the State of Delaware, without regard to
           conflict-of-laws principles. Any dispute will be resolved exclusively in the state or
@@ -109,14 +120,14 @@ export default function TermsPage() {
           there.
         </p>
 
-        <h2>12. Changes</h2>
+        <h2>13. Changes</h2>
         <p>
           We may update these Terms from time to time. Material changes will be announced through
           the application or by email at least 30 days before they take effect. Continued use after
           the effective date constitutes acceptance.
         </p>
 
-        <h2>13. Contact</h2>
+        <h2>14. Contact</h2>
         <p>
           Questions? Call us at
           <a href="tel:+18334071005"> +1 (833) 407-1005</a>.
