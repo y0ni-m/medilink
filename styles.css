@@ -1967,7 +1967,9 @@ body::before {
   margin: 22px 0 8px;
 }
 .legal-body p { margin: 0 0 14px; }
-.legal-body ul { padding-left: 20px; margin: 0 0 14px; }
+.legal-body ul, .legal-body ol { padding-left: 20px; margin: 0 0 14px; }
+.legal-body hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0 18px; }
+.legal-note { font-size: 13.5px; color: var(--muted); }
 .legal-body li { margin-bottom: 6px; }
 .legal-body a { color: var(--teal); font-weight: 500; text-decoration: none; }
 .legal-body a:hover { text-decoration: underline; }
