@@ -99,7 +99,9 @@ export default function Nav() {
             </div>
           </div>
         </div>
-        <Link href="/#how-it-works">How it works</Link>
+        <Link href="/law-firms">For law firms</Link>
+        <Link href="/providers">For providers</Link>
+        <Link href="/telehealth">Telehealth</Link>
         <Link href="/resources">Resources</Link>
         <Link href="/pricing">Pricing</Link>
         <Link href="/faq">FAQ</Link>
@@ -145,6 +147,7 @@ export default function Nav() {
         <div className="nav-mobile-panel" role="dialog" aria-modal="true" aria-label="Site navigation">
           <div className="nav-mobile-section">
             <span className="nav-mobile-label">For legal teams</span>
+            <Link href="/law-firms" className="nav-mobile-link" onClick={closeMobile}>For law firms · the product</Link>
             {legal.map((a) => (
               <Link key={a.slug} href={`/for/${a.slug}`} className="nav-mobile-link" onClick={closeMobile}>
                 {a.nav.replace(/^For /, '')}
@@ -153,6 +156,8 @@ export default function Nav() {
           </div>
           <div className="nav-mobile-section">
             <span className="nav-mobile-label">For providers</span>
+            <Link href="/providers" className="nav-mobile-link" onClick={closeMobile}>For providers · the product</Link>
+            <Link href="/telehealth" className="nav-mobile-link" onClick={closeMobile}>Telehealth</Link>
             {medical.map((a) => (
               <Link key={a.slug} href={`/for/${a.slug}`} className="nav-mobile-link" onClick={closeMobile}>
                 {a.nav.replace(/^For /, '')}
@@ -161,7 +166,6 @@ export default function Nav() {
           </div>
           <div className="nav-mobile-section">
             <span className="nav-mobile-label">Company</span>
-            <Link href="/#how-it-works" className="nav-mobile-link" onClick={closeMobile}>How it works</Link>
             <Link href="/resources" className="nav-mobile-link" onClick={closeMobile}>Resources</Link>
             <Link href="/pricing" className="nav-mobile-link" onClick={closeMobile}>Pricing</Link>
             <Link href="/faq" className="nav-mobile-link" onClick={closeMobile}>FAQ</Link>

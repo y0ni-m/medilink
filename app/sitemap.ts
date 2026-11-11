@@ -30,6 +30,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const core = [
     entry('/', 1.0, 'weekly'),
+    entry('/law-firms', 0.9, 'weekly'),
+    entry('/providers', 0.9, 'weekly'),
+    entry('/telehealth', 0.8, 'weekly'),
     entry('/pricing', 0.8, 'monthly'),
     entry('/resources', 0.7, 'weekly'),
     entry('/faq', 0.6, 'monthly'),
